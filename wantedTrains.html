@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trains</title>
+    <link rel="stylesheet" href="HeaderFooter.css" />
+    <link rel="stylesheet" href="wantedTrains.css" />
+    <link rel="icon" href="Images/Icon.png" />
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-info">
+        <div class="icons">
+          <a href="Homepage.html">
+            <img
+              class="desktop-icon"
+              src="Images/Header Icon.png"
+              alt="Step Railway icon text"
+            />
+          </a>
+
+          <a href="Homepage.html">
+            <img
+              class="responsive-icon"
+              src="Images/Icon.png"
+              alt="Step Railway icon responsive"
+            />
+          </a>
+        </div>
+
+        <a href="checkTicket.html" class="check-ticket__button">
+          ბილეთის შემოწმება/დაბრუნება
+        </a>
+      </div>
+    </header>
+
+    <div class="wrapper-div__wantedTrains" id="wantedTrainShown">
+      <div class="page-name">
+        <h2>აირჩიეთ თვქენთვის სასურველი მატარებელი</h2>
+      </div>
+
+      <div class="wanted-trains" id="wantedTrains">
+        <h2>მატარებლების ჩამონათვალი</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>მატარებლის სახელი</th>
+                <th>გამგზავრება</th>
+                <th>ჩასვლა</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody id="trainTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-txt-div">
+        <p>
+          © 2023
+          <a href="https://railway.stepprojects.ge/" target="_blank"
+            >Step Railway</a
+          >. ყველა უფლება დაცულია.
+        </p>
+      </div>
+    </footer>
+
+    <script src="getTrains.js"></script>
+  </body>
+</html>

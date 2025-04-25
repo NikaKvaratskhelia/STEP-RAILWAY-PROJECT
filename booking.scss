@@ -1,0 +1,299 @@
+$--text: #3f3f3f;
+$--button-bg: #2841bf;
+$--button-bg__trans: #2841bf00;
+$--linear-one: #d5e4f5;
+$--linear-two: #ffffff;
+$--white: #ffffff;
+$--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
+
+@keyframes opacity {
+  0% {
+    background-color: $--button-bg;
+  }
+
+  100% {
+    background-color: $--button-bg__trans;
+  }
+}
+
+
+%buttons {
+  color: $--white;
+  background-color: $--button-bg;
+  text-align: center;
+  padding: 14px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    background-color: $--button-bg;
+    position: absolute;
+    inset: 0;
+    transform: scale(0, 1);
+    transform-origin: center;
+    transition: all 1s;
+    z-index: -1;
+    border-radius: 5px;
+  }
+
+  &:hover {
+    animation: opacity 1s;
+  }
+
+  &:hover::before {
+    transform: scale(1, 1);
+  }
+}
+
+.book-train__div {
+  padding-top: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+  max-width: 1300px;
+  width: 90%;
+  margin: auto;
+
+  .details-booking {
+    max-width: 950px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 3px 15px 30px rgba(0, 0, 0, 0.06);
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      &:nth-child(1)::after {
+        content: "";
+        border-bottom: dashed 2px #273eb11d;
+      }
+
+      .passengers-info-div {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .passengers {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items: center;
+
+          p {
+            background-color: $--button-bg;
+            padding: 15px 10px;
+            border-radius: 5px;
+            color: $--white;
+            text-align: center;
+          }
+
+          button {
+            @extend %buttons;
+            font-size: 12px;
+            padding: 15px 10px;
+
+            &::before {
+              transition: all 0.5s;
+            }
+
+            &:hover {
+              animation: opacity 0.5s;
+            }
+          }
+
+          input {
+            padding: 15px 10px;
+            border-radius: 3px;
+            border: 1px solid;
+
+            &:nth-child(2),
+            &:nth-child(3) {
+              flex-grow: 1;
+            }
+          }
+        }
+      }
+    }
+
+    .inputs-div {
+      flex-wrap: wrap;
+      display: flex;
+      gap: 20px;
+
+      input {
+        width: 48%;
+        padding: 15px 10px;
+        border-radius: 3px;
+        border: 1px solid;
+      }
+    }
+
+    .table-details-checkout {
+      display: grid;
+      grid-template-columns: 3fr 2fr 1fr;
+      padding: 20px;
+      background-color: #d5daf2ff;
+
+      div {
+        display: flex;
+        gap: 10px;
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          &::before {
+            content: "";
+            height: 100%;
+            width: 2px;
+            background-image: url(Images/line-vertical.png);
+          }
+        }
+      }
+
+      div > div {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  }
+}
+
+.invoice {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 20px 50px;
+  background-color: #273db10d;
+  border-radius: 5px;
+
+  h3 {
+    margin: auto;
+    color: $--button-bg;
+  }
+
+  table {
+    thead {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+
+      tr {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: rgb(0, 35, 211);
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 100%;
+        background-color: #d5daf2ff;
+      }
+    }
+  }
+
+  .white-checkout-div {
+    width: 95%;
+    margin: auto;
+    padding: 9px 15px;
+    background-color: $--white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .agree-rules {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    label {
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    @extend %buttons;
+    width: 90%;
+    margin: auto;
+    border: 2px solid black;
+    font-size: 14px;
+
+    &::before {
+      transition: all 0.5s;
+    }
+  }
+}
+
+@media screen and (max-width: 884px) {
+  .book-train__div
+    .details-booking
+    > div
+    .passengers-info-div
+    .passengers
+    button {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 884px) {
+  .book-train__div
+    .details-booking
+    > div
+    .passengers-info-div
+    .passengers
+    input:nth-child(4) {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .book-train__div .details-booking > div .passengers-info-div .passengers {
+    flex-direction: column;
+    align-items: stretch;
+
+    input:nth-child(4),
+    button {
+      margin: unset;
+    }
+  }
+}
+
+@media screen and (max-width: 1391px) {
+  .book-train__div {
+    gap: 50px;
+
+    .invoice,
+    .details-booking {
+      margin: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 611px) {
+  .book-train__div .details-booking > div .inputs-div input {
+    width: 100%;
+  }
+}

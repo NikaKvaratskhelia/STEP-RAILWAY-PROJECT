@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STEP RAILWAY</title>
+    <link rel="icon" href="Images/Icon.png" />
+    <link rel="stylesheet" href="HomeStyle.css" />
+    <link rel="stylesheet" href="HeaderFooter.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-info">
+        <div class="icons">
+          <a href="Homepage.html">
+            <img
+              class="desktop-icon"
+              src="Images/Header Icon.png"
+              alt="Step Railway icon text"
+            />
+          </a>
+
+          <a href="Homepage.html">
+            <img
+              class="responsive-icon"
+              src="Images/Icon.png"
+              alt="Step Railway icon responsive"
+            />
+          </a>
+        </div>
+
+        <a href="checkTicket.html" class="check-ticket__button">
+          ბილეთის შემოწმება/დაბრუნება
+        </a>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="top-div">
+        <div class="top-div__info">
+          <div class="text-div__top">
+            <h4>შეიძინეთ მატარებლის ბილეთები ონლაინ</h4>
+            <p>გისურვებთ ბედნიერ მგზავრობას</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-div">
+        <div class="bottom-top__div">
+          <h4>დაჯავშნეთ მატარებლის ბილეთი</h4>
+          <div class="inputs">
+            <form action="" id="myForm">
+              <div class="input-from before">
+                <input type="text" class="from" value="საიდან" required />
+
+                <ul class="from-ul">
+                  <li>საიდან</li>
+                  <li>თბილისი</li>
+                  <li>ბათუმი</li>
+                  <li>ფოთი</li>
+                </ul>
+              </div>
+
+              <div class="input-to before">
+                <input type="text" class="to" value="სად" required />
+
+                <ul class="to-ul">
+                  <li>სად</li>
+                  <li>თბილისი</li>
+                  <li>ბათუმი</li>
+                  <li>ფოთი</li>
+                </ul>
+              </div>
+
+              <div class="input-date big-input">
+                <input
+                  type="text"
+                  class="date"
+                  id="dateInput"
+                  placeholder="გამგზავრების თარიღი"
+                  required
+                />
+              </div>
+              <div class="passenger-count big-input">
+                <input
+                  type="number"
+                  min="1"
+                  max="120"
+                  class="count"
+                  placeholder="მგზავრების რაოდენობა"
+                  required
+                />
+              </div>
+
+              <button class="search-train">მატარებლის მოძებნა</button>
+            </form>
+          </div>
+        </div>
+        <div class="bottom-bottom__div">
+          <img
+            class="bottom-img"
+            src="Images/homepage bottom.png"
+            alt="Paris a suitcase and a hat"
+          />
+
+          <div class="bottom-info">
+            <div class="bottom-info__text">
+              <div class="bottom-info__text__detail">
+                <h4>მატარებლის ბილეთები</h4>
+
+                <p>
+                  რკინიგზის ბილეთების შესაძენად თქვენ დაგჭირდებათ თითოეული
+                  მგზავრის პირადი ნომერი. გთხოვთ მოამზადოთ ეს ინფორმაცია
+                  წინასწარ.
+                </p>
+              </div>
+
+              <div class="info-text__icon">
+                <div class="icon icon-1">
+                  <img src="Images/icon 1.png" alt="little icon" />
+
+                  <p>შეუზღუდავი შეთავაზებები</p>
+                </div>
+                <div class="icon icon-2">
+                  <img src="Images/icon 2.png" alt="little icon" />
+
+                  <p>24X7 მხარდაჭერა</p>
+                </div>
+                <div class="icon icon-3">
+                  <img src="Images/icon 3.png" alt="little icon" />
+
+                  <p>100% უსაფრთხო</p>
+                </div>
+                <div class="icon icon-4">
+                  <img src="Images/icon 4.png" alt="little icon" />
+
+                  <p>100% უსაფრთხო გადახდა</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-txt-div">
+        <p>
+          © 2023
+          <a href="https://railway.stepprojects.ge/" target="_blank"
+            >Step Railway</a
+          >. ყველა უფლება დაცულია.
+        </p>
+      </div>
+    </footer>
+
+    <script src="Homepage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  </body>
+</html>

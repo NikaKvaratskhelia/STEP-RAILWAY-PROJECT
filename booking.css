@@ -1,0 +1,237 @@
+@keyframes opacity {
+  0% {
+    background-color: #2841bf;
+  }
+  100% {
+    background-color: rgba(40, 65, 191, 0);
+  }
+}
+.invoice button, .book-train__div .details-booking > div .passengers-info-div .passengers button {
+  color: #ffffff;
+  background-color: #2841bf;
+  text-align: center;
+  padding: 14px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+.invoice button::before, .book-train__div .details-booking > div .passengers-info-div .passengers button::before {
+  content: "";
+  background-color: #2841bf;
+  position: absolute;
+  inset: 0;
+  transform: scale(0, 1);
+  transform-origin: center;
+  transition: all 1s;
+  z-index: -1;
+  border-radius: 5px;
+}
+.invoice button:hover, .book-train__div .details-booking > div .passengers-info-div .passengers button:hover {
+  animation: opacity 1s;
+}
+.invoice button:hover::before, .book-train__div .details-booking > div .passengers-info-div .passengers button:hover::before {
+  transform: scale(1, 1);
+}
+
+.book-train__div {
+  padding-top: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+  max-width: 1300px;
+  width: 90%;
+  margin: auto;
+}
+.book-train__div .details-booking {
+  max-width: 950px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 3px 15px 30px rgba(0, 0, 0, 0.06);
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.book-train__div .details-booking > div {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.book-train__div .details-booking > div:nth-child(1)::after {
+  content: "";
+  border-bottom: dashed 2px rgba(39, 62, 177, 0.1137254902);
+}
+.book-train__div .details-booking > div .passengers-info-div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.book-train__div .details-booking > div .passengers-info-div div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.book-train__div .details-booking > div .passengers-info-div .passengers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.book-train__div .details-booking > div .passengers-info-div .passengers p {
+  background-color: #2841bf;
+  padding: 15px 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  text-align: center;
+}
+.book-train__div .details-booking > div .passengers-info-div .passengers button {
+  font-size: 12px;
+  padding: 15px 10px;
+}
+.book-train__div .details-booking > div .passengers-info-div .passengers button::before {
+  transition: all 0.5s;
+}
+.book-train__div .details-booking > div .passengers-info-div .passengers button:hover {
+  animation: opacity 0.5s;
+}
+.book-train__div .details-booking > div .passengers-info-div .passengers input {
+  padding: 15px 10px;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.book-train__div .details-booking > div .passengers-info-div .passengers input:nth-child(2), .book-train__div .details-booking > div .passengers-info-div .passengers input:nth-child(3) {
+  flex-grow: 1;
+}
+.book-train__div .details-booking .inputs-div {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 20px;
+}
+.book-train__div .details-booking .inputs-div input {
+  width: 48%;
+  padding: 15px 10px;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.book-train__div .details-booking .table-details-checkout {
+  display: grid;
+  grid-template-columns: 3fr 2fr 1fr;
+  padding: 20px;
+  background-color: #d5daf2;
+}
+.book-train__div .details-booking .table-details-checkout div {
+  display: flex;
+  gap: 10px;
+}
+.book-train__div .details-booking .table-details-checkout div:nth-child(2)::before, .book-train__div .details-booking .table-details-checkout div:nth-child(3)::before {
+  content: "";
+  height: 100%;
+  width: 2px;
+  background-image: url(Images/line-vertical.png);
+}
+.book-train__div .details-booking .table-details-checkout div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.invoice {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 20px 50px;
+  background-color: rgba(39, 61, 177, 0.0509803922);
+  border-radius: 5px;
+}
+.invoice h3 {
+  margin: auto;
+  color: #2841bf;
+}
+.invoice table thead {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.invoice table thead tr {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: rgb(0, 35, 211);
+}
+.invoice table thead::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #d5daf2;
+}
+.invoice .white-checkout-div {
+  width: 95%;
+  margin: auto;
+  padding: 9px 15px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.invoice .agree-rules {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.invoice .agree-rules label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.invoice button {
+  width: 90%;
+  margin: auto;
+  border: 2px solid black;
+  font-size: 14px;
+}
+.invoice button::before {
+  transition: all 0.5s;
+}
+
+@media screen and (max-width: 884px) {
+  .book-train__div .details-booking > div .passengers-info-div .passengers button {
+    margin: auto;
+  }
+}
+@media screen and (max-width: 884px) {
+  .book-train__div .details-booking > div .passengers-info-div .passengers input:nth-child(4) {
+    margin: auto;
+  }
+}
+@media screen and (max-width: 500px) {
+  .book-train__div .details-booking > div .passengers-info-div .passengers {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .book-train__div .details-booking > div .passengers-info-div .passengers input:nth-child(4),
+  .book-train__div .details-booking > div .passengers-info-div .passengers button {
+    margin: unset;
+  }
+}
+@media screen and (max-width: 1391px) {
+  .book-train__div {
+    gap: 50px;
+  }
+  .book-train__div .invoice,
+  .book-train__div .details-booking {
+    margin: auto;
+  }
+}
+@media screen and (max-width: 611px) {
+  .book-train__div .details-booking > div .inputs-div input {
+    width: 100%;
+  }
+}/*# sourceMappingURL=booking.css.map */
