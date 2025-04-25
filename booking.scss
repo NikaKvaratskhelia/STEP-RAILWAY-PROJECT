@@ -177,6 +177,15 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
   }
 }
 
+.error {
+  display: none;
+  p {
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
 .invoice {
   display: flex;
   flex-direction: column;

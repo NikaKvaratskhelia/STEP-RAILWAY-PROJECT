@@ -3,6 +3,9 @@ const index = localStorage.getItem("indexOfBtn");
 let trainsArray = JSON.parse(localStorage.getItem("trainsArray"));
 console.log(trainsArray);
 
+localStorage.setItem('theTrain', JSON.stringify(trainsArray[index]))
+// Saving this so that in payment page i can reach this and take out the from and departure
+
 bookingDiv.innerHTML = "";
 
 bookingDiv.innerHTML = `
@@ -42,8 +45,8 @@ bookingDiv.innerHTML = `
             <h3>საკონტაქტო ინფორმაცია</h3>
   
             <div class="inputs-div">
-              <input type="email" placeholder="იმეილი" required />
-              <input type="text" placeholder="ტელეფონის ნომერი" required />
+              <input type="email" placeholder="იმეილი" class="emailInput" />
+              <input type="tel" placeholder="ტელეფონის ნომერი" class="phoneInput"/>
             </div>
           </div>
   
@@ -83,13 +86,12 @@ bookingDiv.innerHTML = `
             <label for="agree">წავიკითხე და ვეთანხმები წესებს</label>
           </div>
   
-          <button>ბილეთების რეგისტრაცია</button>
+          <button class="registration">ბილეთების რეგისტრაცია</button>
         </div>
 
         `;
 
-
-const errorDiv = document.querySelector('.error')     
+const errorDiv = document.querySelector(".error");
 const passengersInfo = document.querySelector(".passengers-info-div");
 let count = Number(localStorage.getItem("passengerCount"));
 
@@ -102,11 +104,11 @@ while (i <= count) {
                 <div class="passengers">
                   <p>ადგილი: <span>0</span></p>
 
-                  <input type="text" placeholder="სახელი" class="nameInputs">
-                  <input type="text" placeholder="გვარი" class="">
-                  <input type="text" placeholder="პირადი ნომერი">
+                  <input type="text" placeholder="სახელი" class="nameInput">
+                  <input type="text" placeholder="გვარი" class="lastNameInput">
+                  <input type="text" placeholder="პირადი ნომერი" class="privateNum">
 
-                  <button>ადგილის არჩევა</button>
+                  <button class="chooseSeat">ადგილის არჩევა</button>
                 </div>
               </div>
               `;
@@ -114,3 +116,57 @@ while (i <= count) {
   i++;
 }
 
+const email = document.getElementsByClassName("emailInput")[0];
+const phoneNumber = document.getElementsByClassName("phoneInput")[0];
+const registrateTicket = document.querySelector(".registration");
+const privNums = document.getElementsByClassName("privateNum");
+const firstnames = document.getElementsByClassName("nameInput");
+const lastNames = document.getElementsByClassName("lastNameInput");  
+const emails = document.getElementsByClassName("emailInput");
+const phoneNumbers = document.getElementsByClassName("phoneInput");
+const chosenSeatNumber = document.querySelectorAll('.passengers p span')
+
+registrateTicket.addEventListener("click", function () {
+
+  let isValid = true;
+  const passengers = [];
+
+  for (let i = 0; i < privNums.length; i++) {
+    if (
+      privNums[i].value.trim().length != 11 ||
+      firstnames[i].value.trim() === "" ||
+      lastNames[i].value.trim() === "" ||
+      emails[0].value.trim() === "" ||
+      !emails[0].value.trim().includes("@gmail.com") ||
+      phoneNumbers[0].value.trim() === "" ||
+      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, '')) ||
+      privNums[i].value.trim() === privNums[i + 1]?.value.trim()
+      // || chosenSeatNumber[i].innerHTML === "0"
+      // I AM COMMENTING THIS TEMPORARLY BCZ I HAVENT WRITTEN SEAT CHOOSING LOGIC
+    ) {
+      isValid = false;
+      break;
+    } else {
+      passengers.push({
+        firstName: firstnames[i].value.trim(),
+        lastName: lastNames[i].value.trim(),
+        privateNumber: privNums[i].value.trim(),
+      });
+    }
+  }
+
+  if (!isValid) {
+    errorDiv.style.display = "block";
+    errorDiv.innerHTML = `
+      <p>*მოხდა შეცდომა. ყველა ველი აუცილებლად უნდა შეივსოს</p>
+    `;
+  } else {
+    errorDiv.style.display = "none";
+    errorDiv.innerHTML = "";
+
+
+    localStorage.setItem('passEmail', emails[0].value.trim())
+    localStorage.setItem('passPhoneNum', phoneNumbers[0].value.trim())
+    localStorage.setItem("passengersData", JSON.stringify(passengers));
+  }
+});
