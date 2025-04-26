@@ -272,12 +272,12 @@ main .bottom-div .bottom-bottom__div .bottom-info .bottom-info__text p {
     display: none;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   main .bottom-div .bottom-bottom__div .bottom-info .bottom-info__text .info-text__icon {
     grid-template-columns: repeat(1, 1fr);
     row-gap: 20px;
   }
   main .bottom-div .bottom-bottom__div .bottom-info .bottom-info__text {
-    max-width: 95vw;
+    max-width: 90vw;
   }
 }/*# sourceMappingURL=HomeStyle.css.map */

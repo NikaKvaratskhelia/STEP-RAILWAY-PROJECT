@@ -329,7 +329,7 @@ main {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   main
     .bottom-div
     .bottom-bottom__div
@@ -341,6 +341,6 @@ main {
   }
 
   main .bottom-div .bottom-bottom__div .bottom-info .bottom-info__text {
-    max-width: 95vw;
+    max-width: 90vw;
   }
 }

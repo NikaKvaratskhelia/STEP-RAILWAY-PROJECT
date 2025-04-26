@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book The Train</title>
+    <title>Payment</title>
     <link rel="icon" href="Images/Icon.png" />
     <link rel="stylesheet" href="HeaderFooter.css" />
-    <link rel="stylesheet" href="booking.css" />
+    <link rel="stylesheet" href="payment.css" />
   </head>
   <body>
     <header id="header">
@@ -36,10 +36,40 @@
     </header>
 
     <div class="name-div">
-      <p>მგზავრების მონაცემები</p>
+        <p>
+            გადახდის გვერდი
+        </p>
     </div>
 
-    <div class="book-train__div" id="book-trains"></div>
+    <form class="payment-info">
+      <p >სულ გადასახდელი: ${total from invoice}</p>
+
+      <div class="card-number">
+        <label for="cardNum">ბარათის ნომერი*</label>
+        <input type="text" id="cardNum" placeholder="0123 4567 8901 1234">
+      </div>
+
+      <div class="card-date-cvv">
+        <div class="card-date">
+          <label for="cardDate">მოქმედების ვადა*</label>
+          <input type="text" id="cardDate" placeholder="MM / YYYY">
+        </div>
+
+        <div class="card-cvv">
+          <label for="cardCvv">CVC / CVV</label>
+          <input type="text" id="cardCvv" placeholder="CVC / CVV">
+        </div>
+      </div>
+
+      <div class="card-owner">
+        <label for="cardOwner">ბარათის მფლობელი*</label>
+        <input type="text" id="cardOwner" placeholder="J.Smith">
+      </div>
+
+      <button type="submit"> 
+        გადახდა
+      </button>
+    </form>
 
     <footer>
       <div class="footer-txt-div">
@@ -52,7 +82,6 @@
       </div>
     </footer>
 
-    <script src="booking.js"></script>
+    <script src="payment.js"></script>
   </body>
 </html>
-

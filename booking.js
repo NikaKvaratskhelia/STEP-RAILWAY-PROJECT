@@ -3,8 +3,8 @@ const index = localStorage.getItem("indexOfBtn");
 let trainsArray = JSON.parse(localStorage.getItem("trainsArray"));
 console.log(trainsArray);
 
-localStorage.setItem('theTrain', JSON.stringify(trainsArray[index]))
-// Saving this so that in payment page i can reach this and take out the from and departure
+localStorage.setItem("theTrain", JSON.stringify(trainsArray[index]));
+// Saving this so that in payment page i can reach this and take out the from and departure and the id to get vagons
 
 bookingDiv.innerHTML = "";
 
@@ -57,6 +57,312 @@ bookingDiv.innerHTML = `
 
             </div>
           </div> 
+
+          <div class="icons-main">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="34"
+                height="34"
+                viewBox="0 0 34 34"
+                fill="none"
+              >
+                <path
+                  d="M14.5248 16.9998H19.4748C22.3268 16.9998 23.6 15.7279 23.6 12.875V6.45182C23.0719 6.18565 22.5193 5.97145 21.9498 5.81193V5.44998C21.9498 2.71607 19.7337 0.5 16.9998 0.5C14.2662 0.5 12.0498 2.71607 12.0498 5.44998V5.81193C11.4806 5.97145 10.928 6.18565 10.3999 6.45182V12.875C10.3999 15.7279 11.6727 16.9998 14.5248 16.9998V16.9998ZM13.7 5.44998C13.7 3.62758 15.1774 2.14989 16.9998 2.14989C18.8225 2.14989 20.2999 3.62758 20.2999 5.44998V5.50044C20.0271 5.47506 19.7542 5.44998 19.4748 5.44998H14.5248C14.2456 5.44998 13.9725 5.47476 13.7 5.50044V5.44998Z"
+                  fill="url(#paint0_linear_1563_19204)"
+                />
+                <path
+                  d="M25.2501 7.53027V12.8748C25.2501 16.6526 23.2537 18.6499 19.4751 18.6499H14.5251C10.7467 18.6499 8.75029 16.6526 8.75029 12.8748V7.53027C6.6605 9.25147 5.44989 11.8174 5.4502 14.5247V29.3747C5.45261 31.6521 7.29798 33.4975 9.57508 33.4999H24.425C26.7024 33.4975 28.5478 31.6521 28.5502 29.3747V14.5247C28.5505 11.8174 27.3399 9.25147 25.2501 7.53027V7.53027ZM21.1253 26.8997H20.3002V27.7248C20.3002 28.1804 19.9307 28.5499 19.4751 28.5499C19.0195 28.5499 18.6503 28.1804 18.6503 27.7248V26.8997H12.8752C12.4196 26.8997 12.0501 26.5305 12.0501 26.0749C12.0501 25.6193 12.4196 25.2498 12.8752 25.2498H21.1253C21.5809 25.2498 21.95 25.6193 21.95 26.0749C21.95 26.5305 21.5809 26.8997 21.1253 26.8997V26.8997Z"
+                  fill="url(#paint1_linear_1563_19204)"
+                />
+                <path
+                  d="M31.0248 20.2998H30.1997V30.1164C32.1188 29.7221 33.4971 28.0342 33.4998 26.0749V22.7748C33.4983 21.4086 32.391 20.3013 31.0248 20.2998V20.2998Z"
+                  fill="url(#paint2_linear_1563_19204)"
+                />
+                <path
+                  d="M0.5 22.7748V26.0749C0.502417 28.0342 1.8807 29.7221 3.80009 30.1164V20.2998H2.97499C1.60879 20.3013 0.501511 21.4086 0.5 22.7748Z"
+                  fill="url(#paint3_linear_1563_19204)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_1563_19204"
+                    x1="10.3999"
+                    y1="10.3541"
+                    x2="23.6"
+                    y2="10.3541"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                  <linearGradient
+                    id="paint1_linear_1563_19204"
+                    x1="5.4502"
+                    y1="23.0399"
+                    x2="28.5502"
+                    y2="23.0399"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                  <linearGradient
+                    id="paint2_linear_1563_19204"
+                    x1="30.1997"
+                    y1="26.1625"
+                    x2="33.4998"
+                    y2="26.1625"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                  <linearGradient
+                    id="paint3_linear_1563_19204"
+                    x1="0.5"
+                    y1="26.1625"
+                    x2="3.80009"
+                    y2="26.1625"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div>
+                <div>
+                  <h3>Personal Items</h3>
+                  <p>Purse, small backpack, briefcase</p>
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="12"
+                    viewBox="0 0 14 12"
+                    fill="none"
+                  >
+                    <path
+                      d="M11.5175 6.27506C11.4851 6.25871 11.4526 6.25053 11.4199 6.25053C11.3494 6.25053 11.2874 6.27759 11.2333 6.33177L10.7137 6.85126C10.6651 6.90004 10.6408 6.9595 10.6408 7.02992V9.09168C10.6408 9.44893 10.5138 9.75455 10.2593 10.009C10.005 10.2634 9.69915 10.3906 9.34195 10.3906H2.58793C2.2307 10.3906 1.9249 10.2634 1.67057 10.009C1.41618 9.75458 1.28906 9.44896 1.28906 9.09168V2.3378C1.28906 1.9806 1.41618 1.67485 1.67057 1.42043C1.9249 1.16607 2.2307 1.03891 2.58793 1.03891H9.34201C9.46108 1.03891 9.58285 1.05515 9.7073 1.08765C9.73978 1.09839 9.76412 1.10388 9.78018 1.10388C9.85063 1.10388 9.91288 1.0769 9.96696 1.02279L10.3647 0.625014C10.4296 0.560158 10.4541 0.481626 10.4377 0.389702C10.4215 0.303096 10.3727 0.240828 10.2915 0.202983C9.99947 0.0678692 9.68272 0 9.3418 0H2.58793C1.94392 0 1.39323 0.228659 0.935917 0.685975C0.478658 1.14335 0.25 1.69396 0.25 2.33798V9.09205C0.25 9.73596 0.478658 10.2866 0.935946 10.744C1.39326 11.2014 1.94395 11.43 2.58796 11.43H9.34195C9.98589 11.43 10.5366 11.2014 10.9939 10.744C11.4513 10.2866 11.6801 9.73599 11.6801 9.09205V6.51041C11.6801 6.39685 11.6257 6.31843 11.5175 6.27506Z"
+                      fill="url(#paint0_linear_1563_19209)"
+                    />
+                    <path
+                      d="M13.5554 1.61518L12.6624 0.722139C12.5325 0.592286 12.3781 0.527344 12.1995 0.527344C12.0211 0.527344 11.8666 0.592286 11.7369 0.722139L6.48454 5.97442L4.34969 3.83942C4.21978 3.70948 4.06548 3.64462 3.88698 3.64462C3.70839 3.64462 3.5542 3.70948 3.42426 3.83942L2.53131 4.73237C2.40142 4.86223 2.33643 5.01653 2.33643 5.19517C2.33643 5.37372 2.40142 5.52795 2.53131 5.65788L6.02193 9.14851C6.15184 9.27847 6.30611 9.34331 6.48465 9.34331C6.66318 9.34331 6.81743 9.2785 6.94737 9.14851L13.5553 2.54059C13.6851 2.41074 13.7502 2.25643 13.7502 2.07788C13.7502 1.89932 13.6853 1.74504 13.5554 1.61518Z"
+                      fill="url(#paint1_linear_1563_19209)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_1563_19209"
+                        x1="0.25"
+                        y1="6.82627"
+                        x2="11.6801"
+                        y2="6.82627"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#2942CB" />
+                        <stop offset="1" stop-color="#273DB1" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_1563_19209"
+                        x1="2.33643"
+                        y1="5.79243"
+                        x2="13.7502"
+                        y2="5.79243"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#2942CB" />
+                        <stop offset="1" stop-color="#273DB1" />
+                      </linearGradient>
+                      .
+                    </defs>
+                  </svg>
+                  <p>Includes</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="34"
+                height="30"
+                viewBox="0 0 34 30"
+                fill="none"
+              >
+                <path
+                  d="M13.7661 15.8018H19.5669V17.7354H13.7661V15.8018Z"
+                  fill="url(#paint0_linear_1563_16914)"
+                />
+                <path
+                  d="M26.939 17.7353H21.5005V18.7021C21.5005 19.2363 21.0679 19.6689 20.5337 19.6689H12.7993C12.2651 19.6689 11.8325 19.2363 11.8325 18.7021V17.7353H6.39404C5.144 17.7353 4.03848 16.9384 3.64269 15.7526L0.166504 5.32227V26.4365C0.166504 28.0357 1.46765 29.3368 3.06689 29.3368H30.2661C31.8654 29.3368 33.1665 28.0357 33.1665 26.4365V5.32302L29.6901 15.7526C29.2945 16.9384 28.189 17.7353 26.939 17.7353V17.7353Z"
+                  fill="url(#paint1_linear_1563_16914)"
+                />
+                <path
+                  d="M20.5338 0.333008H12.7994C11.2002 0.333008 9.89906 1.63416 9.89906 3.2334V4.2002H1.83008L5.47646 15.1409C5.60864 15.5364 5.97774 15.8018 6.39417 15.8018H11.8326V14.835C11.8326 14.3007 12.2652 13.8682 12.7994 13.8682H20.5338C21.0681 13.8682 21.5006 14.3007 21.5006 14.835V15.8018H26.9391C27.3555 15.8018 27.7246 15.5364 27.8568 15.1409L31.5034 4.2002H23.4342V3.2334C23.4342 1.63416 22.1331 0.333008 20.5338 0.333008V0.333008ZM11.8326 4.2002V3.2334C11.8326 2.6999 12.2659 2.2666 12.7994 2.2666H20.5338C21.0673 2.2666 21.5006 2.6999 21.5006 3.2334V4.2002H11.8326Z"
+                  fill="url(#paint2_linear_1563_16914)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_1563_16914"
+                    x1="13.7661"
+                    y1="16.9565"
+                    x2="19.5669"
+                    y2="16.9565"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                  <linearGradient
+                    id="paint1_linear_1563_16914"
+                    x1="0.166504"
+                    y1="19.6643"
+                    x2="33.1665"
+                    y2="19.6643"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                  <linearGradient
+                    id="paint2_linear_1563_16914"
+                    x1="1.83008"
+                    y1="9.57129"
+                    x2="31.5034"
+                    y2="9.57129"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div>
+                <div>
+                  <h3>Carry-on bag</h3>
+                  <p>Fits in overhead bin or under the seat</p>
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="12"
+                    viewBox="0 0 14 12"
+                    fill="none"
+                  >
+                    <path
+                      d="M11.5175 6.27506C11.4851 6.25871 11.4526 6.25053 11.4199 6.25053C11.3494 6.25053 11.2874 6.27759 11.2333 6.33177L10.7137 6.85126C10.6651 6.90004 10.6408 6.9595 10.6408 7.02992V9.09168C10.6408 9.44893 10.5138 9.75455 10.2593 10.009C10.005 10.2634 9.69915 10.3906 9.34195 10.3906H2.58793C2.2307 10.3906 1.9249 10.2634 1.67057 10.009C1.41618 9.75458 1.28906 9.44896 1.28906 9.09168V2.3378C1.28906 1.9806 1.41618 1.67485 1.67057 1.42043C1.9249 1.16607 2.2307 1.03891 2.58793 1.03891H9.34201C9.46108 1.03891 9.58285 1.05515 9.7073 1.08765C9.73978 1.09839 9.76412 1.10388 9.78018 1.10388C9.85063 1.10388 9.91288 1.0769 9.96696 1.02279L10.3647 0.625014C10.4296 0.560158 10.4541 0.481626 10.4377 0.389702C10.4215 0.303096 10.3727 0.240828 10.2915 0.202983C9.99947 0.0678692 9.68272 0 9.3418 0H2.58793C1.94392 0 1.39323 0.228659 0.935917 0.685975C0.478658 1.14335 0.25 1.69396 0.25 2.33798V9.09205C0.25 9.73596 0.478658 10.2866 0.935946 10.744C1.39326 11.2014 1.94395 11.43 2.58796 11.43H9.34195C9.98589 11.43 10.5366 11.2014 10.9939 10.744C11.4513 10.2866 11.6801 9.73599 11.6801 9.09205V6.51041C11.6801 6.39685 11.6257 6.31843 11.5175 6.27506Z"
+                      fill="url(#paint0_linear_1563_19209)"
+                    />
+                    <path
+                      d="M13.5554 1.61518L12.6624 0.722139C12.5325 0.592286 12.3781 0.527344 12.1995 0.527344C12.0211 0.527344 11.8666 0.592286 11.7369 0.722139L6.48454 5.97442L4.34969 3.83942C4.21978 3.70948 4.06548 3.64462 3.88698 3.64462C3.70839 3.64462 3.5542 3.70948 3.42426 3.83942L2.53131 4.73237C2.40142 4.86223 2.33643 5.01653 2.33643 5.19517C2.33643 5.37372 2.40142 5.52795 2.53131 5.65788L6.02193 9.14851C6.15184 9.27847 6.30611 9.34331 6.48465 9.34331C6.66318 9.34331 6.81743 9.2785 6.94737 9.14851L13.5553 2.54059C13.6851 2.41074 13.7502 2.25643 13.7502 2.07788C13.7502 1.89932 13.6853 1.74504 13.5554 1.61518Z"
+                      fill="url(#paint1_linear_1563_19209)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_1563_19209"
+                        x1="0.25"
+                        y1="6.82627"
+                        x2="11.6801"
+                        y2="6.82627"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#2942CB" />
+                        <stop offset="1" stop-color="#273DB1" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_1563_19209"
+                        x1="2.33643"
+                        y1="5.79243"
+                        x2="13.7502"
+                        y2="5.79243"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#2942CB" />
+                        <stop offset="1" stop-color="#273DB1" />
+                      </linearGradient>
+                      .
+                    </defs>
+                  </svg>
+                  <p>Includes</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="23"
+                height="34"
+                viewBox="0 0 23 34"
+                fill="none"
+              >
+                <path
+                  d="M8.5835 3.41174V0.5H14.407V3.41174H8.5835ZM22.657 14.0883V30.5883C22.657 32.1964 21.3533 33.5 19.7452 33.5H3.24523C1.63712 33.5 0.333496 32.1964 0.333496 30.5883V14.0883C0.333496 13.5522 0.768038 13.1177 1.3041 13.1177H21.6864C22.2224 13.1177 22.657 13.5522 22.657 14.0883ZM19.26 11.1765H16.3482V0.5L18.9757 3.1275C19.1577 3.30951 19.26 3.55637 19.26 3.81379V11.1765H19.26ZM4.0148 3.1275L6.6423 0.5V11.1765H3.73056V3.81379C3.7305 3.55637 3.83278 3.30951 4.0148 3.1275Z"
+                  fill="url(#paint0_linear_1563_11189)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_1563_11189"
+                    x1="0.333496"
+                    y1="20.2083"
+                    x2="22.657"
+                    y2="20.2083"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#2942CB" />
+                    <stop offset="1" stop-color="#273DB1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div>
+                <div>
+                  <h3>Carry-on bag</h3>
+                  <p>Fits in overhead bin or under the seat</p>
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="14"
+                    viewBox="0 0 15 14"
+                  >
+                    <path
+                      d="M8.18399 6.64644L7.8304 7L8.18399 7.35357L13.501 12.6702L13.0038 13.1677L7.68694 7.85087L7.33339 7.49732L6.97984 7.85087L1.66306 13.1676L1.16588 12.6702L6.48265 7.35356L6.83622 7L6.48265 6.64644L1.16587 1.32979L1.66293 0.832364L6.97969 6.14913L7.33325 6.50268L7.6868 6.14913L13.0036 0.83228L13.5009 1.3298L8.18399 6.64644ZM0.884601 12.6702L0.671706 12.4573L0.884601 12.6702Z"
+                      fill="url(#paint0_linear_1563_18035)"
+                      stroke="url(#paint1_linear_1563_18035)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_1563_18035"
+                        x1="0.583496"
+                        y1="8.3125"
+                        x2="14.0833"
+                        y2="8.3125"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#2942CB" />
+                        <stop offset="1" stop-color="#273DB1" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_1563_18035"
+                        x1="0.583496"
+                        y1="8.3125"
+                        x2="14.0833"
+                        y2="8.3125"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#2942CB" />
+                        <stop offset="1" stop-color="#273DB1" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <p>Not Included</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
 
@@ -78,7 +384,7 @@ bookingDiv.innerHTML = `
   
           <div class="white-checkout-div">
             <p>სულ:</p>
-            <p>0.00₾</p>
+            <p><span id="total">0</span>.00₾</p>
           </div>
   
           <div class="agree-rules">
@@ -121,13 +427,12 @@ const phoneNumber = document.getElementsByClassName("phoneInput")[0];
 const registrateTicket = document.querySelector(".registration");
 const privNums = document.getElementsByClassName("privateNum");
 const firstnames = document.getElementsByClassName("nameInput");
-const lastNames = document.getElementsByClassName("lastNameInput");  
+const lastNames = document.getElementsByClassName("lastNameInput");
 const emails = document.getElementsByClassName("emailInput");
 const phoneNumbers = document.getElementsByClassName("phoneInput");
-const chosenSeatNumber = document.querySelectorAll('.passengers p span')
+const chosenSeatNumber = document.querySelectorAll(".passengers p span");
 
 registrateTicket.addEventListener("click", function () {
-
   let isValid = true;
   const passengers = [];
 
@@ -136,11 +441,11 @@ registrateTicket.addEventListener("click", function () {
       privNums[i].value.trim().length != 11 ||
       firstnames[i].value.trim() === "" ||
       lastNames[i].value.trim() === "" ||
+      privNums[i].value.trim() === privNums[i + 1]?.value.trim() ||
       emails[0].value.trim() === "" ||
       !emails[0].value.trim().includes("@gmail.com") ||
-      phoneNumbers[0].value.trim() === "" ||
-      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, '')) ||
-      privNums[i].value.trim() === privNums[i + 1]?.value.trim()
+      phoneNumbers[0].value.trim().replace(/\s+/g, "").length != 9 ||
+      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, "")) 
       // || chosenSeatNumber[i].innerHTML === "0"
       // I AM COMMENTING THIS TEMPORARLY BCZ I HAVENT WRITTEN SEAT CHOOSING LOGIC
     ) {
@@ -164,9 +469,10 @@ registrateTicket.addEventListener("click", function () {
     errorDiv.style.display = "none";
     errorDiv.innerHTML = "";
 
-
-    localStorage.setItem('passEmail', emails[0].value.trim())
-    localStorage.setItem('passPhoneNum', phoneNumbers[0].value.trim())
+    localStorage.setItem("passEmail", emails[0].value.trim());
+    localStorage.setItem("passPhoneNum", phoneNumbers[0].value.trim());
     localStorage.setItem("passengersData", JSON.stringify(passengers));
+
+    window.location.href = "payment.html";
   }
 });

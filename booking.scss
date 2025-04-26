@@ -16,7 +16,6 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
   }
 }
 
-
 %buttons {
   color: $--white;
   background-color: $--button-bg;
@@ -51,6 +50,22 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
   }
 }
 
+header {
+  background-color: $--white;
+}
+
+.name-div {
+  padding: 200px 100px 100px;
+  background-color: $--button-bg;
+
+  p {
+    width: fit-content;
+    font-size: 20px;
+    font-weight: 600;
+    color: $--white;
+  }
+}
+
 .book-train__div {
   padding-top: 200px;
   display: flex;
@@ -70,6 +85,60 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    .icons-main {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      > div {
+        max-width: 30%;
+        display: flex;
+        gap: 10px;
+        border-radius: 5px;
+        padding: 10px;
+        &:hover {
+          background-color: $--button-bg;
+          color: $--white;
+          transition: 0.5s;
+
+          svg {
+            fill: white;
+            border-color: $--white;
+            path {
+              fill: $--white;
+            }
+          }
+        }
+
+        > svg {
+          width: 30px;
+          height: 30px;
+          border: 1px solid $--button-bg;
+          border-radius: 3px;
+          padding: 10px;
+          box-sizing: content-box;
+        }
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          > div {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            &:nth-child(1) {
+              flex-direction: column;
+              align-items: unset;
+            }
+          }
+        }
+      }
+    }
 
     > div {
       display: flex;
@@ -151,7 +220,7 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
       display: grid;
       grid-template-columns: 3fr 2fr 1fr;
       padding: 20px;
-      background-color: #d5daf2ff;
+      background-color: rgba(39, 61, 177, 0.0509803922);
 
       div {
         display: flex;
@@ -219,6 +288,17 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
         background-color: #d5daf2ff;
       }
     }
+
+    tbody {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      tr {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
   }
 
   .white-checkout-div {
@@ -256,7 +336,17 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
   }
 }
 
-@media screen and (max-width: 884px) {
+@media screen and (max-width: 543px) {
+  .name-div {
+    padding: 250px 0px 100px;
+
+    p {
+      margin: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
   .book-train__div
     .details-booking
     > div
@@ -265,9 +355,7 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
     button {
     margin: auto;
   }
-}
 
-@media screen and (max-width: 884px) {
   .book-train__div
     .details-booking
     > div
@@ -301,8 +389,22 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
   }
 }
 
-@media screen and (max-width: 611px) {
+@media screen and (max-width: 630px) {
   .book-train__div .details-booking > div .inputs-div input {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .book-train__div .details-booking > div .passengers input,
+  .book-train__div .details-booking > div .passengers p,
+  .book-train__div .details-booking > div .passengers button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 942px) {
+  .book-train__div .details-booking .icons-main {
+    display: none;
   }
 }
