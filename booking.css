@@ -282,6 +282,79 @@ header {
   transition: all 0.5s;
 }
 
+.book-seats-wrapper.active {
+  display: flex;
+}
+
+.book-seats-wrapper {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4078431373);
+}
+.book-seats-wrapper .book-seats {
+  position: relative;
+  width: 450px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 6px;
+}
+.book-seats-wrapper .book-seats p {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.book-seats-wrapper .book-seats hr {
+  margin-top: 20px;
+}
+.book-seats-wrapper .book-seats .vagons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+.book-seats-wrapper .book-seats .vagons div {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.book-seats-wrapper .book-seats .vagons div img {
+  width: 100%;
+  opacity: 0.5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.book-seats-wrapper .book-seats .vagons div img:hover {
+  opacity: 1;
+}
+.book-seats-wrapper .book-seats .vagons div:hover::after {
+  display: flex;
+}
+.book-seats-wrapper .book-seats .vagons div::after {
+  content: attr(name);
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #3f3f3f;
+  width: 33%;
+  position: absolute;
+  bottom: -30px;
+  display: none;
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 543px) {
   .name-div {
     padding: 250px 0px 100px;

@@ -1,7 +1,6 @@
 const bookingDiv = document.getElementById("book-trains");
 const index = localStorage.getItem("indexOfBtn");
 let trainsArray = JSON.parse(localStorage.getItem("trainsArray"));
-console.log(trainsArray);
 
 localStorage.setItem("theTrain", JSON.stringify(trainsArray[index]));
 // Saving this so that in payment page i can reach this and take out the from and departure and the id to get vagons
@@ -445,7 +444,7 @@ registrateTicket.addEventListener("click", function () {
       emails[0].value.trim() === "" ||
       !emails[0].value.trim().includes("@gmail.com") ||
       phoneNumbers[0].value.trim().replace(/\s+/g, "").length != 9 ||
-      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, "")) 
+      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, ""))
       // || chosenSeatNumber[i].innerHTML === "0"
       // I AM COMMENTING THIS TEMPORARLY BCZ I HAVENT WRITTEN SEAT CHOOSING LOGIC
     ) {
@@ -475,4 +474,18 @@ registrateTicket.addEventListener("click", function () {
 
     window.location.href = "payment.html";
   }
+});
+
+const chooseSeatBtns = document.querySelectorAll(".chooseSeat");
+const seatBookingDiv = document.querySelector(".book-seats-wrapper");
+const closeSeatbookingDivBtn = document.querySelector(".book-seats>p");
+
+closeSeatbookingDivBtn.addEventListener("click", function () {
+  seatBookingDiv.classList.remove("active");
+});
+
+chooseSeatBtns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    seatBookingDiv.classList.add("active");
+  });
 });
