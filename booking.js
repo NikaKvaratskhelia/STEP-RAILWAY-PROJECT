@@ -3,6 +3,7 @@ const index = localStorage.getItem("indexOfBtn");
 let trainsArray = JSON.parse(localStorage.getItem("trainsArray"));
 
 localStorage.setItem("theTrain", JSON.stringify(trainsArray[index]));
+const theTrain = trainsArray[index];
 // Saving this so that in payment page i can reach this and take out the from and departure and the id to get vagons
 
 bookingDiv.innerHTML = "";
@@ -487,5 +488,101 @@ closeSeatbookingDivBtn.addEventListener("click", function () {
 chooseSeatBtns.forEach((btn) => {
   btn.addEventListener("click", function () {
     seatBookingDiv.classList.add("active");
+
+    fetch(`https://railway.stepprojects.ge/api/trains/${theTrain.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const vagons = data.vagons;
+        localStorage.setItem("vagons", JSON.stringify(vagons));
+        console.log(vagons);
+      });
   });
 });
+
+const vagons = JSON.parse(localStorage.getItem("vagons"));
+const vagonImgs = document.querySelectorAll(".vagonImg");
+
+vagonImgs[0].addEventListener("click", function () {
+  vagonImgs[1].classList.remove("active");
+  vagonImgs[2].classList.remove("active");
+});
+
+vagonImgs[1].addEventListener("click", function () {
+  vagonImgs[0].classList.remove("active");
+  vagonImgs[2].classList.remove("active");
+});
+
+vagonImgs[2].addEventListener("click", function () {
+  vagonImgs[1].classList.remove("active");
+  vagonImgs[0].classList.remove("active");
+});
+
+vagonImgs.forEach((img, index) =>
+  img.addEventListener("click", function () {
+    img.classList.add("active");
+
+    currentVagon = vagons[index];
+    currentVagonId = currentVagon.id;
+
+    const seats = document.querySelectorAll(".seats div");
+    seats.forEach((seat) => (seat.innerHTML = ""));
+
+    const seatsDv = document.getElementById("seats-div");
+    seatsDv.classList.add("active");
+
+    const vagonNumP = document.getElementById("vagonNum");
+    vagonNumP.innerHTML = `ვაგონის ნომერი: ${index + 1}`;
+
+    fetch(`https://railway.stepprojects.ge/api/getvagon/${currentVagonId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const mainVagon = data;
+        console.log(mainVagon);
+        console.log(mainVagon[0].seats);
+
+        const seatsDiv = document.querySelectorAll(".seats>div");
+
+        for (let i = 0; i < 10; i++) {
+          let div = `<div class="seat">
+            <p>${mainVagon[0].seats[i].number}</p>
+          </div>`;
+
+          seatsDiv[0].innerHTML += div;
+        }
+
+        for (let i = 10; i < 20; i++) {
+          let div = `<div class="seat">
+            <p>${mainVagon[0].seats[i].number}</p>
+          </div>`;
+
+          seatsDiv[1].innerHTML += div;
+        }
+
+        for (let i = 20; i < 30; i++) {
+          let div = `<div class="seat">
+            <p>${mainVagon[0].seats[i].number}</p>
+          </div>`;
+
+          seatsDiv[2].innerHTML += div;
+        }
+
+        for (let i = 30; i < 40; i++) {
+          let div = `<div class="seat">
+            <p>${mainVagon[0].seats[i].number}</p>
+          </div>`;
+
+          seatsDiv[3].innerHTML += div;
+        }
+      });
+  })
+);
+
+
+const icons = document.querySelectorAll('.icons a')
+
+icons.forEach(icon => 
+  icon.addEventListener('click', function(){
+    window.location.href = 'Homepage.html'
+    localStorage.clear()
+  })
+)

@@ -63,8 +63,17 @@ fetch("https://railway.stepprojects.ge/api/departures")
       btn.addEventListener("click", function () {
         window.location.href = "booking.html";
 
-        localStorage.setItem('indexOfBtn', index)
-        localStorage.setItem('trainsArray', JSON.stringify(wantedTrains))
+        localStorage.setItem("indexOfBtn", index);
+        localStorage.setItem("trainsArray", JSON.stringify(wantedTrains));
       })
     );
   });
+
+const icons = document.querySelectorAll(".icons a");
+
+icons.forEach((icon) =>
+  icon.addEventListener("click", function () {
+    window.location.href = "Homepage.html";
+    localStorage.clear();
+  })
+);

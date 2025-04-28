@@ -347,7 +347,7 @@ header {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: 999;
+  z-index: 99999;
   inset: 0;
   background-color: #00000068;
   .book-seats {
@@ -356,13 +356,21 @@ header {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 6px;
-    p {
-      position: absolute;
-      top: 0px;
-      right: 10px;
+    display: flex;
+    flex-direction: column;
+    > p {
+      text-align: center;
       font-size: 30px;
-      cursor: pointer;
-      user-select: none;
+      margin-bottom: 20px;
+      font-family: $--second-font;
+      &:nth-child(1) {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        font-size: 30px;
+        cursor: pointer;
+        user-select: none;
+      }
     }
 
     hr {
@@ -374,12 +382,17 @@ header {
       display: flex;
       align-items: center;
       padding-top: 20px;
+      margin-bottom: 50px;
 
       div {
         width: 33%;
         display: flex;
         flex-direction: column;
         gap: 10px;
+
+        img.active {
+          opacity: 1;
+        }
 
         img {
           width: 100%;
@@ -407,9 +420,77 @@ header {
           background-color: #3f3f3f;
           width: 33%;
           position: absolute;
-          bottom: -30px;
+          bottom: -45px;
           display: none;
           border-radius: 5px;
+        }
+      }
+    }
+
+    .seats-div.active {
+      display: flex;
+    }
+
+    .seats-div {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+
+      .col {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .border {
+          background-color: #d9d9d9;
+          width: 150px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &:nth-child(1) {
+          border-left: 8px solid #d9d9d9;
+        }
+
+        &:nth-child(2) {
+          border-right: 8px solid #d9d9d9;
+        }
+
+        .seats {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          align-items: center;
+
+          > div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            div {
+              width: fit-content;
+              background-color: green;
+              width: 50px;
+              height: 25px;
+              display: flex;
+              justify-content: center;
+              align-items: start;
+              border-radius: 7px;
+              cursor: pointer;
+
+              p {
+                border-radius: 5px;
+                font-size: 12px;
+                user-select: none;
+                height: 15px;
+                width: 30px;
+                text-align: center;
+                background-color: #ffffff3a;
+              }
+            }
+          }
         }
       }
     }

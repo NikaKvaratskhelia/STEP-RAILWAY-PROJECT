@@ -293,7 +293,7 @@ header {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: 999;
+  z-index: 99999;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.4078431373);
 }
@@ -303,8 +303,16 @@ header {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
 }
-.book-seats-wrapper .book-seats p {
+.book-seats-wrapper .book-seats > p {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
+}
+.book-seats-wrapper .book-seats > p:nth-child(1) {
   position: absolute;
   top: 0px;
   right: 10px;
@@ -322,12 +330,16 @@ header {
   display: flex;
   align-items: center;
   padding-top: 20px;
+  margin-bottom: 50px;
 }
 .book-seats-wrapper .book-seats .vagons div {
   width: 33%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.book-seats-wrapper .book-seats .vagons div img.active {
+  opacity: 1;
 }
 .book-seats-wrapper .book-seats .vagons div img {
   width: 100%;
@@ -350,9 +362,70 @@ header {
   background-color: #3f3f3f;
   width: 33%;
   position: absolute;
-  bottom: -30px;
+  bottom: -45px;
   display: none;
   border-radius: 5px;
+}
+.book-seats-wrapper .book-seats .seats-div.active {
+  display: flex;
+}
+.book-seats-wrapper .book-seats .seats-div {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+.book-seats-wrapper .book-seats .seats-div .col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.book-seats-wrapper .book-seats .seats-div .col .border {
+  background-color: #d9d9d9;
+  width: 150px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.book-seats-wrapper .book-seats .seats-div .col:nth-child(1) {
+  border-left: 8px solid #d9d9d9;
+}
+.book-seats-wrapper .book-seats .seats-div .col:nth-child(2) {
+  border-right: 8px solid #d9d9d9;
+}
+.book-seats-wrapper .book-seats .seats-div .col .seats {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.book-seats-wrapper .book-seats .seats-div .col .seats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.book-seats-wrapper .book-seats .seats-div .col .seats > div div {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: green;
+  width: 50px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.book-seats-wrapper .book-seats .seats-div .col .seats > div div p {
+  border-radius: 5px;
+  font-size: 12px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  height: 15px;
+  width: 30px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.2274509804);
 }
 
 @media screen and (max-width: 543px) {

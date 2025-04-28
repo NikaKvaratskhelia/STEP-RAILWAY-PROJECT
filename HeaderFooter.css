@@ -44,7 +44,7 @@ header {
   background-color: transparent;
   position: fixed;
   top: 0;
-  z-index: 999999999;
+  z-index: 9999;
   width: 100vw;
   animation: header-bg forwards;
   animation-timeline: scroll(y);

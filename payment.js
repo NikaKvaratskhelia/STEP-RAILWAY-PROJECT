@@ -20,3 +20,12 @@ myForm.addEventListener("submit", function (e) {
     window.location.href = "paymentSucces.html";
   }
 });
+
+const icons = document.querySelectorAll(".icons a");
+
+icons.forEach((icon) =>
+  icon.addEventListener("click", function () {
+    window.location.href = "Homepage.html";
+    localStorage.clear();
+  })
+);
