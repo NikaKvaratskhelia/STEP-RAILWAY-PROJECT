@@ -480,9 +480,16 @@ registrateTicket.addEventListener("click", function () {
 const chooseSeatBtns = document.querySelectorAll(".chooseSeat");
 const seatBookingDiv = document.querySelector(".book-seats-wrapper");
 const closeSeatbookingDivBtn = document.querySelector(".book-seats>p");
+const seatsDv = document.getElementById("seats-div");
+const vagonNumP = document.getElementById("vagonNum");
 
 closeSeatbookingDivBtn.addEventListener("click", function () {
   seatBookingDiv.classList.remove("active");
+  vagonImgs[0].classList.remove("active");
+  vagonImgs[1].classList.remove("active");
+  vagonImgs[2].classList.remove("active");
+  seatsDv.classList.remove("active")
+  vagonNumP.innerHTML = "";
 });
 
 chooseSeatBtns.forEach((btn) => {
@@ -494,7 +501,6 @@ chooseSeatBtns.forEach((btn) => {
       .then((data) => {
         const vagons = data.vagons;
         localStorage.setItem("vagons", JSON.stringify(vagons));
-        console.log(vagons);
       });
   });
 });
@@ -524,26 +530,20 @@ vagonImgs.forEach((img, index) =>
     currentVagon = vagons[index];
     currentVagonId = currentVagon.id;
 
-    const seats = document.querySelectorAll(".seats div");
-    seats.forEach((seat) => (seat.innerHTML = ""));
+    const seatsDiv = document.querySelectorAll(".seats>div");
+    seatsDiv.forEach((seat) => (seat.innerHTML = ""));
 
-    const seatsDv = document.getElementById("seats-div");
     seatsDv.classList.add("active");
 
-    const vagonNumP = document.getElementById("vagonNum");
     vagonNumP.innerHTML = `ვაგონის ნომერი: ${index + 1}`;
 
     fetch(`https://railway.stepprojects.ge/api/getvagon/${currentVagonId}`)
       .then((res) => res.json())
       .then((data) => {
         const mainVagon = data;
-        console.log(mainVagon);
-        console.log(mainVagon[0].seats);
-
-        const seatsDiv = document.querySelectorAll(".seats>div");
 
         for (let i = 0; i < 10; i++) {
-          let div = `<div class="seat">
+          let div = `<div class="chairBtns">
             <p>${mainVagon[0].seats[i].number}</p>
           </div>`;
 
@@ -551,7 +551,7 @@ vagonImgs.forEach((img, index) =>
         }
 
         for (let i = 10; i < 20; i++) {
-          let div = `<div class="seat">
+          let div = `<div class="chairBtns">
             <p>${mainVagon[0].seats[i].number}</p>
           </div>`;
 
@@ -559,7 +559,7 @@ vagonImgs.forEach((img, index) =>
         }
 
         for (let i = 20; i < 30; i++) {
-          let div = `<div class="seat">
+          let div = `<div class="chairBtns">
             <p>${mainVagon[0].seats[i].number}</p>
           </div>`;
 
@@ -567,22 +567,33 @@ vagonImgs.forEach((img, index) =>
         }
 
         for (let i = 30; i < 40; i++) {
-          let div = `<div class="seat">
+          let div = `<div class="chairBtns">
             <p>${mainVagon[0].seats[i].number}</p>
           </div>`;
 
           seatsDiv[3].innerHTML += div;
         }
+
+        const chairBtns = document.querySelectorAll(".chairBtns");
+
+        chairBtns.forEach((btn, index) => {
+          btn.addEventListener("click", function () {
+            mainVagon[0].seats[index].isOccupied = true;
+
+            if (mainVagon[0].seats[index].isOccupied === true) {
+              btn.style.backgroundColor = "#f23b4b";
+            }
+          });
+        });
       });
   })
 );
 
+const icons = document.querySelectorAll(".icons a");
 
-const icons = document.querySelectorAll('.icons a')
-
-icons.forEach(icon => 
-  icon.addEventListener('click', function(){
-    window.location.href = 'Homepage.html'
-    localStorage.clear()
+icons.forEach((icon) =>
+  icon.addEventListener("click", function () {
+    window.location.href = "Homepage.html";
+    localStorage.clear();
   })
-)
+);

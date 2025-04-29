@@ -308,7 +308,7 @@ header {
 }
 .book-seats-wrapper .book-seats > p {
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 20px;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
 }
@@ -407,7 +407,7 @@ header {
 .book-seats-wrapper .book-seats .seats-div .col .seats > div div {
   width: -moz-fit-content;
   width: fit-content;
-  background-color: green;
+  background-color: #bad955;
   width: 50px;
   height: 25px;
   display: flex;
