@@ -488,7 +488,8 @@ closeSeatbookingDivBtn.addEventListener("click", function () {
   vagonImgs[1].classList.remove("active");
   vagonImgs[2].classList.remove("active");
   seatsDv.classList.remove("active");
-  vagonNumP.innerHTML = "";
+  vagonNumP.innerHTML = "გთხოვთ აირჩიოთ ვაგონი";
+  console.log(occupiedSeats);
 });
 
 chooseSeatBtns.forEach((btn, index) => {
@@ -576,35 +577,36 @@ vagonImgs.forEach((img, index) =>
             }
             occupiedSeats.push(seat);
 
+
             chairBtns.forEach((btn, index) => {
               const seat = mainVagon[0].seats[index];
               const indexOpenSeatingBtn = localStorage.getItem(
                 "indexOpenSeatingBtn"
               );
+
               const invoiceBody = document.querySelector(".invoice-table-body");
 
               if (occupiedSeats.includes(seat)) {
                 seat.isOccupied = true;
                 btn.style.backgroundColor = "#f23b4b";
                 chosenSeatNumber[indexOpenSeatingBtn].innerHTML = seat.number;
-                tr = `<tr>
-                <td>${seat.number}</td>
-                <td class="seatPrice">${seat.price}</td>
+
+                tr = `<tr class="tbodyTr" data-id="${seat.id}">
+                <td class="seatNumber">${seat.number}</td>
+                <td class="seatPrice">${seat.price}₾</td>
               </tr>`;
                 invoiceBody.innerHTML += tr;
 
                 const chosenSeatPrices =
                   document.querySelectorAll(".seatPrice");
                 const totalPrice = document.getElementById("total");
-                console.log(chosenSeatPrices);
-
+                
                 let total = 0;
                 for (let i = 0; i < chosenSeatPrices.length; i++) {
-                  total += Number(chosenSeatPrices[i].innerHTML);
+                  total += parseInt(chosenSeatPrices[i].innerHTML);
                 }
-                
-                totalPrice.innerHTML = total;
 
+                totalPrice.innerHTML = total;
               } else {
                 seat.isOccupied = false;
                 btn.style.backgroundColor = "#bad955";
