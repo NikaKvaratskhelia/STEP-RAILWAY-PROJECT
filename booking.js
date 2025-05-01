@@ -445,9 +445,8 @@ registrateTicket.addEventListener("click", function () {
       emails[0].value.trim() === "" ||
       !emails[0].value.trim().includes("@gmail.com") ||
       phoneNumbers[0].value.trim().replace(/\s+/g, "").length != 9 ||
-      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, ""))
-      // || chosenSeatNumber[i].innerHTML === "0"
-      // I AM COMMENTING THIS TEMPORARLY BCZ I HAVENT WRITTEN SEAT CHOOSING LOGIC
+      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, "")) ||
+      chosenSeatNumber[i].innerHTML === "0"
     ) {
       isValid = false;
       break;
@@ -488,12 +487,13 @@ closeSeatbookingDivBtn.addEventListener("click", function () {
   vagonImgs[0].classList.remove("active");
   vagonImgs[1].classList.remove("active");
   vagonImgs[2].classList.remove("active");
-  seatsDv.classList.remove("active")
+  seatsDv.classList.remove("active");
   vagonNumP.innerHTML = "";
 });
 
-chooseSeatBtns.forEach((btn) => {
+chooseSeatBtns.forEach((btn, index) => {
   btn.addEventListener("click", function () {
+    localStorage.setItem("indexOpenSeatingBtn", index);
     seatBookingDiv.classList.add("active");
 
     fetch(`https://railway.stepprojects.ge/api/trains/${theTrain.id}`)
@@ -523,6 +523,8 @@ vagonImgs[2].addEventListener("click", function () {
   vagonImgs[0].classList.remove("active");
 });
 
+const occupiedSeats = [];
+
 vagonImgs.forEach((img, index) =>
   img.addEventListener("click", function () {
     img.classList.add("active");
@@ -543,34 +545,22 @@ vagonImgs.forEach((img, index) =>
         const mainVagon = data;
 
         for (let i = 0; i < 10; i++) {
-          let div = `<div class="chairBtns">
-            <p>${mainVagon[0].seats[i].number}</p>
-          </div>`;
-
+          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[0].innerHTML += div;
         }
 
         for (let i = 10; i < 20; i++) {
-          let div = `<div class="chairBtns">
-            <p>${mainVagon[0].seats[i].number}</p>
-          </div>`;
-
+          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[1].innerHTML += div;
         }
 
         for (let i = 20; i < 30; i++) {
-          let div = `<div class="chairBtns">
-            <p>${mainVagon[0].seats[i].number}</p>
-          </div>`;
-
+          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[2].innerHTML += div;
         }
 
         for (let i = 30; i < 40; i++) {
-          let div = `<div class="chairBtns">
-            <p>${mainVagon[0].seats[i].number}</p>
-          </div>`;
-
+          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[3].innerHTML += div;
         }
 
@@ -578,11 +568,48 @@ vagonImgs.forEach((img, index) =>
 
         chairBtns.forEach((btn, index) => {
           btn.addEventListener("click", function () {
-            mainVagon[0].seats[index].isOccupied = true;
+            const seat = mainVagon[0].seats[index];
+            if (seat.isOccupied) return;
 
-            if (mainVagon[0].seats[index].isOccupied === true) {
-              btn.style.backgroundColor = "#f23b4b";
+            if (occupiedSeats.length >= 1) {
+              occupiedSeats.pop();
             }
+            occupiedSeats.push(seat);
+
+            chairBtns.forEach((btn, index) => {
+              const seat = mainVagon[0].seats[index];
+              const indexOpenSeatingBtn = localStorage.getItem(
+                "indexOpenSeatingBtn"
+              );
+              const invoiceBody = document.querySelector(".invoice-table-body");
+
+              if (occupiedSeats.includes(seat)) {
+                seat.isOccupied = true;
+                btn.style.backgroundColor = "#f23b4b";
+                chosenSeatNumber[indexOpenSeatingBtn].innerHTML = seat.number;
+                tr = `<tr>
+                <td>${seat.number}</td>
+                <td class="seatPrice">${seat.price}</td>
+              </tr>`;
+                invoiceBody.innerHTML += tr;
+
+                const chosenSeatPrices =
+                  document.querySelectorAll(".seatPrice");
+                const totalPrice = document.getElementById("total");
+                console.log(chosenSeatPrices);
+
+                let total = 0;
+                for (let i = 0; i < chosenSeatPrices.length; i++) {
+                  total += Number(chosenSeatPrices[i].innerHTML);
+                }
+                
+                totalPrice.innerHTML = total;
+
+              } else {
+                seat.isOccupied = false;
+                btn.style.backgroundColor = "#bad955";
+              }
+            });
           });
         });
       });

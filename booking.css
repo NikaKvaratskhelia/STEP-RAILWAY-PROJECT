@@ -225,6 +225,11 @@ header {
   margin: auto;
   color: #2841bf;
 }
+.invoice table {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .invoice table thead {
   display: flex;
   flex-direction: column;

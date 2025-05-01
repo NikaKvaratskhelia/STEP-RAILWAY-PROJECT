@@ -269,6 +269,9 @@ header {
   }
 
   table {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     thead {
       display: flex;
       flex-direction: column;
