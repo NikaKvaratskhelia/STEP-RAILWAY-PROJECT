@@ -1,9 +1,9 @@
 const bookingDiv = document.getElementById("book-trains");
 const index = localStorage.getItem("indexOfBtn");
 let trainsArray = JSON.parse(localStorage.getItem("trainsArray"));
-
-localStorage.setItem("theTrain", JSON.stringify(trainsArray[index]));
 const theTrain = trainsArray[index];
+localStorage.setItem("theTrain", JSON.stringify(theTrain));
+
 // Saving this so that in payment page i can reach this and take out the from and departure and the id to get vagons
 
 bookingDiv.innerHTML = "";
@@ -16,22 +16,22 @@ bookingDiv.innerHTML = `
             <div class="table-details-checkout">
               <div>
                 <div>
-                  <p>#${trainsArray[index].number}</p>
+                  <p>#${theTrain.number}</p>
                   <p>
-                  ${trainsArray[index].name}
+                  ${theTrain.name}
                   Express</p>
                 </div>
               </div>
               <div>
                 <div>
-                  <p>${trainsArray[index].departure}</p>
-                  <p>${trainsArray[index].from}</p>
+                  <p>${theTrain.departure}</p>
+                  <p>${theTrain.from}</p>
                 </div>
               </div>
               <div>
                 <div>
-                  <p>${trainsArray[index].arrive}</p>
-                  <p>${trainsArray[index].to}</p>
+                  <p>${theTrain.arrive}</p>
+                  <p>${theTrain.to}</p>
                 </div>
               </div>
             </div>
@@ -451,6 +451,7 @@ registrateTicket.addEventListener("click", function () {
       isValid = false;
       break;
     } else {
+      localStorage.setItem("totalFromInvoice", total.innerHTML);
       passengers.push({
         firstName: firstnames[i].value.trim(),
         lastName: lastNames[i].value.trim(),
@@ -544,40 +545,36 @@ vagonImgs.forEach((img, index) =>
       .then((res) => res.json())
       .then((data) => {
         const mainVagon = data;
-
         for (let i = 0; i < 10; i++) {
-          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
+          let div = `<div class="chairBtns" seat-id="${mainVagon[0].seats[i].seatId}"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[0].innerHTML += div;
+          console.log(mainVagon[0].seats[i]);
         }
-
         for (let i = 10; i < 20; i++) {
-          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
+          let div = `<div class="chairBtns" seat-id="${mainVagon[0].seats[i].seatId}"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[1].innerHTML += div;
+          console.log(mainVagon[0].seats[i]);
         }
-
         for (let i = 20; i < 30; i++) {
-          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
+          let div = `<div class="chairBtns" seat-id="${mainVagon[0].seats[i].seatId}"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[2].innerHTML += div;
+          console.log(mainVagon[0].seats[i]);
         }
-
         for (let i = 30; i < 40; i++) {
-          let div = `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
+          let div = `<div class="chairBtns" seat-id="${mainVagon[0].seats[i].seatId}"><p>${mainVagon[0].seats[i].number}</p></div>`;
           seatsDiv[3].innerHTML += div;
+          console.log(mainVagon[0].seats[i]);
         }
-
         const chairBtns = document.querySelectorAll(".chairBtns");
-
         chairBtns.forEach((btn, index) => {
+          btn.setAttribute("seat-id", mainVagon[0].seats[i].seatId);
           btn.addEventListener("click", function () {
             const seat = mainVagon[0].seats[index];
             if (seat.isOccupied) return;
-
             if (occupiedSeats.length >= 1) {
               occupiedSeats.pop();
             }
             occupiedSeats.push(seat);
-
-
             chairBtns.forEach((btn, index) => {
               const seat = mainVagon[0].seats[index];
               const indexOpenSeatingBtn = localStorage.getItem(
@@ -590,26 +587,53 @@ vagonImgs.forEach((img, index) =>
                 seat.isOccupied = true;
                 btn.style.backgroundColor = "#f23b4b";
                 chosenSeatNumber[indexOpenSeatingBtn].innerHTML = seat.number;
+                const oldRow = invoiceBody.querySelector(
+                  `tr[data-passenger="${indexOpenSeatingBtn}"]`
+                );
+                if (oldRow) oldRow.remove();
 
-                tr = `<tr class="tbodyTr" data-id="${seat.id}">
-                <td class="seatNumber">${seat.number}</td>
-                <td class="seatPrice">${seat.price}₾</td>
-              </tr>`;
-                invoiceBody.innerHTML += tr;
+                const newRow = document.createElement("tr");
+                newRow.classList.add("tbodyTr");
+                newRow.setAttribute("data-id", seat.seatId);
+                newRow.setAttribute("data-passenger", indexOpenSeatingBtn);
+                newRow.innerHTML = `<td class="seatNumber">${seat.number}</td>
+                <td class="seatPrice">${seat.price}₾</td>`;
+
+                const allRows = invoiceBody.querySelectorAll("tr");
+                if (allRows.length <= indexOpenSeatingBtn) {
+                  invoiceBody.appendChild(newRow);
+                } else {
+                  invoiceBody.insertBefore(
+                    newRow,
+                    allRows[indexOpenSeatingBtn]
+                  );
+                }
+
+                chosenSeatNumber[indexOpenSeatingBtn].innerHTML = seat.number;
+                chosenSeatNumber[indexOpenSeatingBtn].setAttribute(
+                  "seat-id",
+                  seat.seatId
+                );
 
                 const chosenSeatPrices =
                   document.querySelectorAll(".seatPrice");
                 const totalPrice = document.getElementById("total");
-                
                 let total = 0;
-                for (let i = 0; i < chosenSeatPrices.length; i++) {
-                  total += parseInt(chosenSeatPrices[i].innerHTML);
-                }
-
+                chosenSeatPrices.forEach((td) => {
+                  total += parseInt(td.textContent);
+                });
                 totalPrice.innerHTML = total;
               } else {
                 seat.isOccupied = false;
                 btn.style.backgroundColor = "#bad955";
+              }
+
+              if (
+                chosenSeatNumber[indexOpenSeatingBtn].getAttribute(
+                  "seat-id"
+                ) === btn.getAttribute("seat-id")
+              ) {
+                btn.style.backgroundColor = "#f23b4b";
               }
             });
           });

@@ -21,6 +21,11 @@ myForm.addEventListener("submit", function (e) {
   }
 });
 
+const total = document.getElementById('mustPay')
+const totalFromInvoice = localStorage.getItem('totalFromInvoice')
+
+total.innerHTML = `${totalFromInvoice}.00₾`
+
 const icons = document.querySelectorAll(".icons a");
 
 icons.forEach((icon) =>
