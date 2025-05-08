@@ -77,17 +77,17 @@ closeSeatbookingDivBtn.addEventListener("click", function () {
   vagonNumP.innerHTML = "გთხოვთ აირჩიოთ ვაგონი";
 });
 
+fetch(`https://railway.stepprojects.ge/api/trains/${theTrain.id}`)
+  .then((res) => res.json())
+  .then((data) => {
+    const vagons = data.vagons;
+    localStorage.setItem("vagons", JSON.stringify(vagons));
+  });
+
 chooseSeatBtns.forEach((btn, index) => {
   btn.addEventListener("click", function () {
     localStorage.setItem("indexOpenSeatingBtn", index);
     seatBookingDiv.classList.add("active");
-
-    fetch(`https://railway.stepprojects.ge/api/trains/${theTrain.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const vagons = data.vagons;
-        localStorage.setItem("vagons", JSON.stringify(vagons));
-      });
   });
 });
 
@@ -236,7 +236,6 @@ vagonImgs.forEach((img, index) =>
       });
   })
 );
-
 
 registrateTicket.addEventListener("click", function () {
   let isValid = true;
