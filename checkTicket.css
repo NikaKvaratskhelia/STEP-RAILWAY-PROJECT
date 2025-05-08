@@ -83,6 +83,225 @@ main form button:hover {
 main form button:hover::before {
   transform: scale(1, 1);
 }
+main .container {
+  margin: auto;
+  margin-top: 180px;
+  max-width: 1300px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 30px;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+}
+main .container .payment-status {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+main .container .payment-status .svg-wrapper {
+  width: 70px;
+  height: 70px;
+  background-color: #008f20;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .container .payment-status p {
+  font-size: 30px;
+  font-weight: 600;
+}
+main .container .ticket-wrapper {
+  max-width: 1100px;
+  width: 100%;
+  background-color: rgba(39, 61, 177, 0.03);
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px;
+}
+main .container .ticket-wrapper .ticket-info {
+  max-width: 900px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+main .container .ticket-wrapper .ticket-info .company-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .container .ticket-wrapper .ticket-info .company-name p {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .company-name img {
+  width: 70px;
+}
+main .container .ticket-wrapper .ticket-info .ticket-id-date {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+main .container .ticket-wrapper .ticket-info .ticket-id-date p span {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .train-info {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: #ebebeb 1px solid;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+main .container .ticket-wrapper .ticket-info .train-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main .container .ticket-wrapper .ticket-info .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main .container .ticket-wrapper .ticket-info .contact-info > p {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .contact-info div {
+  border: 1px solid #ebebeb;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+main .container .ticket-wrapper .ticket-info .contact-info div p {
+  flex-grow: 1;
+}
+main .container .ticket-wrapper .ticket-info .contact-info div p span {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .passengers-div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+main .container .ticket-wrapper .ticket-info .passengers-div > p {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .passengers-div .passengers-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main .container .ticket-wrapper .ticket-info .passengers-div .passengers-info .pass-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px solid #ebebeb;
+  padding: 10px;
+  border-radius: 10px;
+}
+main .container .ticket-wrapper .ticket-info .passengers-div .passengers-info .pass-container div {
+  display: flex;
+  gap: 5px;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+main .container .ticket-wrapper .ticket-info .passengers-div .passengers-info .pass-container div p:nth-child(1) {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .payment-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+main .container .ticket-wrapper .ticket-info .payment-info .total {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid black;
+  max-width: 300px;
+  width: 100%;
+}
+main .container .ticket-wrapper .ticket-info .payment-info .total p:first-child {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .invoice-copyright {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+main .container .ticket-wrapper .ticket-info .invoice-copyright p {
+  font-weight: 600;
+}
+main .container .ticket-wrapper .ticket-info .invoice-copyright p:nth-child(2) {
+  color: red;
+}
+main .container .ticket-wrapper .print-donwload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main .container .delete-ticket {
+  width: 250px;
+  height: 40px;
+  background-color: red;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  align-self: flex-start;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  position: relative;
+  cursor: pointer;
+}
+main .container .delete-ticket:hover p::before {
+  visibility: visible;
+  transform: scale(1, 1);
+}
+main .container .delete-ticket p {
+  z-index: 5;
+}
+main .container .delete-ticket p::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  transform: scale(0, 1);
+  background-color: #2841bf;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+main .error {
+  max-width: 100%;
+  font-size: 20px;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin-top: 30px;
+  color: #2841bf;
+  display: none;
+}
 
 @media screen and (max-width: 680px) {
   main {

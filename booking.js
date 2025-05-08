@@ -65,6 +65,8 @@ const seatBookingDiv = document.querySelector(".book-seats-wrapper");
 const closeSeatbookingDivBtn = document.querySelector(".book-seats>p");
 const seatsDv = document.getElementById("seats-div");
 const vagonNumP = document.getElementById("vagonNum");
+const vagons = JSON.parse(localStorage.getItem("vagons"));
+const vagonImgs = document.querySelectorAll(".vagonImg");
 
 closeSeatbookingDivBtn.addEventListener("click", function () {
   seatBookingDiv.classList.remove("active");
@@ -88,9 +90,6 @@ chooseSeatBtns.forEach((btn, index) => {
       });
   });
 });
-
-const vagons = JSON.parse(localStorage.getItem("vagons"));
-const vagonImgs = document.querySelectorAll(".vagonImg");
 
 vagonImgs[0].addEventListener("click", function () {
   vagonImgs[1].classList.remove("active");
@@ -127,6 +126,18 @@ vagonImgs.forEach((img, index) =>
         const mainVagon = data;
         seatsDiv.forEach((seat) => (seat.innerHTML = ""));
 
+        mainVagon[0].seats.sort((a, b) => {
+          const aChar = a.number.replace(/[0-9]/g, "");
+          const bChar = b.number.replace(/[0-9]/g, "");
+          const aNum = parseInt(a.number);
+          const bNum = parseInt(b.number);
+
+          if (aChar < bChar) return -1;
+          if (aChar > bChar) return 1;
+
+          return aNum - bNum;
+        });
+
         for (let i = 0; i < 10; i++) {
           seatsDiv[0].innerHTML += `<div class="chairBtns"><p>${mainVagon[0].seats[i].number}</p></div>`;
         }
@@ -152,6 +163,11 @@ vagonImgs.forEach((img, index) =>
             "indexOpenSeatingBtn"
           );
 
+          if (seat.isOccupied) {
+            btn.classList.add("occupied");
+            return;
+          }
+
           btn.setAttribute("seat-id", seatId);
 
           if (selectedSeatIds.includes(seatId)) {
@@ -160,9 +176,9 @@ vagonImgs.forEach((img, index) =>
 
           btn.addEventListener("click", function () {
             if (selectedSeatIds.includes(seatId)) return;
-            console.log(selectedSeatIds)
+            console.log(selectedSeatIds);
 
-            selectedSeatIds.splice(indexOpenSeatingBtn, 1)
+            selectedSeatIds.splice(indexOpenSeatingBtn, 1);
 
             chosenSeatNumber[indexOpenSeatingBtn].innerHTML = seat.number;
             chosenSeatNumber[indexOpenSeatingBtn].setAttribute(
@@ -199,6 +215,7 @@ vagonImgs.forEach((img, index) =>
               total += parseInt(td.textContent);
             });
             totalPrice.innerHTML = total;
+            localStorage.setItem("total", totalPrice.textContent);
 
             chairBtns.forEach((btn, index) => {
               const seatId = mainVagon[0].seats[index].seatId;
@@ -208,10 +225,10 @@ vagonImgs.forEach((img, index) =>
                 ) === seatId
               ) {
                 btn.style.backgroundColor = "#f23b4b";
-                btn.classList.add('checked')
+                btn.classList.add("checked");
               } else if (!selectedSeatIds.includes(seatId)) {
                 btn.style.backgroundColor = "#bad955";
-                btn.classList.remove('checked')
+                btn.classList.remove("checked");
               }
             });
           });
@@ -220,18 +237,9 @@ vagonImgs.forEach((img, index) =>
   })
 );
 
-const icons = document.querySelectorAll(".icons a");
-
-icons.forEach((icon) =>
-  icon.addEventListener("click", function () {
-    window.location.href = "Homepage.html";
-    localStorage.clear();
-  })
-);
 
 registrateTicket.addEventListener("click", function () {
   let isValid = true;
-  const passengers = [];
 
   for (let i = 0; i < privNums.length; i++) {
     if (
@@ -247,13 +255,6 @@ registrateTicket.addEventListener("click", function () {
     ) {
       isValid = false;
       break;
-    } else {
-      localStorage.setItem("totalFromInvoice", total.innerHTML);
-      passengers.push({
-        firstName: firstnames[i].value.trim(),
-        lastName: lastNames[i].value.trim(),
-        privateNumber: privNums[i].value.trim(),
-      });
     }
   }
 
@@ -269,6 +270,63 @@ registrateTicket.addEventListener("click", function () {
     localStorage.setItem("passEmail", emails[0].value.trim());
     localStorage.setItem("passPhoneNum", phoneNumbers[0].value.trim());
 
-    window.location.href = "payment.html";
+    registrateTicketFunction();
+
+    setTimeout(() => {
+      window.location.href = "payment.html";
+    }, 500);
   }
 });
+
+async function registrateTicketFunction() {
+  const count = localStorage.getItem("passengerCount");
+
+  const newTicket = {
+    trainId: theTrain.id,
+    date: new Date(),
+    email: emails[0].value,
+    phoneNumber: phoneNumbers[0].value,
+    people: [],
+  };
+  const seatFetches = [];
+
+  for (let i = 0; i < count; i++) {
+    const seatId = chosenSeatNumber[i].getAttribute("seat-id");
+    seatFetches.push(
+      fetch(`https://railway.stepprojects.ge/api/seat/${seatId}`).then((res) =>
+        res.json()
+      )
+    );
+  }
+
+  const allSeatData = await Promise.all(seatFetches);
+
+  for (let i = 0; i < count; i++) {
+    const seat = allSeatData[i];
+
+    const person = {
+      seatId: seat.seatId,
+      name: firstnames[i].value.trim(),
+      surname: lastNames[i].value.trim(),
+      idNumber: privNums[i].value.trim(),
+      status: "0",
+      payoutCompleted: true,
+    };
+
+    newTicket.people.push(person);
+
+    fetch("https://railway.stepprojects.ge/api/tickets/register", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(newTicket),
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("ticket-id", data);
+      });
+  }
+
+  console.log(newTicket);
+  localStorage.setItem("ticket", JSON.stringify(newTicket));
+}

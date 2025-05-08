@@ -69,6 +69,7 @@ toListOption.forEach((option) => {
 
 myForm.addEventListener("submit", (event) => {
   event.preventDefault();
+
   if (
     fromInput.value.trim() === "საიდან" ||
     toInput.value.trim() === "სად" ||
@@ -94,6 +95,25 @@ myForm.addEventListener("submit", (event) => {
     const dayIndex = date.getDay();
     const weekDayName = weekDays[dayIndex];
 
+    const georgianMonths = [
+      "იანვარი",
+      "თებერვალი",
+      "მარტი",
+      "აპრილი",
+      "მაისი",
+      "ივნისი",
+      "ივლისი",
+      "აგვისტო",
+      "სექტემბერი",
+      "ოქტომბერი",
+      "ნოემბერი",
+      "დეკემბერი",
+    ];
+
+    const day = date.getDate();
+    const monthName = georgianMonths[date.getMonth()];
+    const formattedGeorgianDate = `${weekDayName} ${day} ${monthName}`;
+    localStorage.setItem("georgianFullDate", formattedGeorgianDate);
     localStorage.setItem("fromInputValue", fromInput.value.trim());
     localStorage.setItem("toInputValue", toInput.value.trim());
     localStorage.setItem("weekDayName", weekDayName);
@@ -102,12 +122,3 @@ myForm.addEventListener("submit", (event) => {
     window.location.href = "wantedTrains.html";
   }
 });
-
-const icons = document.querySelectorAll(".icons a");
-
-icons.forEach((icon) =>
-  icon.addEventListener("click", function () {
-    window.location.href = "Homepage.html";
-    localStorage.clear();
-  })
-);

@@ -292,6 +292,9 @@ header {
 }
 
 .book-seats-wrapper {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   display: none;
   align-items: center;
   justify-content: center;
@@ -409,6 +412,14 @@ header {
   flex-direction: column;
   gap: 10px;
 }
+.book-seats-wrapper .book-seats .seats-div .col .seats > div .chairBtns.occupied {
+  background-color: #f23b4b !important;
+  pointer-events: none;
+}
+.book-seats-wrapper .book-seats .seats-div .col .seats > div .chairBtns.checked {
+  background-color: #f23b4b !important;
+  pointer-events: none;
+}
 .book-seats-wrapper .book-seats .seats-div .col .seats > div div {
   width: -moz-fit-content;
   width: fit-content;
@@ -431,6 +442,9 @@ header {
   width: 30px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.2274509804);
+}
+.book-seats-wrapper .book-seats .seats-div .col .seats > div div div.checked {
+  background-color: #f23b4b;
 }
 
 @media screen and (max-width: 543px) {

@@ -36,16 +36,49 @@
     </header>
 
     <main>
-        <form>
-            <div class="input-div">
-                <label for="">ბილეთის ნომერი</label>
-                <input type="text" id="textInput"></input>
-            </div>
+      <form class="my-form">
+        <div class="input-div">
+          <label for="">ბილეთის ნომერი</label>
+          <input type="text" id="textInput" />
+        </div>
 
-            <button>
-                შემოწმება
-            </button>
-        </form>
+        <button>შემოწმება</button>
+      </form>
+
+      <div class="container">
+        <div class="payment-status">
+          <div class="svg-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              width="40"
+              height="40"
+            >
+              <path
+                fill="#ffffff"
+                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+              />
+            </svg>
+          </div>
+          <p>ბილეთის საფასური გადახდილია, იხილეთ ბილეთი:</p>
+        </div>
+
+        <div class="ticket-wrapper">
+          <div class="ticket-info"></div>
+
+          <div class="print-donwload">
+            <p>print</p>
+            <p>donwload</p>
+          </div>
+        </div>
+
+        <div class="delete-ticket">
+          <p>ბილეთის გაუქმება</p>
+        </div>
+      </div>
+
+      <div class="error">
+      </div>
     </main>
 
     <footer>
@@ -58,5 +91,7 @@
         </p>
       </div>
     </footer>
+
+    <script src="checkTicket.js"></script>
   </body>
 </html>

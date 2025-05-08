@@ -18,7 +18,7 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
 }
 
 body {
-    background-color: #f5f6fa;
+  background-color: #f5f6fa;
 }
 
 @font-face {
@@ -51,60 +51,306 @@ body {
 }
 
 main {
-    padding: 180px 115px;
-    background-color: $--white;
+  padding: 180px 115px;
+  background-color: $--white;
 
-    form {
+  form {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+
+      input {
+        max-width: 850px;
+        width: 100%;
+        padding: 12px;
+      }
+    }
+
+    button {
+      @extend %buttons;
+      margin: 0 auto;
+
+      &::before {
+        content: "";
+        background-color: $--button-bg;
+        position: absolute;
+        inset: 0;
+        transform: scale(0, 1);
+        transform-origin: center;
+        transition: all 0.7s;
+        z-index: -1;
+        border-radius: 5px;
+      }
+
+      &:hover {
+        animation: opacity 0.7s;
+      }
+
+      &:hover::before {
+        transform: scale(1, 1);
+      }
+    }
+  }
+
+  .container {
+    margin: auto;
+    margin-top: 180px;
+    max-width: 1300px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+
+    .payment-status {
+      width: fit-content;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      .svg-wrapper {
+        width: 70px;
+        height: 70px;
+        background-color: #008f20;
+        border-radius: 50%;
         display: flex;
-        align-items: end;
-        justify-content: space-between;
-        gap: 30px;
-        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
 
-        div {
+      p {
+        font-size: 30px;
+        font-weight: 600;
+      }
+    }
+
+    .ticket-wrapper {
+      max-width: 1100px;
+      width: 100%;
+      background-color: rgba(39, 61, 177, 0.03);
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 30px;
+
+      .ticket-info {
+        max-width: 900px;
+        width: 100%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+
+        .company-name {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          p {
+            font-weight: 600;
+          }
+
+          img {
+            width: 70px;
+          }
+        }
+
+        .ticket-id-date {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          p span {
+            font-weight: 600;
+          }
+        }
+
+        .train-info {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          border: #ebebeb 1px solid;
+          border-radius: 10px;
+          padding: 10px 20px;
+
+          div {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 850px;
-            margin: auto;
+            gap: 10px;
+          }
+        }
 
-            input {
-                max-width: 850px;
-                width: 100%;
-                padding: 12px;
+        .contact-info {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          > p {
+            font-weight: 600;
+          }
+
+          div {
+            border: 1px solid #ebebeb;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+
+            p {
+              flex-grow: 1;
+              span {
+                font-weight: 600;
+              }
             }
+          }
         }
 
-        button {
-            @extend %buttons;
-            margin: 0 auto;
+        .passengers-div {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
 
-            &::before {
-                content: "";
-                background-color: $--button-bg;
-                position: absolute;
-                inset: 0;
-                transform: scale(0, 1);
-                transform-origin: center;
-                transition: all 0.7s;
-                z-index: -1;
-                border-radius: 5px;
+          > p {
+            font-weight: 600;
+          }
+
+          .passengers-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .pass-container {
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              gap: 10px;
+              border: 1px solid #ebebeb;
+              padding: 10px;
+              border-radius: 10px;
+
+              div {
+                display: flex;
+                gap: 5px;
+                min-width: fit-content;
+
+                p:nth-child(1) {
+                  font-weight: 600;
+                }
               }
-      
-              &:hover {
-                animation: opacity 0.7s;
-              }
-      
-              &:hover::before {
-                transform: scale(1, 1);
-              }
+            }
+          }
         }
+
+        .payment-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20px;
+          flex-wrap: wrap;
+          .total {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-top: 1px solid black;
+            max-width: 300px;
+            width: 100%;
+
+            p:first-child {
+              font-weight: 600;
+            }
+          }
+        }
+
+        .invoice-copyright {
+          margin-top: 50px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+
+          p {
+            font-weight: 600;
+
+            &:nth-child(2) {
+              color: red;
+            }
+          }
+        }
+      }
+
+      .print-donwload {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
     }
+
+    .delete-ticket {
+      width: 250px;
+      height: 40px;
+      background-color: red;
+      text-align: center;
+      color: white;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid black;
+      border-radius: 5px;
+      align-self: flex-start;
+      user-select: none;
+      position: relative;
+      cursor: pointer;
+
+      &:hover p::before {
+        visibility: visible;
+        transform: scale(1, 1);
+      }
+
+      p {
+        z-index: 5;
+        &::before {
+          content: "";
+          z-index: -1;
+          position: absolute;
+          inset: 0;
+          transform: scale(0, 1);
+          background-color: #2841bf;
+          visibility: hidden;
+          transition: all 0.5s;
+        }
+      }
+    }
+  }
+
+  .error {
+    max-width: 100%;
+    font-size: 20px;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin-top: 30px;
+    color: #2841bf;
+    display: none;
+  }
 }
 
-@media screen and (max-width:680px) {
-    main  {
-        padding: 200px 30px;
-    }
+@media screen and (max-width: 680px) {
+  main {
+    padding: 200px 30px;
+  }
 }
