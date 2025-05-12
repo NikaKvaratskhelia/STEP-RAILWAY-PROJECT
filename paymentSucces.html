@@ -6,7 +6,7 @@
     <title>Ticket</title>
     <link rel="stylesheet" href="paymentSucces.css" />
     <link rel="stylesheet" href="HeaderFooter.css" />
-    <link rel="icon" href="Images/Icon.png">
+    <link rel="icon" href="Images/Icon.png" />
   </head>
   <body>
     <header id="header">
@@ -61,13 +61,66 @@
       </div>
 
       <div class="ticket-wrapper">
-        <div class="ticket-info">
-          
-        </div>
+        <div class="ticket-info"></div>
 
         <div class="print-donwload">
-          <p>print</p>
-          <p>donwload</p>
+          <div class="print" name="Print">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon"
+              viewBox="0 0 512 512"
+              width="25"
+              height="25"
+              color="#007aff"
+            >
+              <path
+                d="M384 368h24a40.12 40.12 0 0040-40V168a40.12 40.12 0 00-40-40H104a40.12 40.12 0 00-40 40v160a40.12 40.12 0 0040 40h24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="32"
+              ></path>
+              <rect
+                x="128"
+                y="240"
+                width="256"
+                height="208"
+                rx="24.32"
+                ry="24.32"
+                fill="none"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="32"
+              ></rect>
+              <path
+                d="M384 128v-24a40.12 40.12 0 00-40-40H168a40.12 40.12 0 00-40 40v24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="32"
+              ></path>
+              <circle cx="392" cy="184" r="24" fill="currentColor"></circle>
+            </svg>
+          </div>
+          <div class="download" name="Download">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon"
+              viewBox="0 0 512 512"
+              width="25"
+              height="25"
+              color="#34c759"
+            >
+              <path
+                d="M320 336h76c55 0 100-21.21 100-75.6s-53-73.47-96-75.6C391.11 99.74 329 48 256 48c-69 0-113.44 45.79-128 91.2-60 5.7-112 35.88-112 98.4S70 336 136 336h56M192 400.1l64 63.9 64-63.9M256 224v224.03"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+                fill="none"
+              ></path>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -76,13 +129,15 @@
       <div class="footer-txt-div">
         <p>
           © 2023
-          <a href="https://railway.stepprojects.ge/" target="_blank"
-            >Step Railway</a
+          <al href="https://railway.stepprojects.ge/" target="_blank"
+            >Step Railway</al
           >. ყველა უფლება დაცულია.
         </p>
       </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="paymentSucces.js"></script>
   </body>
 </html>

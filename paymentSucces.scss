@@ -226,6 +226,54 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      padding: 10px;
+      background-color: #fff;
+      width: fit-content;
+      height: fit-content;
+      position: relative;
+
+      div {
+        padding: 5px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+          &::before {
+            display: block;
+          }
+        }
+      }
+
+      .print {
+        background-color: #007bff61;
+        &::before {
+          content: attr(name);
+          color: #fff;
+          display: none;
+          position: absolute;
+          top: -30px;
+          background-color: #007bff61;
+          padding: 5px;
+          border-radius: 4px;
+        }
+      }
+
+      .download {
+        background-color: #34c75961;
+        &::before {
+          content: attr(name);
+          color: #fff;
+          display: none;
+          position: absolute;
+          bottom: -30px;
+          background-color: #34c75961;
+          padding: 5px;
+          border-radius: 4px;
+        }
+      }
     }
   }
 }

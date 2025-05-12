@@ -201,6 +201,50 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 10px;
+  background-color: #fff;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+}
+.container .ticket-wrapper .print-donwload div {
+  padding: 5px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.container .ticket-wrapper .print-donwload div:hover::before {
+  display: block;
+}
+.container .ticket-wrapper .print-donwload .print {
+  background-color: rgba(0, 123, 255, 0.3803921569);
+}
+.container .ticket-wrapper .print-donwload .print::before {
+  content: attr(name);
+  color: #fff;
+  display: none;
+  position: absolute;
+  top: -30px;
+  background-color: rgba(0, 123, 255, 0.3803921569);
+  padding: 5px;
+  border-radius: 4px;
+}
+.container .ticket-wrapper .print-donwload .download {
+  background-color: rgba(52, 199, 89, 0.3803921569);
+}
+.container .ticket-wrapper .print-donwload .download::before {
+  content: attr(name);
+  color: #fff;
+  display: none;
+  position: absolute;
+  bottom: -30px;
+  background-color: rgba(52, 199, 89, 0.3803921569);
+  padding: 5px;
+  border-radius: 4px;
 }
 
 @media screen and (max-width: 710px) {
