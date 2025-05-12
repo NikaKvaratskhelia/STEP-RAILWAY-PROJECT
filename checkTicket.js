@@ -59,10 +59,7 @@ myForm.addEventListener("submit", function (e) {
     </div>
     
     <div class="ticket-id-date">
-        <p><span>ბილეთის ნომერი:</span> ${ticketId.replace(
-          "ბილეთი წარმატებით დაიჯავშნა. ბილეთის ნომერია:",
-          ""
-        )}</p>
+        <p><span>ბილეთის ნომერი:</span> ${data.id}</p>
     
         <p><span>გაცემის თარიღი:</span> ${formattedDate}</p>
     </div>
@@ -70,11 +67,11 @@ myForm.addEventListener("submit", function (e) {
     <div class="train-info">
         <div>
             <p>გასვლა:</p>
-            <p>${theTrain.departure}</p>
+            <p>${data.train.departure}</p>
         </div>
         <div>
             <p>ჩასვლა:</p>
-            <p>${theTrain.arrive}</p>
+            <p>${data.train.arrive}</p>
         </div>
         <div>
             <p>გასვლის თარიღი:</p>
@@ -85,8 +82,8 @@ myForm.addEventListener("submit", function (e) {
     <div class="contact-info">
         <p>საკონტაქტო ინფორმაცია:</p>
         <div>
-            <p><span>იმეილი:</span> ${passEmail}</p>
-            <p><span>ნომერი:</span> ${passPhoneNum}</p>
+            <p><span>იმეილი:</span> ${data.email}</p>
+            <p><span>ნომერი:</span> ${data.phone}</p>
         </div>
     </div>
 
@@ -100,7 +97,7 @@ myForm.addEventListener("submit", function (e) {
     <div class="payment-info">
       <div class='total'>
       <p>სულ გადახდილი:</p>
-        <p>${total}₾</p>
+        <p>${data.ticketPrice}₾</p>
       </div>
     </div>
 
@@ -109,6 +106,43 @@ myForm.addEventListener("submit", function (e) {
       <p>გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.<p>
     </div>
     `;
+      const passengersDiv = document.querySelector(".passengers-info");
+
+      passengersDiv.innerHTML = "";
+      passengersInfo.forEach((passenger) => {
+        fetch(`https://railway.stepprojects.ge/api/seat/${passenger.seatId}`)
+          .then((res) => res.json())
+          .then((data) => {
+            passengersDiv.innerHTML += `
+          <div class="pass-container">
+              <div>
+                  <p>სახელი:</p>
+                  <p>${passenger.name}</p>
+              </div>
+  
+              <div>
+                  <p>გვარი:</p>
+                  <p>${passenger.surname}</p>
+              </div>
+  
+              <div>
+                  <p>პირადი ნომერი:</p>
+                  <p>${passenger.idNumber}</p>
+              </div>
+  
+              <div>
+                  <p>ადგილი:</p>
+                  <p>${data.number}</p>
+              </div>
+  
+              <div>
+                  <p>ვაგონის N:</p>
+                  <p>${data.vagonId}</p>
+              </div>
+          </div>
+        `;
+          });
+      });
     })
     .catch((error) => {
       container.style.display = "none";

@@ -273,7 +273,7 @@ registrateTicket.addEventListener("click", function () {
 
     setTimeout(() => {
       window.location.href = "payment.html";
-    }, 500);
+    }, 800);
   }
 });
 

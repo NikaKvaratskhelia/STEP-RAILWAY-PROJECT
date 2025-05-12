@@ -107,8 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const passengersDiv = document.querySelector(".passengers-info");
 
   passengersDiv.innerHTML = "";
-  let i = 0;
-
   console.log(passengersInfo);
   passengersInfo.forEach((passenger) => {
     fetch(`https://railway.stepprojects.ge/api/seat/${passenger.seatId}`)

@@ -213,6 +213,7 @@ main {
 
             p {
               flex-grow: 1;
+              overflow-wrap: anywhere;
               span {
                 font-weight: 600;
               }

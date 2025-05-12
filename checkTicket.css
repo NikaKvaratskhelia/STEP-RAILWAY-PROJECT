@@ -186,6 +186,7 @@ main .container .ticket-wrapper .ticket-info .contact-info div {
 }
 main .container .ticket-wrapper .ticket-info .contact-info div p {
   flex-grow: 1;
+  overflow-wrap: anywhere;
 }
 main .container .ticket-wrapper .ticket-info .contact-info div p span {
   font-weight: 600;
