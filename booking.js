@@ -1,8 +1,8 @@
 const bookingDiv = document.getElementById("table-details-checkout");
-const index = localStorage.getItem("indexOfBtn");
-let trainsArray = JSON.parse(localStorage.getItem("trainsArray"));
+const index = sessionStorage.getItem("indexOfBtn");
+let trainsArray = JSON.parse(sessionStorage.getItem("trainsArray"));
 const theTrain = trainsArray[index];
-localStorage.setItem("theTrain", JSON.stringify(theTrain));
+sessionStorage.setItem("theTrain", JSON.stringify(theTrain));
 
 bookingDiv.innerHTML = "";
 
@@ -10,40 +10,45 @@ bookingDiv.innerHTML = `
 <div>
   <div>
     <p>#${theTrain.number}</p>
-    <p>${theTrain.name} Express</p>
+    <p data-translate="${theTrain.name}">${theTrain.name} Express</p>
   </div>
 </div>
 <div>
   <div>
     <p>${theTrain.departure}</p>
-    <p>${theTrain.from}</p>
+    <p data-translate="${theTrain.from}">${theTrain.from}</p>
   </div>
 </div>
 <div>
   <div>
     <p>${theTrain.arrive}</p>
-    <p>${theTrain.to}</p>
+    <p data-translate="${theTrain.to}">${theTrain.to}</p>
   </div>
 </div>`;
 
 const errorDiv = document.querySelector(".error");
 const passengersInfo = document.querySelector(".passengers-info-div");
-let count = Number(localStorage.getItem("passengerCount"));
+let count = Number(sessionStorage.getItem("passengerCount"));
 
 passengersInfo.innerHTML = "";
 let i = 1;
 while (i <= count) {
   passengersInfo.innerHTML += `
                   <div>
-                <h4>მგზავრი ${i}</h4>
+                <h4> <span data-translate="მგზავრი">მგზავრი</span> ${i}</h4>
                 <div class="passengers">
-                  <p>ადგილი: <span>0</span></p>
+                  <p><span data-translate="ადგილი:">ადგილი:</span> <span class="number">0</span></p>
 
-                  <input type="text" placeholder="სახელი" class="nameInput">
-                  <input type="text" placeholder="გვარი" class="lastNameInput">
-                  <input type="text" placeholder="პირადი ნომერი" class="privateNum">
+                  <input type="text" placeholder="სახელი" 
+                  data-translate-placeholder="სახელი" class="nameInput">
+                  <input type="text" placeholder="გვარი" 
+                  data-translate-placeholder="გვარი"
+                  class="lastNameInput">
+                  <input type="text" placeholder="პირადი ნომერი"
+                  data-translate-placeholder="პირადი ნომერი"
+                  class="privateNum">
 
-                  <button class="chooseSeat">ადგილის არჩევა</button>
+                  <button class="chooseSeat" data-translate="ადგილის არჩევა">ადგილის არჩევა</button>
                 </div>
               </div>
               `;
@@ -59,13 +64,13 @@ const firstnames = document.getElementsByClassName("nameInput");
 const lastNames = document.getElementsByClassName("lastNameInput");
 const emails = document.getElementsByClassName("emailInput");
 const phoneNumbers = document.getElementsByClassName("phoneInput");
-const chosenSeatNumber = document.querySelectorAll(".passengers p span");
+const chosenSeatNumber = document.querySelectorAll(".number");
 const chooseSeatBtns = document.querySelectorAll(".chooseSeat");
 const seatBookingDiv = document.querySelector(".book-seats-wrapper");
 const closeSeatbookingDivBtn = document.querySelector(".book-seats>p");
 const seatsDv = document.getElementById("seats-div");
 const vagonNumP = document.getElementById("vagonNum");
-const vagons = JSON.parse(localStorage.getItem("vagons"));
+const vagons = JSON.parse(sessionStorage.getItem("vagons"));
 const vagonImgs = document.querySelectorAll(".vagonImg");
 
 closeSeatbookingDivBtn.addEventListener("click", function () {
@@ -75,18 +80,19 @@ closeSeatbookingDivBtn.addEventListener("click", function () {
   vagonImgs[2].classList.remove("active");
   seatsDv.classList.remove("active");
   vagonNumP.innerHTML = "გთხოვთ აირჩიოთ ვაგონი";
+  vagonNumP.setAttribute("data-translate", "გთხოვთ აირჩიოთ ვაგონი")
 });
 
 fetch(`https://railway.stepprojects.ge/api/trains/${theTrain.id}`)
   .then((res) => res.json())
   .then((data) => {
     const vagons = data.vagons;
-    localStorage.setItem("vagons", JSON.stringify(vagons));
+    sessionStorage.setItem("vagons", JSON.stringify(vagons));
   });
 
 chooseSeatBtns.forEach((btn, index) => {
   btn.addEventListener("click", function () {
-    localStorage.setItem("indexOpenSeatingBtn", index);
+    sessionStorage.setItem("indexOpenSeatingBtn", index);
     seatBookingDiv.classList.add("active");
   });
 });
@@ -119,6 +125,7 @@ vagonImgs.forEach((img, index) =>
     seatsDv.classList.add("active");
 
     vagonNumP.innerHTML = `ვაგონის ნომერი: ${index + 1}`;
+    vagonNumP.setAttribute("data-translate", `ვაგონის ნომერი: ${index + 1}`)
 
     fetch(`https://railway.stepprojects.ge/api/getvagon/${currentVagonId}`)
       .then((res) => res.json())
@@ -159,7 +166,7 @@ vagonImgs.forEach((img, index) =>
         chairBtns.forEach((btn, index) => {
           const seat = mainVagon[0].seats[index];
           const seatId = seat.seatId;
-          const indexOpenSeatingBtn = localStorage.getItem(
+          const indexOpenSeatingBtn = sessionStorage.getItem(
             "indexOpenSeatingBtn"
           );
 
@@ -215,7 +222,7 @@ vagonImgs.forEach((img, index) =>
               total += parseInt(td.textContent);
             });
             totalPrice.innerHTML = total;
-            localStorage.setItem("total", totalPrice.textContent);
+            sessionStorage.setItem("total", totalPrice.textContent);
 
             chairBtns.forEach((btn, index) => {
               const seatId = mainVagon[0].seats[index].seatId;
@@ -260,14 +267,14 @@ registrateTicket.addEventListener("click", function () {
   if (!isValid) {
     errorDiv.style.display = "block";
     errorDiv.innerHTML = `
-      <p>*მოხდა შეცდომა. ყველა ველი აუცილებლად უნდა შეივსოს</p>
+      <p data-translate="*მოხდა შეცდომა. ყველა ველი აუცილებლად უნდა შეივსოს">*მოხდა შეცდომა. ყველა ველი აუცილებლად უნდა შეივსოს</p>
     `;
   } else {
     errorDiv.style.display = "none";
     errorDiv.innerHTML = "";
 
-    localStorage.setItem("passEmail", emails[0].value.trim());
-    localStorage.setItem("passPhoneNum", phoneNumbers[0].value.trim());
+    sessionStorage.setItem("passEmail", emails[0].value.trim());
+    sessionStorage.setItem("passPhoneNum", phoneNumbers[0].value.trim());
 
     registrateTicketFunction();
 
@@ -278,7 +285,7 @@ registrateTicket.addEventListener("click", function () {
 });
 
 async function registrateTicketFunction() {
-  const count = localStorage.getItem("passengerCount");
+  const count = sessionStorage.getItem("passengerCount");
 
   const newTicket = {
     trainId: theTrain.id,
@@ -322,10 +329,10 @@ async function registrateTicketFunction() {
       .then((res) => res.text())
       .then((data) => {
         console.log(data);
-        localStorage.setItem("ticket-id", data);
+        sessionStorage.setItem("ticket-id", data);
       });
   }
 
   console.log(newTicket);
-  localStorage.setItem("ticket", JSON.stringify(newTicket));
+  sessionStorage.setItem("ticket", JSON.stringify(newTicket));
 }

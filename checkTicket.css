@@ -40,7 +40,7 @@ main form button {
 }
 
 main {
-  padding: 180px 115px;
+  padding: 240px 115px;
   background-color: #ffffff;
 }
 main form {
@@ -348,8 +348,39 @@ main .error {
   display: none;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 710px) {
+  .container .ticket-wrapper {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .container .ticket-wrapper .ticket-info {
+    max-width: 100%;
+  }
+  main .container .ticket-wrapper .print-donwload {
+    display: flex;
+    flex-direction: row;
+  }
+}
+@media screen and (max-width: 550px) {
+  .container {
+    padding: 0px;
+  }
+  .container ul {
+    transform: skewX(0deg);
+    border: none;
+  }
+  .container .ticket-wrapper {
+    max-width: 100%;
+  }
+  .container .pass-container {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 760px) {
   main {
-    padding: 200px 30px;
+    padding: 240px 10px !important;
+  }
+  main .my-form {
+    width: 100% !important;
   }
 }/*# sourceMappingURL=checkTicket.css.map */

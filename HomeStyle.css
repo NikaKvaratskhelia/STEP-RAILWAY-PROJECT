@@ -53,7 +53,7 @@ main .bottom-top__div form button:hover::before {
 }
 
 main .top-div {
-  padding: 180px 0px;
+  padding: 240px 0px;
   background: linear-gradient(to right, #d5e4f5, #ffffff);
 }
 main .top-div .top-div__info {
@@ -78,7 +78,7 @@ main .top-div .top-div__info .text-div__top p {
 }
 main .bottom-top__div {
   position: relative;
-  z-index: 9999;
+  z-index: 999;
   padding: 30px;
   display: flex;
   flex-direction: column;

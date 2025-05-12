@@ -51,7 +51,7 @@ body {
 }
 
 main {
-  padding: 180px 115px;
+  padding: 240px 115px;
   background-color: $--white;
 
   form {
@@ -295,58 +295,58 @@ main {
       }
 
       .print-donwload {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 10px;
-      background-color: #fff;
-      width: fit-content;
-      height: fit-content;
-      position: relative;
-
-      div {
-        padding: 5px;
-        border-radius: 4px;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        background-color: #fff;
+        width: fit-content;
+        height: fit-content;
+        position: relative;
 
-        &:hover {
+        div {
+          padding: 5px;
+          border-radius: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          &:hover {
+            &::before {
+              display: block;
+            }
+          }
+        }
+
+        .print {
+          background-color: #007bff61;
           &::before {
-            display: block;
+            content: attr(name);
+            color: #fff;
+            display: none;
+            position: absolute;
+            top: -30px;
+            background-color: #007bff61;
+            padding: 5px;
+            border-radius: 4px;
+          }
+        }
+
+        .download {
+          background-color: #34c75961;
+          &::before {
+            content: attr(name);
+            color: #fff;
+            display: none;
+            position: absolute;
+            bottom: -30px;
+            background-color: #34c75961;
+            padding: 5px;
+            border-radius: 4px;
           }
         }
       }
-
-      .print {
-        background-color: #007bff61;
-        &::before {
-          content: attr(name);
-          color: #fff;
-          display: none;
-          position: absolute;
-          top: -30px;
-          background-color: #007bff61;
-          padding: 5px;
-          border-radius: 4px;
-        }
-      }
-
-      .download {
-        background-color: #34c75961;
-        &::before {
-          content: attr(name);
-          color: #fff;
-          display: none;
-          position: absolute;
-          bottom: -30px;
-          background-color: #34c75961;
-          padding: 5px;
-          border-radius: 4px;
-        }
-      }
-    }
     }
 
     .delete-ticket {
@@ -398,8 +398,47 @@ main {
   }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 710px) {
+  .container {
+    .ticket-wrapper {
+      flex-direction: column-reverse;
+      gap: 20px;
+
+      .ticket-info {
+        max-width: 100%;
+      }
+    }
+  }
+  main .container .ticket-wrapper .print-donwload {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    padding: 0px;
+
+    ul {
+      transform: skewX(0deg);
+      border: none;
+    }
+    .ticket-wrapper {
+      max-width: 100%;
+    }
+
+    .pass-container {
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (max-width:760px){
   main {
-    padding: 200px 30px;
+    padding: 240px 10px !important;
+
+    .my-form {
+      width: 100% !important;
+    }
   }
 }

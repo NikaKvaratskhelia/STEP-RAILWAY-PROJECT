@@ -17,7 +17,8 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
   font-family: main-font;
 }
 
-body, html {
+body,
+html {
   overflow-x: hidden !important;
 }
 
@@ -62,7 +63,7 @@ header {
 
   .header-info {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     row-gap: 20px;
@@ -73,28 +74,40 @@ header {
       display: none;
     }
 
-    .check-ticket__button {
-      margin-left: auto;
-      @extend %buttons;
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
 
-      &::before {
-        content: "";
-        background-color: $--button-bg;
-        position: absolute;
-        inset: 0;
-        transform: scale(0, 1);
-        transform-origin: center;
-        transition: all 1s;
-        z-index: -1;
-        border-radius: 5px;
-      }
+      .check-ticket__button {
+        margin-left: auto;
+        @extend %buttons;
 
-      &:hover {
-        animation: opacity 1s;
-      }
+        + select {
+          @extend %buttons;
+          padding: 10px;
+        }
 
-      &:hover::before {
-        transform: scale(1, 1);
+        &::before {
+          content: "";
+          background-color: $--button-bg;
+          position: absolute;
+          inset: 0;
+          transform: scale(0, 1);
+          transform-origin: center;
+          transition: all 1s;
+          z-index: -1;
+          border-radius: 5px;
+        }
+
+        &:hover {
+          animation: opacity 1s;
+        }
+
+        &:hover::before {
+          transform: scale(1, 1);
+        }
       }
     }
   }

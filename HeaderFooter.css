@@ -9,7 +9,8 @@
   font-family: main-font;
 }
 
-body, html {
+body,
+html {
   overflow-x: hidden !important;
 }
 
@@ -25,7 +26,7 @@ body, html {
     background-color: #ffffff;
   }
 }
-header .header-info .check-ticket__button {
+header .header-info div .check-ticket__button + select, header .header-info div .check-ticket__button {
   color: #ffffff;
   background-color: #2841bf;
   text-align: center;
@@ -52,7 +53,7 @@ header {
 }
 header .header-info {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   row-gap: 20px;
@@ -62,10 +63,19 @@ header .header-info {
 header .header-info .responsive-icon {
   display: none;
 }
-header .header-info .check-ticket__button {
+header .header-info div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+header .header-info div .check-ticket__button {
   margin-left: auto;
 }
-header .header-info .check-ticket__button::before {
+header .header-info div .check-ticket__button + select {
+  padding: 10px;
+}
+header .header-info div .check-ticket__button::before {
   content: "";
   background-color: #2841bf;
   position: absolute;
@@ -76,10 +86,10 @@ header .header-info .check-ticket__button::before {
   z-index: -1;
   border-radius: 5px;
 }
-header .header-info .check-ticket__button:hover {
+header .header-info div .check-ticket__button:hover {
   animation: opacity 1s;
 }
-header .header-info .check-ticket__button:hover::before {
+header .header-info div .check-ticket__button:hover::before {
   transform: scale(1, 1);
 }
 

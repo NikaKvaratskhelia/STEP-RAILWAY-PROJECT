@@ -69,7 +69,7 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
 
 main {
   .top-div {
-    padding: 180px 0px;
+    padding: 240px 0px;
     background: linear-gradient(to right, $--linear-one, $--linear-two);
 
     .top-div__info {
@@ -99,7 +99,7 @@ main {
 
   .bottom-top__div {
     position: relative;
-    z-index: 9999;
+    z-index: 999;
     padding: 30px;
     display: flex;
     flex-direction: column;

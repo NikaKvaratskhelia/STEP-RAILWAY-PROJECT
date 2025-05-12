@@ -3,7 +3,7 @@ const cardOwner = document.getElementById("cardOwner");
 const cardNum = document.getElementById("cardNum");
 const cardCvv = document.getElementById("cardCvv");
 const cardDate = document.getElementById("cardDate");
-const newTicket = JSON.parse(localStorage.getItem("ticket"));
+const newTicket = JSON.parse(sessionStorage.getItem("ticket"));
 console.log(newTicket);
 
 myForm.addEventListener("submit", function (e) {
@@ -18,14 +18,14 @@ myForm.addEventListener("submit", function (e) {
   ) {
     alert("ყველა ველი აუცილებლად სწორად უნდა შეივსოს!");
   } else {
-    localStorage.setItem("cardNum", cardNum.value.trim());
-    localStorage.setItem("cardOwner", cardOwner.value.trim());
+    sessionStorage.setItem("cardNum", cardNum.value.trim());
+    sessionStorage.setItem("cardOwner", cardOwner.value.trim());
 
     window.location.href = "paymentSucces.html";
   }
 });
 
 const total = document.getElementById("mustPay");
-const totalFromInvoice = localStorage.getItem("total");
+const totalFromInvoice = sessionStorage.getItem("total");
 
 total.innerHTML = `${totalFromInvoice}.00₾`;

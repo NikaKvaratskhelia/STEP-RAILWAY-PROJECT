@@ -42,7 +42,7 @@ header {
 }
 
 .name-div {
-  padding: 200px 100px 100px;
+  padding: 280px 100px 100px;
   background-color: #2841bf;
 }
 .name-div p {
@@ -449,7 +449,7 @@ header {
 
 @media screen and (max-width: 543px) {
   .name-div {
-    padding: 250px 0px 100px;
+    padding: 300px 0px 100px;
   }
   .name-div p {
     margin: auto;

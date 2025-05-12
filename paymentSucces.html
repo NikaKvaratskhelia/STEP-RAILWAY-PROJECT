@@ -29,9 +29,20 @@
           </a>
         </div>
 
-        <a href="checkTicket.html" class="check-ticket__button">
-          ბილეთის შემოწმება/დაბრუნება
-        </a>
+        <div>
+          <a
+            href="checkTicket.html"
+            class="check-ticket__button"
+            data-translate="ბილეთის შემოწმება/დაბრუნება"
+          >
+            ბილეთის შემოწმება/დაბრუნება
+          </a>
+
+          <select name="translate" id="lang">
+            <option value="ka">ქართული</option>
+            <option value="en">English</option>
+          </select>
+        </div>
       </div>
     </header>
 
@@ -129,9 +140,11 @@
       <div class="footer-txt-div">
         <p>
           © 2023
-          <al href="https://railway.stepprojects.ge/" target="_blank"
-            >Step Railway</al
-          >. ყველა უფლება დაცულია.
+          <a href="https://railway.stepprojects.ge/" target="_blank"
+            >Step Railway</a
+          >. <span data-translate="ყველა უფლება დაცულია."
+            >ყველა უფლება დაცულია.</span
+          >
         </p>
       </div>
     </footer>
@@ -139,5 +152,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="paymentSucces.js"></script>
+    <script src="translations.js"></script>
   </body>
 </html>

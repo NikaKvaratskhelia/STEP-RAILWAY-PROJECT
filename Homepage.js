@@ -23,56 +23,67 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Show dropdown
 fromInput.addEventListener("click", () => {
-  // სიას ხსნის
   fromInput.classList.add("active");
   document.querySelector(".input-from").classList.add("active");
 });
 
+// Hide dropdown
 window.addEventListener("click", function (event) {
-  //სიას ხურავს
   if (event.target !== fromInput) {
     fromInput.classList.remove("active");
     document.querySelector(".input-from").classList.remove("active");
   }
 });
 
+// Handle "From" option click
 fromListOption.forEach((option) => {
-  // ველიუს უცვლის
   option.addEventListener("click", function () {
     fromInput.value = this.textContent;
+    fromInput.setAttribute(
+      "data-value",
+      this.getAttribute("data-value") || this.textContent
+    ); // ✅ Save Georgian value
     fromInput.classList.remove("active");
   });
 });
 
+// Show dropdown
 toInput.addEventListener("click", () => {
-  // სიას ხსნის
   toInput.classList.add("active");
   document.querySelector(".input-to").classList.add("active");
 });
 
+// Hide dropdown
 window.addEventListener("click", function (event) {
-  // სიას ხურავს
   if (event.target !== toInput) {
     toInput.classList.remove("active");
     document.querySelector(".input-to").classList.remove("active");
   }
 });
 
+// Handle "To" option click
 toListOption.forEach((option) => {
-  // ველიუს უცვლის
   option.addEventListener("click", function () {
     toInput.value = this.textContent;
+    toInput.setAttribute(
+      "data-value",
+      this.getAttribute("data-value") || this.textContent
+    ); // ✅ Save Georgian value
     toInput.classList.remove("active");
   });
 });
 
+// Form submit logic
 myForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   if (
     fromInput.value.trim() === "საიდან" ||
     toInput.value.trim() === "სად" ||
+    fromInput.value.trim() === "From" ||
+    toInput.value.trim() === "Where" ||
     dateInput.value.trim() === "" ||
     passengerCount.value.trim() === "" ||
     fromInput.value.trim() === toInput.value.trim()
@@ -81,7 +92,8 @@ myForm.addEventListener("submit", (event) => {
     return;
   } else {
     const selectedDate = dateInput.value;
-    const weekDays = [
+
+    const georgianWeekDays = [
       "კვირა",
       "ორშაბათი",
       "სამშაბათი",
@@ -90,10 +102,6 @@ myForm.addEventListener("submit", (event) => {
       "პარასკევი",
       "შაბათი",
     ];
-
-    const date = new Date(selectedDate);
-    const dayIndex = date.getDay();
-    const weekDayName = weekDays[dayIndex];
 
     const georgianMonths = [
       "იანვარი",
@@ -110,14 +118,21 @@ myForm.addEventListener("submit", (event) => {
       "დეკემბერი",
     ];
 
-    const day = date.getDate();
+    const date = new Date(selectedDate);
+    const weekDayName = georgianWeekDays[date.getDay()];
+    const dayNumber = date.getDate();
     const monthName = georgianMonths[date.getMonth()];
-    const formattedGeorgianDate = `${weekDayName} ${day} ${monthName}`;
-    localStorage.setItem("georgianFullDate", formattedGeorgianDate);
-    localStorage.setItem("fromInputValue", fromInput.value.trim());
-    localStorage.setItem("toInputValue", toInput.value.trim());
-    localStorage.setItem("weekDayName", weekDayName);
-    localStorage.setItem("passengerCount", passengerCount.value);
+
+    sessionStorage.setItem("georgianWeekDay", weekDayName);
+    sessionStorage.setItem("georgianDayNumber", dayNumber);
+    sessionStorage.setItem("georgianMonthName", monthName);
+
+    sessionStorage.setItem(
+      "fromInputValue",
+      fromInput.getAttribute("data-value")
+    );
+    sessionStorage.setItem("toInputValue", toInput.getAttribute("data-value"));
+    sessionStorage.setItem("passengerCount", passengerCount.value);
 
     window.location.href = "wantedTrains.html";
   }

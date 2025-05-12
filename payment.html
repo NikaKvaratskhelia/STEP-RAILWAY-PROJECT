@@ -29,29 +29,40 @@
           </a>
         </div>
 
-        <a href="checkTicket.html" class="check-ticket__button">
-          ბილეთის შემოწმება/დაბრუნება
-        </a>
+        <div>
+          <a
+            href="checkTicket.html"
+            class="check-ticket__button"
+            data-translate="ბილეთის შემოწმება/დაბრუნება"
+          >
+            ბილეთის შემოწმება/დაბრუნება
+          </a>
+
+          <select name="translate" id="lang">
+            <option value="ka">ქართული</option>
+            <option value="en">English</option>
+          </select>
+        </div>
       </div>
     </header>
 
     <div class="name-div">
-        <p>
+        <p data-translate="გადახდის გვერდი">
             გადახდის გვერდი
         </p>
     </div>
 
     <form class="payment-info">
-      <p >სულ გადასახდელი: <span id="mustPay"></span></p>
+      <p ><i data-translate="სულ გადასახდელი:">სულ გადასახდელი:</i> <span id="mustPay"></span></p>
 
       <div class="card-number">
-        <label for="cardNum">ბარათის ნომერი*</label>
+        <label for="cardNum" data-translate="ბარათის ნომერი*">ბარათის ნომერი*</label>
         <input type="text" id="cardNum" placeholder="0123 4567 8901 1234">
       </div>
 
       <div class="card-date-cvv">
         <div class="card-date">
-          <label for="cardDate">მოქმედების ვადა*</label>
+          <label for="cardDate" data-translate="მოქმედების ვადა*">მოქმედების ვადა*</label>
           <input type="text" id="cardDate" placeholder="MM / YYYY">
         </div>
 
@@ -62,11 +73,11 @@
       </div>
 
       <div class="card-owner">
-        <label for="cardOwner">ბარათის მფლობელი*</label>
+        <label for="cardOwner" data-translate="ბარათის მფლობელი*">ბარათის მფლობელი*</label>
         <input type="text" id="cardOwner" placeholder="J.Smith">
       </div>
 
-      <button type="submit"> 
+      <button type="submit" data-translate="გადახდა"> 
         გადახდა
       </button>
     </form>
@@ -77,11 +88,14 @@
           © 2023
           <a href="https://railway.stepprojects.ge/" target="_blank"
             >Step Railway</a
-          >. ყველა უფლება დაცულია.
+          >. <span data-translate="ყველა უფლება დაცულია."
+            >ყველა უფლება დაცულია.</span
+          >
         </p>
       </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="payment.js"></script>
   </body>
 </html>

@@ -1,21 +1,23 @@
-const chosenSeatIDs = JSON.parse(localStorage.getItem("chosenSeatIDs"));
-const ticketId = localStorage.getItem("ticket-id");
-const cardOwner = localStorage.getItem("cardOwner");
-const cardNumber = localStorage.getItem("cardNum");
-const passengersCount = localStorage.getItem("passengerCount");
-const theTrain = JSON.parse(localStorage.getItem("theTrain"));
-const georgianFullDate = localStorage.getItem("georgianFullDate");
-const passEmail = localStorage.getItem("passEmail");
-const passPhoneNum = localStorage.getItem("passPhoneNum");
-const ticket = JSON.parse(localStorage.getItem("ticket"));
+const chosenSeatIDs = JSON.parse(sessionStorage.getItem("chosenSeatIDs"));
+const ticketId = sessionStorage.getItem("ticket-id");
+const cardOwner = sessionStorage.getItem("cardOwner");
+const cardNumber = sessionStorage.getItem("cardNum");
+const passengersCount = sessionStorage.getItem("passengerCount");
+const theTrain = JSON.parse(sessionStorage.getItem("theTrain"));
+const passEmail = sessionStorage.getItem("passEmail");
+const passPhoneNum = sessionStorage.getItem("passPhoneNum");
+const ticket = JSON.parse(sessionStorage.getItem("ticket"));
 console.log(ticket);
 const passengersInfo = ticket.people;
 const ticketinfo = document.querySelector(".ticket-info");
-const total = localStorage.getItem("total");
+const total = sessionStorage.getItem("total");
 const today = new Date();
 const formattedDate = `${
   today.getMonth() + 1
 }-${today.getDate()}-${today.getFullYear()}`;
+const georgianDayNumber = sessionStorage.getItem("georgianDayNumber");
+const georgianMonthName = sessionStorage.getItem('georgianMonthName')
+const georgianWeekDay = sessionStorage.getItem("georgianWeekDay");
 
 function maskCardNumberWithSpaces(cardNumber) {
   const digitsOnly = cardNumber.replace(/\s+/g, "");
@@ -36,39 +38,39 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
     
     <div class="ticket-id-date">
-        <p><span>ბილეთის ნომერი:</span> ${ticketId.replace(
+        <p><span data-translate="ბილეთის ნომერი:">ბილეთის ნომერი:</span> ${ticketId.replace(
           "ბილეთი წარმატებით დაიჯავშნა. ბილეთის ნომერია:",
           ""
         )}</p>
     
-        <p><span>გაცემის თარიღი:</span> ${formattedDate}</p>
+        <p><span data-translate="გაცემის თარიღი:">გაცემის თარიღი:</span> ${formattedDate}</p>
     </div>
     
     <div class="train-info">
         <div>
-            <p>გასვლა:</p>
+            <p data-translate="გასვლა">გასვლა:</p>
             <p>${theTrain.departure}</p>
         </div>
         <div>
-            <p>ჩასვლა:</p>
+            <p data-translate="ჩასვლა">ჩასვლა:</p>
             <p>${theTrain.arrive}</p>
         </div>
         <div>
-            <p>გასვლის თარიღი:</p>
-            <p>${georgianFullDate}</p>
+            <p data-translate="გასვლის თარიღი:">გასვლის თარიღი:</p>
+            <p><span data-translate="${georgianWeekDay}">${georgianWeekDay} </span> ${georgianDayNumber} <span data-translate="${georgianMonthName}">${georgianMonthName}</span></p>
         </div>
     </div>
     
     <div class="contact-info">
-        <p>საკონტაქტო ინფორმაცია:</p>
+        <p data-translate="საკონტაქტო ინფორმაცია">საკონტაქტო ინფორმაცია:</p>
         <div>
-            <p><span>იმეილი:</span> ${passEmail}</p>
-            <p><span>ნომერი:</span> ${passPhoneNum}</p>
+            <p><span data-translate="იმეილი:">იმეილი:</span> ${passEmail}</p>
+            <p><span data-translate="ნომერი">ნომერი:</span> ${passPhoneNum}</p>
         </div>
     </div>
 
     <div class="passengers-div">
-    <p>მგზავრები</p>
+    <p data-translate="მგზავრები">მგზავრები</p>
         <div class='passengers-info'>
         
         </div>
@@ -89,14 +91,14 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
 
       <div class='total'>
-      <p>სულ გადახდილი:</p>
+      <p data-translate="სულ გადახდილი:">სულ გადახდილი:</p>
         <p>${total}₾</p>
       </div>
     </div>
 
     <div class="invoice-copyright">
-      <p>ინვოისი იქმნება კომპიუტერის მიერ და ვალიდურია ბეჭედის და ხელმოწერის გარეშე</p>
-      <p>გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.<p>
+      <p data-translate="ინვოისი იქმნება კომპიუტერის მიერ და ვალიდურია ბეჭედის და ხელმოწერის გარეშე">ინვოისი იქმნება კომპიუტერის მიერ და ვალიდურია ბეჭედის და ხელმოწერის გარეშე</p>
+      <p data-translate="გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.">გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.<p>
     </div>
     `;
 
@@ -111,27 +113,27 @@ document.addEventListener("DOMContentLoaded", function () {
         passengersDiv.innerHTML += `
           <div class="pass-container">
               <div>
-                  <p>სახელი:</p>
+                  <p data-translate="სახელი:">სახელი:</p>
                   <p>${passenger.name}</p>
               </div>
   
               <div>
-                  <p>გვარი:</p>
+                  <p data-translate="გვარი:">გვარი:</p>
                   <p>${passenger.surname}</p>
               </div>
   
               <div>
-                  <p>პირადი ნომერი:</p>
+                  <p data-translate="პირადი ნომერი:">პირადი ნომერი:</p>
                   <p>${passenger.idNumber}</p>
               </div>
   
               <div>
-                  <p>ადგილი:</p>
+                  <p data-translate="ადგილი:">ადგილი:</p>
                   <p>${data.number}</p>
               </div>
   
               <div>
-                  <p>ვაგონის N:</p>
+                  <p data-translate="ვაგონის N:">ვაგონის N:</p>
                   <p>${data.vagonId}</p>
               </div>
           </div>

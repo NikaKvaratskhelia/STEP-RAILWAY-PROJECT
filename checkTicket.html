@@ -29,20 +29,31 @@
           </a>
         </div>
 
-        <a href="checkTicket.html" class="check-ticket__button">
-          ბილეთის შემოწმება/დაბრუნება
-        </a>
+        <div>
+          <a
+            href="checkTicket.html"
+            class="check-ticket__button"
+            data-translate="ბილეთის შემოწმება/დაბრუნება"
+          >
+            ბილეთის შემოწმება/დაბრუნება
+          </a>
+
+          <select name="translate" id="lang">
+            <option value="ka">ქართული</option>
+            <option value="en">English</option>
+          </select>
+        </div>
       </div>
     </header>
 
     <main>
       <form class="my-form">
         <div class="input-div">
-          <label for="">ბილეთის ნომერი</label>
+          <label for="textInput" data-translate="ბილეთის ნომერი">ბილეთის ნომერი</label>
           <input type="text" id="textInput" />
         </div>
 
-        <button>შემოწმება</button>
+        <button data-translate="შემოწმება">შემოწმება</button>
       </form>
 
       <div class="container">
@@ -60,7 +71,9 @@
               />
             </svg>
           </div>
-          <p>ბილეთის საფასური გადახდილია, იხილეთ ბილეთი:</p>
+          <p data-translate="ბილეთის საფასური გადახდილია, იხილეთ ბილეთი:">
+            ბილეთის საფასური გადახდილია, იხილეთ ბილეთი:
+          </p>
         </div>
 
         <div class="ticket-wrapper">
@@ -128,7 +141,7 @@
         </div>
 
         <div class="delete-ticket">
-          <p>ბილეთის გაუქმება</p>
+          <p data-translate="ბილეთის გაუქმება">ბილეთის გაუქმება</p>
         </div>
       </div>
 
@@ -141,12 +154,16 @@
           © 2023
           <a href="https://railway.stepprojects.ge/" target="_blank"
             >Step Railway</a
-          >. ყველა უფლება დაცულია.
+          >.
+          <span data-translate="ყველა უფლება დაცულია."
+            >ყველა უფლება დაცულია.</span
+          >
         </p>
       </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="checkTicket.js"></script>
+    <script src="translations.js"></script>
   </body>
 </html>

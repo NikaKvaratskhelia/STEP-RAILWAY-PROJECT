@@ -34,9 +34,20 @@
           </a>
         </div>
 
-        <a href="checkTicket.html" class="check-ticket__button">
-          ბილეთის შემოწმება/დაბრუნება
-        </a>
+        <div>
+          <a
+            href="checkTicket.html"
+            class="check-ticket__button"
+            data-translate="ბილეთის შემოწმება/დაბრუნება"
+          >
+            ბილეთის შემოწმება/დაბრუნება
+          </a>
+
+          <select name="translate" id="lang">
+            <option value="ka">ქართული</option>
+            <option value="en">English</option>
+          </select>
+        </div>
       </div>
     </header>
 
@@ -44,36 +55,54 @@
       <div class="top-div">
         <div class="top-div__info">
           <div class="text-div__top">
-            <h4>შეიძინეთ მატარებლის ბილეთები ონლაინ</h4>
-            <p>გისურვებთ ბედნიერ მგზავრობას</p>
+            <h4 data-translate="შეიძინეთ მატარებლის ბილეთები ონლაინ">
+              შეიძინეთ მატარებლის ბილეთები ონლაინ
+            </h4>
+            <p data-translate="გისურვებთ ბედნიერ მგზავრობას">
+              გისურვებთ ბედნიერ მგზავრობას
+            </p>
           </div>
         </div>
       </div>
 
       <div class="bottom-div">
         <div class="bottom-top__div">
-          <h4>დაჯავშნეთ მატარებლის ბილეთი</h4>
+          <h4 data-translate="დაჯავშნეთ მატარებლის ბილეთი">
+            დაჯავშნეთ მატარებლის ბილეთი
+          </h4>
           <div class="inputs">
             <form action="" id="myForm">
               <div class="input-from before">
-                <input type="text" class="from" value="საიდან" required />
+                <input
+                  type="text"
+                  class="from"
+                  value="საიდან"
+                  required
+                  data-translate-value="საიდან"
+                />
 
                 <ul class="from-ul">
-                  <li>საიდან</li>
-                  <li>თბილისი</li>
-                  <li>ბათუმი</li>
-                  <li>ფოთი</li>
+                  <li data-translate="საიდან">საიდან</li>
+                  <li data-translate="თბილისი" data-value="თბილისი">თბილისი</li>
+                  <li data-translate="ბათუმი" data-value="ბათუმი">ბათუმი</li>
+                  <li data-translate="ფოთი" data-value="ფოთი">ფოთი</li>
                 </ul>
               </div>
 
               <div class="input-to before">
-                <input type="text" class="to" value="სად" required />
+                <input
+                  type="text"
+                  class="to"
+                  value="სად"
+                  required
+                  data-translate-value="სად"
+                />
 
                 <ul class="to-ul">
-                  <li>სად</li>
-                  <li>თბილისი</li>
-                  <li>ბათუმი</li>
-                  <li>ფოთი</li>
+                  <li data-translate="სად">სად</li>
+                  <li data-translate="თბილისი" data-value="თბილისი">თბილისი</li>
+                  <li data-translate="ბათუმი" data-value="ბათუმი">ბათუმი</li>
+                  <li data-translate="ფოთი" data-value="ფოთი">ფოთი</li>
                 </ul>
               </div>
 
@@ -82,6 +111,7 @@
                   type="text"
                   class="date"
                   id="dateInput"
+                  data-translate-placeholder="გამგზავრების თარიღი"
                   placeholder="გამგზავრების თარიღი"
                   required
                 />
@@ -92,12 +122,15 @@
                   min="1"
                   max="120"
                   class="count"
+                  data-translate-placeholder="მგზავრების რაოდენობა"
                   placeholder="მგზავრების რაოდენობა"
                   required
                 />
               </div>
 
-              <button class="search-train">მატარებლის მოძებნა</button>
+              <button class="search-train" data-translate="მატარებლის მოძებნა">
+                მატარებლის მოძებნა
+              </button>
             </form>
           </div>
         </div>
@@ -111,9 +144,15 @@
           <div class="bottom-info">
             <div class="bottom-info__text">
               <div class="bottom-info__text__detail">
-                <h4>მატარებლის ბილეთები</h4>
+                <h4 data-translate="მატარებლის ბილეთები">
+                  მატარებლის ბილეთები
+                </h4>
 
-                <p>
+                <p
+                  data-translate="რკინიგზის ბილეთების შესაძენად თქვენ დაგჭირდებათ თითოეული
+                  მგზავრის პირადი ნომერი. გთხოვთ მოამზადოთ ეს ინფორმაცია
+                  წინასწარ."
+                >
                   რკინიგზის ბილეთების შესაძენად თქვენ დაგჭირდებათ თითოეული
                   მგზავრის პირადი ნომერი. გთხოვთ მოამზადოთ ეს ინფორმაცია
                   წინასწარ.
@@ -124,22 +163,26 @@
                 <div class="icon icon-1">
                   <img src="Images/icon 1.png" alt="little icon" />
 
-                  <p>შეუზღუდავი შეთავაზებები</p>
+                  <p data-translate="შეუზღუდავი შეთავაზებები">
+                    შეუზღუდავი შეთავაზებები
+                  </p>
                 </div>
                 <div class="icon icon-2">
                   <img src="Images/icon 2.png" alt="little icon" />
 
-                  <p>24X7 მხარდაჭერა</p>
+                  <p data-translate="24X7 მხარდაჭერა">24X7 მხარდაჭერა</p>
                 </div>
                 <div class="icon icon-3">
                   <img src="Images/icon 3.png" alt="little icon" />
 
-                  <p>100% უსაფრთხო</p>
+                  <p data-translate="100% უსაფრთხო">100% უსაფრთხო</p>
                 </div>
                 <div class="icon icon-4">
                   <img src="Images/icon 4.png" alt="little icon" />
 
-                  <p>100% უსაფრთხო გადახდა</p>
+                  <p data-translate="100% უსაფრთხო გადახდა">
+                    100% უსაფრთხო გადახდა
+                  </p>
                 </div>
               </div>
             </div>
@@ -154,12 +197,15 @@
           © 2023
           <a href="https://railway.stepprojects.ge/" target="_blank"
             >Step Railway</a
-          >. ყველა უფლება დაცულია.
+          >. <span data-translate="ყველა უფლება დაცულია."
+            >ყველა უფლება დაცულია.</span
+          >
         </p>
       </div>
     </footer>
 
     <script src="Homepage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="translations.js"></script>
   </body>
 </html>

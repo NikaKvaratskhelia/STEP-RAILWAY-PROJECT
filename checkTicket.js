@@ -1,20 +1,20 @@
 const myForm = document.querySelector(".my-form");
 const textInput = document.getElementById("textInput");
-const chosenSeatIDs = JSON.parse(localStorage.getItem("chosenSeatIDs"));
-const ticketId = localStorage.getItem("ticket-id");
+const chosenSeatIDs = JSON.parse(sessionStorage.getItem("chosenSeatIDs"));
+const ticketId = sessionStorage.getItem("ticket-id");
 const container = document.querySelector(".container");
-const cardOwner = localStorage.getItem("cardOwner");
-const cardNumber = localStorage.getItem("cardNum");
-const passengersCount = localStorage.getItem("passengerCount");
-const theTrain = JSON.parse(localStorage.getItem("theTrain"));
-const georgianFullDate = localStorage.getItem("georgianFullDate");
-const passEmail = localStorage.getItem("passEmail");
-const passPhoneNum = localStorage.getItem("passPhoneNum");
-const ticket = JSON.parse(localStorage.getItem("ticket"));
+const cardOwner = sessionStorage.getItem("cardOwner");
+const cardNumber = sessionStorage.getItem("cardNum");
+const passengersCount = sessionStorage.getItem("passengerCount");
+const theTrain = JSON.parse(sessionStorage.getItem("theTrain"));
+const georgianFullDate = sessionStorage.getItem("georgianFullDate");
+const passEmail = sessionStorage.getItem("passEmail");
+const passPhoneNum = sessionStorage.getItem("passPhoneNum");
+const ticket = JSON.parse(sessionStorage.getItem("ticket"));
 console.log(ticket);
 const passengersInfo = ticket.people;
 const ticketinfo = document.querySelector(".ticket-info");
-const total = localStorage.getItem("total");
+const total = sessionStorage.getItem("total");
 const today = new Date();
 const formattedDate = `${
   today.getMonth() + 1
@@ -24,7 +24,7 @@ const errorDiv = document.querySelector(".error");
 
 deleteTicket.addEventListener("click", function () {
   fetch(
-    `https://railway.stepprojects.ge/api/tickets/cancel/${localStorage.getItem(
+    `https://railway.stepprojects.ge/api/tickets/cancel/${sessionStorage.getItem(
       "ticketId"
     )}`,
     {
@@ -35,11 +35,13 @@ deleteTicket.addEventListener("click", function () {
     .then(() => {
       container.style.display = "none";
       errorDiv.style.display = "flex";
-      errorDiv.innerHTML = "<p>ბილეთი წარმატებით წაიშალა!</p>";
+      errorDiv.innerHTML =
+        "<p data-translate='ბილეთი წარმატებით წაიშალა!'>ბილეთი წარმატებით წაიშალა!</p>";
     })
     .catch((error) => {
       errorDiv.style.display = "flex";
-      errorDiv.innerHTML = "<p>ბილეთი ვერ წაიშალა!</p>";
+      errorDiv.innerHTML =
+        "<p data-translate='ბილეთი ვერ წაიშალა!'>ბილეთი ვერ წაიშალა!</p>";
       console.error("Error:", error);
     });
 });
@@ -47,48 +49,47 @@ deleteTicket.addEventListener("click", function () {
 myForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const ticketId = textInput.value.trim();
-  localStorage.setItem("ticketId", ticketId);
+  sessionStorage.setItem("ticketId", ticketId);
   fetch(`https://railway.stepprojects.ge/api/tickets/checkstatus/${ticketId}`)
     .then((res) => res.json())
     .then((data) => {
       container.style.display = "flex";
-      ticketinfo.innerHTML = `
-    <div class="company-name">
+      ticketinfo.innerHTML = `<div class="company-name">
         <p>Step Railway</p>
         <img src="Images/stepLogo.jpg" alt="Step Logo" />
     </div>
     
     <div class="ticket-id-date">
-        <p><span>ბილეთის ნომერი:</span> ${data.id}</p>
+        <p><span data-translate="ბილეთის ნომერი:">ბილეთის ნომერი:</span> ${data.id}</p>
     
-        <p><span>გაცემის თარიღი:</span> ${formattedDate}</p>
+        <p><span data-translate="გაცემის თარიღი:">გაცემის თარიღი:</span> ${formattedDate}</p>
     </div>
     
     <div class="train-info">
         <div>
-            <p>გასვლა:</p>
+            <p data-translate="გასვლა">გასვლა:</p>
             <p>${data.train.departure}</p>
         </div>
         <div>
-            <p>ჩასვლა:</p>
+            <p data-translate="ჩასვლა">ჩასვლა:</p>
             <p>${data.train.arrive}</p>
         </div>
         <div>
-            <p>გასვლის თარიღი:</p>
+            <p data-translate="გასვლის თარიღი:">გასვლის თარიღი:</p>
             <p>${georgianFullDate}</p>
         </div>
     </div>
     
     <div class="contact-info">
-        <p>საკონტაქტო ინფორმაცია:</p>
+        <p data-translate="საკონტაქტო ინფორმაცია">საკონტაქტო ინფორმაცია:</p>
         <div>
-            <p><span>იმეილი:</span> ${data.email}</p>
-            <p><span>ნომერი:</span> ${data.phone}</p>
+            <p><span data-translate="იმეილი:">იმეილი:</span> ${data.email}</p>
+            <p><span data-translate="ნომერი">ნომერი:</span> ${data.phone}</p>
         </div>
     </div>
 
     <div class="passengers-div">
-    <p>მგზავრები</p>
+    <p data-translate="მგზავრები">მგზავრები</p>
         <div class='passengers-info'>
         
         </div>
@@ -96,14 +97,14 @@ myForm.addEventListener("submit", function (e) {
     
     <div class="payment-info">
       <div class='total'>
-      <p>სულ გადახდილი:</p>
+      <p data-translate="სულ გადახდილი:">სულ გადახდილი:</p>
         <p>${data.ticketPrice}₾</p>
       </div>
     </div>
 
     <div class="invoice-copyright">
-      <p>ინვოისი იქმნება კომპიუტერის მიერ და ვალიდურია ბეჭედის და ხელმოწერის გარეშე</p>
-      <p>გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.<p>
+      <p data-translate="ინვოისი იქმნება კომპიუტერის მიერ და ვალიდურია ბეჭედის და ხელმოწერის გარეშე">ინვოისი იქმნება კომპიუტერის მიერ და ვალიდურია ბეჭედის და ხელმოწერის გარეშე</p>
+      <p data-translate="გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.">გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.<p>
     </div>
     `;
       const passengersDiv = document.querySelector(".passengers-info");
@@ -116,27 +117,27 @@ myForm.addEventListener("submit", function (e) {
             passengersDiv.innerHTML += `
           <div class="pass-container">
               <div>
-                  <p>სახელი:</p>
+                  <p data-translate="სახელი:">სახელი:</p>
                   <p>${passenger.name}</p>
               </div>
   
               <div>
-                  <p>გვარი:</p>
+                  <p data-translate="გვარი:">გვარი:</p>
                   <p>${passenger.surname}</p>
               </div>
   
               <div>
-                  <p>პირადი ნომერი:</p>
+                  <p data-translate="პირადი ნომერი:">პირადი ნომერი:</p>
                   <p>${passenger.idNumber}</p>
               </div>
   
               <div>
-                  <p>ადგილი:</p>
+                  <p data-translate="ადგილი:">ადგილი:</p>
                   <p>${data.number}</p>
               </div>
   
               <div>
-                  <p>ვაგონის N:</p>
+                  <p data-translate="ვაგონის N:">ვაგონის N:</p>
                   <p>${data.vagonId}</p>
               </div>
           </div>
@@ -152,7 +153,6 @@ myForm.addEventListener("submit", function (e) {
       console.log(error);
     });
 });
-
 
 const printBtn = document.querySelector(".print");
 const downloadBtn = document.querySelector(".download");

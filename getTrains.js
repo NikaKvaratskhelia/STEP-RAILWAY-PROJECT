@@ -9,9 +9,9 @@ fetch("https://railway.stepprojects.ge/api/departures")
     allTrainList = data;
     allTrainList.forEach((item) => {
       if (
-        item.source === localStorage.getItem("fromInputValue") &&
-        item.destination === localStorage.getItem("toInputValue") &&
-        item.date === localStorage.getItem("weekDayName")
+        item.source === sessionStorage.getItem("fromInputValue") &&
+        item.destination === sessionStorage.getItem("toInputValue") &&
+        item.date === sessionStorage.getItem("weekDayName")
       ) {
         for (let i = 0; i < item.trains.length; i++) {
           wantedTrains.push(item.trains[i]);
@@ -28,20 +28,20 @@ fetch("https://railway.stepprojects.ge/api/departures")
                 <tr>
                   <td>
                     <p>#${i.number}</p>
-                    <p>${i.name} Express</p>
+                    <p data-translate="${i.name}">${i.name} Express</p>
                   </td>
                   <td>
                     <p>${i.departure}</p>
-                    <p>${i.from}</p>
+                    <p data-translate="${i.from}">${i.from}</p>
                   </td>
                   <td>
                     <p>${i.arrive}</p>
-                    <p>
+                    <p data-translate="${i.to}">
                     ${i.to}
                     </p>
                   </td>
                   <td>
-                    <button class="btn">
+                    <button class="btn" data-translate='დაჯავშნა'>
                     დაჯავშნა
                     </button>
                   </td>
@@ -63,8 +63,8 @@ fetch("https://railway.stepprojects.ge/api/departures")
       btn.addEventListener("click", function () {
         window.location.href = "booking.html";
 
-        localStorage.setItem("indexOfBtn", index);
-        localStorage.setItem("trainsArray", JSON.stringify(wantedTrains));
+        sessionStorage.setItem("indexOfBtn", index);
+        sessionStorage.setItem("trainsArray", JSON.stringify(wantedTrains));
       })
     );
   });

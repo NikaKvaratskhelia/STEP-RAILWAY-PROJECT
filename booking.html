@@ -29,42 +29,52 @@
           </a>
         </div>
 
-        <a href="checkTicket.html" class="check-ticket__button">
-          ბილეთის შემოწმება/დაბრუნება
-        </a>
+        <div>
+          <a
+            href="checkTicket.html"
+            class="check-ticket__button"
+            data-translate="ბილეთის შემოწმება/დაბრუნება"
+          >
+            ბილეთის შემოწმება/დაბრუნება
+          </a>
+
+          <select name="translate" id="lang">
+            <option value="ka">ქართული</option>
+            <option value="en">English</option>
+          </select>
+        </div>
       </div>
     </header>
 
     <div class="name-div">
-      <p>მგზავრების მონაცემები</p>
+      <p data-translate="მგზავრების მონაცემები">მგზავრების მონაცემები</p>
     </div>
 
     <div class="book-train__div" id="book-trains">
       <div class="details-booking" id="details-booking">
         <div>
-          <h3>შეიყვანეთ თქვენი მონაცემები</h3>
-          <div class="table-details-checkout" id="table-details-checkout">
-            
-          </div>
+          <h3 data-translate="შეიყვანეთ თქვენი მონაცემები">შეიყვანეთ თქვენი მონაცემები</h3>
+          <div class="table-details-checkout" id="table-details-checkout"></div>
         </div>
 
         <div class="error"></div>
 
         <div>
-          <h3>საკონტაქტო ინფორმაცია</h3>
+          <h3 data-translate="საკონტაქტო ინფორმაცია">საკონტაქტო ინფორმაცია</h3>
 
           <div class="inputs-div">
-            <input type="email" placeholder="იმეილი" class="emailInput" />
+            <input type="email" placeholder="იმეილი" class="emailInput" data-translate-placeholder="იმეილი"/>
             <input
               type="tel"
               placeholder="ტელეფონის ნომერი"
+              data-translate-placeholder="ტელეფონის ნომერი"
               class="phoneInput"
             />
           </div>
         </div>
 
         <div class="passengers-info-div-main">
-          <h3>მგზავრების ინფორმაცია</h3>
+          <h3 data-translate="მგზავრების ინფორმაცია">მგზავრების ინფორმაცია</h3>
 
           <div class="passengers-info-div"></div>
         </div>
@@ -377,28 +387,28 @@
       </div>
 
       <div class="invoice">
-        <h3>ინვოისი</h3>
+        <h3 data-translate="ინვოისი">ინვოისი</h3>
         <table>
           <thead>
             <tr>
-              <th>ადგილი</th>
-              <th>ფასი</th>
+              <th data-translate="ადგილი">ადგილი</th>
+              <th data-translate="ფასი">ფასი</th>
             </tr>
           </thead>
           <tbody class="invoice-table-body"></tbody>
         </table>
 
         <div class="white-checkout-div">
-          <p>სულ:</p>
+          <p data-translate="სულ">სულ:</p>
           <p><span id="total">0</span>.00₾</p>
         </div>
 
         <div class="agree-rules">
           <input type="checkbox" id="agree" checked />
-          <label for="agree">წავიკითხე და ვეთანხმები წესებს</label>
+          <label for="agree" data-translate="წავიკითხე და ვეთანხმები წესებს">წავიკითხე და ვეთანხმები წესებს</label>
         </div>
 
-        <button class="registration">ბილეთების რეგისტრაცია</button>
+        <button class="registration" data-translate="ბილეთების რეგისტრაცია">ბილეთების რეგისტრაცია</button>
       </div>
     </div>
 
@@ -409,15 +419,15 @@
         <hr />
 
         <div class="vagons">
-          <div name="I კლასი">
+          <div name="I კლასი" data-translate-name="1 კლასი">
             <img src="Images/firstWagon.png" alt="vagons" class="vagonImg" />
           </div>
 
-          <div name="II კლასი">
+          <div name="II კლასი"data-translate-name="2 კლასი">
             <img src="Images/midWagon.png" alt="vagons" class="vagonImg" />
           </div>
 
-          <div name="ბიზნესი">
+          <div name="ბიზნესი"data-translate-name="ბიზნესი">
             <img src="Images/lastWagon.png" alt="vagons" class="vagonImg" />
           </div>
         </div>
@@ -460,11 +470,14 @@
           © 2023
           <a href="https://railway.stepprojects.ge/" target="_blank"
             >Step Railway</a
-          >. ყველა უფლება დაცულია.
+          >. <span data-translate="ყველა უფლება დაცულია."
+            >ყველა უფლება დაცულია.</span
+          >
         </p>
       </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="booking.js"></script>
   </body>
 </html>
