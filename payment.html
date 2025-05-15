@@ -47,39 +47,44 @@
     </header>
 
     <div class="name-div">
-        <p data-translate="გადახდის გვერდი">
-            გადახდის გვერდი
-        </p>
+      <p data-translate="გადახდის გვერდი">გადახდის გვერდი</p>
     </div>
 
     <form class="payment-info">
-      <p ><i data-translate="სულ გადასახდელი:">სულ გადასახდელი:</i> <span id="mustPay"></span></p>
+      <p>
+        <i data-translate="სულ გადასახდელი:">სულ გადასახდელი:</i>
+        <span id="mustPay"></span>
+      </p>
 
       <div class="card-number">
-        <label for="cardNum" data-translate="ბარათის ნომერი*">ბარათის ნომერი*</label>
-        <input type="text" id="cardNum" placeholder="0123 4567 8901 1234">
+        <label for="cardNum" data-translate="ბარათის ნომერი*"
+          >ბარათის ნომერი*</label
+        >
+        <input type="text" id="cardNum" placeholder="0123 4567 8901 1234" />
       </div>
 
       <div class="card-date-cvv">
         <div class="card-date">
-          <label for="cardDate" data-translate="მოქმედების ვადა*">მოქმედების ვადა*</label>
-          <input type="text" id="cardDate" placeholder="MM / YYYY">
+          <label for="cardDate" data-translate="მოქმედების ვადა*"
+            >მოქმედების ვადა*</label
+          >
+          <input type="text" id="cardDate" placeholder="MM / YYYY" />
         </div>
 
         <div class="card-cvv">
           <label for="cardCvv">CVC / CVV</label>
-          <input type="text" id="cardCvv" placeholder="CVC / CVV">
+          <input type="text" id="cardCvv" placeholder="CVC / CVV" />
         </div>
       </div>
 
       <div class="card-owner">
-        <label for="cardOwner" data-translate="ბარათის მფლობელი*">ბარათის მფლობელი*</label>
-        <input type="text" id="cardOwner" placeholder="J.Smith">
+        <label for="cardOwner" data-translate="ბარათის მფლობელი*"
+          >ბარათის მფლობელი*</label
+        >
+        <input type="text" id="cardOwner" placeholder="J.Smith" />
       </div>
 
-      <button type="submit" data-translate="გადახდა"> 
-        გადახდა
-      </button>
+      <button type="submit" data-translate="გადახდა">გადახდა</button>
     </form>
 
     <footer>
@@ -88,10 +93,14 @@
           © 2023
           <a href="https://railway.stepprojects.ge/" target="_blank"
             >Step Railway</a
-          >. <span data-translate="ყველა უფლება დაცულია."
+          >.
+          <span data-translate="ყველა უფლება დაცულია."
             >ყველა უფლება დაცულია.</span
           >
         </p>
+      </div>
+      <div name="Log Out" id="logOut">
+        <img src="Images/logout.jpg" alt="logout" />
       </div>
     </footer>
 

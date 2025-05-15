@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="SignUp.css" />
+    <title>Modern Login Page | AsmrProg</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="signUpForm">
+        <h1>SIGN UP</h1>
+
+        <div class="nameInputs">
+          <input type="text" id="signUpName" required placeholder="Name" />
+          <input
+            type="text"
+            id="signUpLastname"
+            required
+            placeholder="Lastname"
+          />
+        </div>
+
+        <input type="number" placeholder="Age" id="signUpAge" required />
+        <input type="email" id="signUpEmail" placeholder="Email" />
+        <input
+          type="password"
+          id="signUpPassword"
+          placeholder="Password"
+          required
+        />
+        <input type="text" id="signUpAddr" placeholder="Address" required />
+        <div class="phone-zip">
+          <input type="tel" required placeholder="Phone" id="signUpPhone" />
+          <input type="number" required placeholder="ZIP Code" id="signUpZIP" />
+        </div>
+
+        <select id="signUpGender">
+          <option value="MALE">Male</option>
+          <option value="FEMALE">Female</option>
+          <option value="OTHER">Other</option>
+        </select>
+
+        <button type="submit">
+            SIGN UP
+        </button>
+      </form>
+
+      <div class="purple-bg">
+        <h1>Hello, Friend!</h1>
+        <p>Register with your personal details to use all of site features</p>
+        <a href="SignIn.html">SIGN IN</a>
+      </div>
+    </div>
+
+    <script src="SignUp.js"></script>
+  </body>
+</html>

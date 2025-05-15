@@ -1,3 +1,37 @@
+// IM ADDING SINGN IN LOGIC HERE CUZ THIS IS CONNECTED TO ALL HTMLS
+const token = sessionStorage.getItem("token");
+const logOut = document.getElementById("logOut");
+logOut.addEventListener("click", function () {
+  sessionStorage.removeItem("token");
+  window.location.href = 'signIn.html'
+});
+
+if (!token) {
+  window.location.href = "signIn.html";
+} else {
+  fetch("https://api.everrest.educata.dev/auth", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Not authenticated");
+      }
+      return res.json();
+    })
+    .then((user) => {
+      console.log("Current user:", user);
+    })
+    .catch((err) => {
+      console.error(err);
+      sessionStorage.removeItem("token");
+      window.location.href = "signIn.html";
+    });
+}
+
 const translations = {
   იმეილი: {
     en: "Email",
@@ -364,9 +398,9 @@ const translations = {
   დეკემბერი: {
     en: "December",
   },
-  "სასურველი მატარებელი ვერ მოიძებნა":{
-    en:"Couldn't find wanted train!"
-  }
+  "სასურველი მატარებელი ვერ მოიძებნა": {
+    en: "Couldn't find wanted train!",
+  },
 };
 
 function applyTranslations(lang) {

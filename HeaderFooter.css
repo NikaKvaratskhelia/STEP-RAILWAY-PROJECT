@@ -97,10 +97,38 @@ footer {
   margin-top: 100px;
   padding: 130px 0px 30px 0px;
   background-color: #f5f6fa;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+footer #logOut {
+  background-color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  padding: 10px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+footer #logOut:hover::after {
+  display: block;
+}
+footer #logOut img {
+  width: 40px;
+  height: 40px;
+}
+footer #logOut::after {
+  content: attr(name);
+  display: none;
+  background-color: #3f3f3f;
+  padding: 10px;
+  color: #fff;
+  position: absolute;
+  top: -50px;
+  left: 0px;
 }
 footer .footer-txt-div {
   max-width: 85vw;
-  margin: auto;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
