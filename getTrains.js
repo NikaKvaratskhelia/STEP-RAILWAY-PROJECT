@@ -11,7 +11,7 @@ fetch("https://railway.stepprojects.ge/api/departures")
       if (
         item.source === sessionStorage.getItem("fromInputValue") &&
         item.destination === sessionStorage.getItem("toInputValue") &&
-        item.date === sessionStorage.getItem("weekDayName")
+        item.date === sessionStorage.getItem("georgianWeekDay")
       ) {
         for (let i = 0; i < item.trains.length; i++) {
           wantedTrains.push(item.trains[i]);
@@ -49,7 +49,7 @@ fetch("https://railway.stepprojects.ge/api/departures")
               `)
       );
     } else {
-      tr += `<div class='error-div'><h2>სასურველი მატარებელი ვერ მოიძებნა </h2>
+      tr += `<div class='error-div' data-translate="სასურველი მატარებელი ვერ მოიძებნა"><h2>სასურველი მატარებელი ვერ მოიძებნა </h2>
           <a href='Homepage.html'>დაბრუნდი უკან</a>
           </div>`;
     }

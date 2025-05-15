@@ -364,6 +364,9 @@ const translations = {
   დეკემბერი: {
     en: "December",
   },
+  "სასურველი მატარებელი ვერ მოიძებნა":{
+    en:"Couldn't find wanted train!"
+  }
 };
 
 function applyTranslations(lang) {

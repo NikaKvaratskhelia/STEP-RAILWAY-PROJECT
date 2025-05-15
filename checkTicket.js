@@ -21,6 +21,9 @@ const formattedDate = `${
 }-${today.getDate()}-${today.getFullYear()}`;
 const deleteTicket = document.querySelector(".delete-ticket");
 const errorDiv = document.querySelector(".error");
+const georgianDayNumber = sessionStorage.getItem("georgianDayNumber");
+const georgianMonthName = sessionStorage.getItem("georgianMonthName");
+const georgianWeekDay = sessionStorage.getItem("georgianWeekDay");
 
 deleteTicket.addEventListener("click", function () {
   fetch(
@@ -76,7 +79,7 @@ myForm.addEventListener("submit", function (e) {
         </div>
         <div>
             <p data-translate="გასვლის თარიღი:">გასვლის თარიღი:</p>
-            <p>${georgianFullDate}</p>
+            <p><span data-translate="${georgianWeekDay}">${georgianWeekDay} </span> ${georgianDayNumber} <span data-translate="${georgianMonthName}">${georgianMonthName}</span></p>
         </div>
     </div>
     
