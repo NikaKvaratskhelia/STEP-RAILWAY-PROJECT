@@ -10,9 +10,6 @@ const theTrain = JSON.parse(sessionStorage.getItem("theTrain"));
 const georgianFullDate = sessionStorage.getItem("georgianFullDate");
 const passEmail = sessionStorage.getItem("passEmail");
 const passPhoneNum = sessionStorage.getItem("passPhoneNum");
-const ticket = JSON.parse(sessionStorage.getItem("ticket"));
-console.log(ticket);
-const passengersInfo = ticket.people;
 const ticketinfo = document.querySelector(".ticket-info");
 const total = sessionStorage.getItem("total");
 const today = new Date();
@@ -65,7 +62,7 @@ myForm.addEventListener("submit", function (e) {
     <div class="ticket-id-date">
         <p><span data-translate="ბილეთის ნომერი:">ბილეთის ნომერი:</span> ${data.id}</p>
     
-        <p><span data-translate="გაცემის თარიღი:">გაცემის თარიღი:</span> ${formattedDate}</p>
+        <p><span data-translate="გაცემის თარიღი:">გაცემის თარიღი:</span> ${data.date}</p>
     </div>
     
     <div class="train-info">
@@ -79,7 +76,7 @@ myForm.addEventListener("submit", function (e) {
         </div>
         <div>
             <p data-translate="გასვლის თარიღი:">გასვლის თარიღი:</p>
-            <p><span data-translate="${georgianWeekDay}">${georgianWeekDay} </span> ${georgianDayNumber} <span data-translate="${georgianMonthName}">${georgianMonthName}</span></p>
+            <p>${data.date}</span></p>
         </div>
     </div>
     
@@ -113,10 +110,7 @@ myForm.addEventListener("submit", function (e) {
       const passengersDiv = document.querySelector(".passengers-info");
 
       passengersDiv.innerHTML = "";
-      passengersInfo.forEach((passenger) => {
-        fetch(`https://railway.stepprojects.ge/api/seat/${passenger.seatId}`)
-          .then((res) => res.json())
-          .then((data) => {
+      data.persons.forEach((passenger) => {
             passengersDiv.innerHTML += `
           <div class="pass-container">
               <div>
@@ -136,23 +130,22 @@ myForm.addEventListener("submit", function (e) {
   
               <div>
                   <p data-translate="ადგილი:">ადგილი:</p>
-                  <p>${data.number}</p>
+                  <p>${passenger.seat.number}</p>
               </div>
   
               <div>
                   <p data-translate="ვაგონის N:">ვაგონის N:</p>
-                  <p>${data.vagonId}</p>
+                  <p>${passenger.seat.vagonId}</p>
               </div>
           </div>
         `;
-          });
       });
     })
     .catch((error) => {
       container.style.display = "none";
       errorDiv.style.display = "flex";
       errorDiv.innerHTML =
-        "<p>ასეთი ბილეთი არ მოიძებნა, შეამოწმეთ ბილეთის ნომერი</p>";
+        "<p data-translate='ასეთი ბილეთი არ მოიძებნა, შეამოწმეთ ბილეთის ნომერი'>ასეთი ბილეთი არ მოიძებნა, შეამოწმეთ ბილეთის ნომერი</p>";
       console.log(error);
     });
 });

@@ -329,6 +329,10 @@ const translations = {
     en: "Cancel Ticket",
   },
 
+  "ასეთი ბილეთი არ მოიძებნა, შეამოწმეთ ბილეთის ნომერი":{
+    en:"Couldn't find the ticket, check ticket number"
+  },
+
   "ბილეთის საფასური გადახდილია, იხილეთ ბილეთი:": {
     en: "Ticket price is paid, see the ticket:",
   },
