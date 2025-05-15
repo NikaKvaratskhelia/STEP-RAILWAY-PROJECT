@@ -9,17 +9,25 @@ console.log(newTicket);
 myForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
+  const dateRegex = /^(0[1-9]|1[0-2])\/\d{4}$/;
+
+  const cardNumber = cardNum.value.trim().replace(/\s+/g, "");
+  const cardCVV = cardCvv.value.trim().replace(/\s+/g, "");
+  const cardOwnerName = cardOwner.value.trim();
+  const cardDateValue = cardDate.value.trim();
+
   if (
-    isNaN(Number(cardNum.value.trim().replace(/\s+/g, ""))) ||
-    cardCvv.value.trim().replace(/\s+/g, "").length != 3 ||
-    cardOwner.value.trim() === "" ||
-    cardNum.value.trim() === "" ||
-    cardDate.value.trim().length != 7
+    cardNumber === "" ||
+    isNaN(Number(cardNumber)) ||
+    cardCVV.length !== 3 ||
+    isNaN(cardCVV) ||
+    cardOwnerName === "" ||
+    !dateRegex.test(cardDateValue)
   ) {
     alert("ყველა ველი აუცილებლად სწორად უნდა შეივსოს!");
   } else {
-    sessionStorage.setItem("cardNum", cardNum.value.trim());
-    sessionStorage.setItem("cardOwner", cardOwner.value.trim());
+    sessionStorage.setItem("cardNum", cardNumber);
+    sessionStorage.setItem("cardOwner", cardOwnerName);
 
     window.location.href = "paymentSucces.html";
   }

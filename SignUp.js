@@ -35,5 +35,8 @@ signUpForm.addEventListener("submit", function (e) {
     .then((res) => res.json())
     .then((data) => {
       sessionStorage.setItem("newUser", JSON.stringify(data));
+      setInterval(() => {
+        window.location.href = "signIn.html"
+      }, 1000);
     });
 });

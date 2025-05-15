@@ -80,7 +80,7 @@ closeSeatbookingDivBtn.addEventListener("click", function () {
   vagonImgs[2].classList.remove("active");
   seatsDv.classList.remove("active");
   vagonNumP.innerHTML = "გთხოვთ აირჩიოთ ვაგონი";
-  vagonNumP.setAttribute("data-translate", "გთხოვთ აირჩიოთ ვაგონი")
+  vagonNumP.setAttribute("data-translate", "გთხოვთ აირჩიოთ ვაგონი");
 });
 
 fetch(`https://railway.stepprojects.ge/api/trains/${theTrain.id}`)
@@ -125,7 +125,7 @@ vagonImgs.forEach((img, index) =>
     seatsDv.classList.add("active");
 
     vagonNumP.innerHTML = `ვაგონის ნომერი: ${index + 1}`;
-    vagonNumP.setAttribute("data-translate", `ვაგონის ნომერი: ${index + 1}`)
+    vagonNumP.setAttribute("data-translate", `ვაგონის ნომერი: ${index + 1}`);
 
     fetch(`https://railway.stepprojects.ge/api/getvagon/${currentVagonId}`)
       .then((res) => res.json())
@@ -245,22 +245,62 @@ vagonImgs.forEach((img, index) =>
 );
 
 registrateTicket.addEventListener("click", function () {
+  const privNumRegex = /^\d{11}$/;
+  const nonEmptyRegex = /^.+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\+?\d{1,4}\d{9}$/;
+
   let isValid = true;
 
+  const seenPrivNums = new Set();
+
   for (let i = 0; i < privNums.length; i++) {
-    if (
-      privNums[i].value.trim().length != 11 ||
-      firstnames[i].value.trim() === "" ||
-      lastNames[i].value.trim() === "" ||
-      privNums[i].value.trim() === privNums[i + 1]?.value.trim() ||
-      emails[0].value.trim() === "" ||
-      !emails[0].value.trim().includes("@gmail.com") ||
-      phoneNumbers[0].value.trim().replace(/\s+/g, "").length != 9 ||
-      isNaN(phoneNumbers[0].value.trim().replace(/\s+/g, "")) ||
-      chosenSeatNumber[i].innerHTML === "0"
-    ) {
+    const privNum = privNums[i].value.trim();
+
+    if (seenPrivNums.has(privNum)) {
       isValid = false;
-      break;
+      console.error(`Duplicate private number found at index ${i}`);
+    } else {
+      seenPrivNums.add(privNum);
+    }
+  }
+
+  for (let i = 0; i < privNums.length; i++) {
+    const privNum = privNums[i].value.trim();
+    const firstName = firstnames[i].value.trim();
+    const lastName = lastNames[i].value.trim();
+    const email = emails[0].value.trim();
+    const phone = phoneNumbers[0].value.trim().replace(/\s+/g, "");
+    const seatNumber = chosenSeatNumber[i].innerHTML;
+
+    if (!privNumRegex.test(privNum)) {
+      isValid = false;
+      console.error(`Private number at index ${i} must be exactly 11 digits`);
+    }
+
+    if (!nonEmptyRegex.test(firstName)) {
+      isValid = false;
+      console.error(`First name at index ${i} is empty`);
+    }
+
+    if (!nonEmptyRegex.test(lastName)) {
+      isValid = false;
+      console.error(`Last name at index ${i} is empty`);
+    }
+
+    if (!emailRegex.test(email)) {
+      isValid = false;
+      console.error(`Email must be a valid Gmail address`);
+    }
+
+    if (!phoneRegex.test(phone)) {
+      isValid = false;
+      console.error(`Phone number must be exactly 9 digits`);
+    }
+
+    if (seatNumber === "0") {
+      isValid = false;
+      console.error(`Seat not selected for passenger at index ${i}`);
     }
   }
 
