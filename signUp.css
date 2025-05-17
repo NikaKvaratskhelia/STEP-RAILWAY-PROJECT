@@ -45,7 +45,6 @@ form button:active {
 
 .signUpForm > div {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
   width: 100%;
 }
@@ -112,7 +111,7 @@ form button {
   cursor: pointer;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 800px) {
   .container {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -121,5 +120,11 @@ form button {
 
   .purple-bg {
     border-radius: 50px 50px 0px 0px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .signUpForm > div {
+    flex-direction: column;
   }
 }
