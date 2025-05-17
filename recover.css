@@ -67,6 +67,11 @@ form button:active {
   opacity: 0.4;
 }
 
+form > p {
+  font-size: 10px;
+  color: #686868;
+}
+
 .purple-bg {
   display: flex;
   gap: 20px;
