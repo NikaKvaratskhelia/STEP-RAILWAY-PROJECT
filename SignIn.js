@@ -2,6 +2,7 @@ const signInEmail = document.getElementById("signInEmail");
 const signInPassword = document.getElementById("signInPass");
 const form = document.querySelector(".signInForm");
 const recover = document.getElementById("recover");
+const signUpStatus = document.getElementById("signUpStatus");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -21,14 +22,18 @@ form.addEventListener("submit", function (e) {
     .then((res) => res.json())
     .then((data) => {
       if (data.access_token) {
+        signUpStatus.innerHTML = "<p>Sign In Successfull!</p>";
+        signUpStatus.style.backgroundColor = "rgba(58, 226, 58, 0.49);";
         sessionStorage.setItem("token", data.access_token);
         window.location.href = "Homepage.html";
       } else {
-        alert("Sign-in failed: " + (data.message || "Invalid credentials"));
+      signUpStatus.innerHTML = `<p>Sign In failed!</p>`
+      signUpStatus.style.backgroundColor ="#cc4949a9"
       }
     })
     .catch((err) => {
-      alert("An error occurred. Please try again.");
+      signUpStatus.innerHTML = `<p>Sign In Failed</p>`
+      signUpStatus.style.backgroundColor ="#cc4949a9"
       console.error(err);
     });
 });

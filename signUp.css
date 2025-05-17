@@ -111,6 +111,15 @@ form button {
   cursor: pointer;
 }
 
+#signUpStatus {
+  padding: 10px;
+}
+
+#signUpStatus p {
+  width: 100%;
+  text-align: center;
+}
+
 @media screen and (max-width: 800px) {
   .container {
     margin-top: 50px;

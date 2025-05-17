@@ -33,7 +33,7 @@ body {
   max-width: 800px;
 }
 
-form p {
+form>p {
   font-size: 10px;
   font-weight: 400;
   color: #888888;
@@ -105,6 +105,17 @@ form button {
 form button:active{
   opacity: 0.4;
 }
+#signUpStatus {
+  padding: 10px;
+  width: 100%;
+}
+
+#signUpStatus p {
+  width: 100%;
+  font-size: 15px;
+  text-align: center;
+}
+
 
 @media screen and (max-width: 640px) {
   .container {
