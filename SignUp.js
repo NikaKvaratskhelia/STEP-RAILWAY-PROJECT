@@ -11,6 +11,8 @@ const signUpGender = document.getElementById("signUpGender");
 const signUpForm = document.querySelector(".signUpForm");
 const zipRegex = /^\d{4}$/;
 const phoneRegex = /^\+\d{1,3}[-\s]?\d{3,14}([-\s]?\d{2,4})*$/;
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -25,6 +27,12 @@ signUpForm.addEventListener("submit", function (e) {
     alert("Phone number must include country code and start with '+'.");
     valid = false;
     return;
+  }
+
+  if(!passwordRegex.test(signUpPassword.value.trim())){
+    alert("Weak Password! Please choose stronger one!")
+    valid=false
+    return
   }
 
   if (valid) {
