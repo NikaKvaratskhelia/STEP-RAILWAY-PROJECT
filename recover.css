@@ -81,6 +81,12 @@ form button:active {
   border-radius: 30px 80px 80px 30px;
 }
 
+#cooldownText {
+  margin-top: 20px;
+  font-size: 10px;
+  color: #686868;
+}
+
 .purple-bg h1 {
   font-size: 20px;
   max-width: 200px;
