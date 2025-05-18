@@ -205,7 +205,7 @@ function updateAvatar(data) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: `User ID:${mockUserId} just changed avatar! `,
-          type: "changeAvatar",
+          type: "changeData",
           timestamp: new Date().toISOString(),
         }),
       });

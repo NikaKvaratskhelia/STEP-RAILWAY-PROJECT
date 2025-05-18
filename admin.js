@@ -1,5 +1,8 @@
-if (sessionStorage.getItem("isAdmin") === "false") {
-  window.location.href = "Homepage.html";
+if (
+  sessionStorage.getItem("isAdmin") === "false" ||
+  !sessionStorage.getItem("isAdmin")
+) {
+  window.location.href = "signIn.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -79,25 +82,96 @@ function fetchNotifications() {
       const list = document.getElementById("notificationList");
       list.innerHTML = "";
 
-      if (notifications.length === 0) {
+      const today = new Date().toLocaleDateString("en-CA", {
+        timeZone: "Asia/Tbilisi",
+      });
+
+      const todaysNotifications = notifications.filter((n) => {
+        const notifDate = new Date(n.timestamp).toLocaleDateString("en-CA", {
+          timeZone: "Asia/Tbilisi",
+        });
+        return notifDate === today;
+      });
+
+      if (todaysNotifications.length === 0) {
         const li = document.createElement("li");
         li.innerHTML = "NO notifications yet!";
         list.appendChild(li);
       } else {
-        notifications.reverse().forEach((n) => {
+        todaysNotifications.reverse().forEach((n) => {
           const li = document.createElement("li");
           li.textContent = `${n.message} (${new Date(
             n.timestamp
-          ).toLocaleString()})`;
+          ).toLocaleString("en-GB", { timeZone: "Asia/Tbilisi" })})`;
           list.appendChild(li);
         });
       }
+    })
+    .catch((error) => {
+      console.error("Error fetching notifications:", error);
     });
 }
 
 setInterval(() => {
-    fetchNotifications();
+  fetchNotifications();
 }, 10000);
-    
 
-fetchNotifications()
+fetchNotifications();
+
+const analyticSignUp = document.getElementById("analyticSignUp");
+const analyticSignIn = document.getElementById("analyticSignIn");
+const analyticSignOut = document.getElementById("analyticSignOut");
+const analyticChangeData = document.getElementById("analyticChangeData");
+
+async function fetchTodaysAnalytics() {
+  try {
+    const response = await fetch(
+      "https://68137244129f6313e2114929.mockapi.io/adminNotifications"
+    );
+    const data = await response.json();
+
+    const today = new Date().toLocaleDateString("en-CA", {
+      timeZone: "Asia/Tbilisi",
+    });
+
+    let signUpCount = 0;
+    let signInCount = 0;
+    let signOutCount = 0;
+    let changeDataCount = 0;
+
+    data.forEach((entry) => {
+      const entryDate = new Date(entry.timestamp).toLocaleDateString("en-CA", {
+        timeZone: "Asia/Tbilisi",
+      });
+
+      if (entryDate === today) {
+        switch (entry.type) {
+          case "signup":
+            signUpCount++;
+            break;
+          case "signIn":
+            signInCount++;
+            break;
+          case "signOut":
+            signOutCount++;
+            break;
+          case "changeData":
+          case "changePassword":
+            changeDataCount++;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+
+    analyticSignUp.textContent = signUpCount;
+    analyticSignIn.textContent = signInCount;
+    analyticSignOut.textContent = signOutCount;
+    analyticChangeData.textContent = changeDataCount;
+  } catch (error) {
+    console.error("Error fetching analytics data:", error);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", fetchTodaysAnalytics);

@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="admin.css" />
-</head>
-<body>
-  <h1 class="title">Admin Dashboard</h1>
-  <div class="dashboard">
-    <table id="userTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Avatar</th>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>ZIP</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <h1 class="title">Admin Dashboard</h1>
+    <div class="dashboard">
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Avatar</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>ZIP</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
 
-    <p id="noUsers"></p>
-  </div>
+      <p id="noUsers"></p>
+    </div>
 
-  <div class="notifications">
-  <h2>Notifications</h2>
-  <ul id="notificationList"></ul>
-</div>
+    <div class="wrapper">
+      <div class="notifications">
+        <h2>Notifications</h2>
+        <ul id="notificationList"></ul>
+      </div>
 
+      <div class="analytics">
+        <h1>Todays Data</h1>
+        <p>Sign Ups: <span id="analyticSignUp">0</span></p>
+        <p>Sign Ins: <span id="analyticSignIn">0</span></p>
+        <p>Sign Outs: <span id="analyticSignOut">0</span></p>
+        <p>Data changes: <span id="analyticChangeData">0</span></p>
+      </div>
+    </div>
 
-  <script src="admin.js"></script>
-</body>
+    <script src="admin.js"></script>
+  </body>
 </html>
