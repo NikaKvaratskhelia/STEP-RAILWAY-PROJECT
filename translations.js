@@ -32,6 +32,20 @@ if (!token) {
     });
 }
 
+const userPfpIcon = document.getElementById('userProfileIcon')
+
+fetch("https://api.everrest.educata.dev/auth", {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+  },
+})
+  .then((res) => res.json())
+  .then((user) => {
+    userPfpIcon.src = user.avatar
+  });
+
 const translations = {
   იმეილი: {
     en: "Email",

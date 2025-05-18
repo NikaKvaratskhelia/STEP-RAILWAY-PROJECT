@@ -60,6 +60,20 @@ header .header-info {
   max-width: 85vw;
   margin: auto;
 }
+header .header-info .icons {
+  align-items: anchor-center;
+}
+header .header-info .icons a:first-child {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+header .header-info .icons a:first-child img {
+  border: 2px solid black;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 header .header-info .responsive-icon {
   display: none;
 }

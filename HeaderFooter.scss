@@ -70,6 +70,22 @@ header {
     max-width: 85vw;
     margin: auto;
 
+    .icons {
+      align-items: anchor-center;
+      a:first-child {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        img {
+          border: 2px solid black;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+      }
+    }
+
     .responsive-icon {
       display: none;
     }
@@ -121,7 +137,7 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
 
-  #logOut{
+  #logOut {
     background-color: #ffffff;
     cursor: pointer;
     position: relative;
@@ -129,17 +145,17 @@ footer {
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 
-    &:hover{
-      &::after{
+    &:hover {
+      &::after {
         display: block;
       }
     }
-    img{
+    img {
       width: 40px;
       height: 40px;
     }
 
-    &::after{
+    &::after {
       content: attr(name);
       display: none;
       background-color: #3f3f3f;
