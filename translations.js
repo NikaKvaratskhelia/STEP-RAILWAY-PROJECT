@@ -2,13 +2,27 @@
 const token = sessionStorage.getItem("token");
 const logOut = document.getElementById("logOut");
 logOut.addEventListener("click", function () {
-  sessionStorage.removeItem("token");
-  window.location.href = 'signIn.html'
+  let mockUserId = sessionStorage.getItem("mockUserId");
+
+  fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: `User ID:${mockUserId} just signed Out! `,
+      type: "signOut",
+      timestamp: new Date().toISOString(),
+    }),
+  });
+
+  setTimeout(() => {
+    sessionStorage.clear();
+    window.location.href = "signIn.html";
+  }, 1000);
 });
 
-if (!token) {
+if (!token && sessionStorage.getItem("isAdmin") === "false") {
   window.location.href = "signIn.html";
-} else {
+} else if (sessionStorage.getItem("isAdmin") === "false") {
   fetch("https://api.everrest.educata.dev/auth", {
     method: "GET",
     headers: {
@@ -32,19 +46,28 @@ if (!token) {
     });
 }
 
-const userPfpIcon = document.getElementById('userProfileIcon')
+const userPfpIcon = document.getElementById("userProfileIcon");
+if (sessionStorage.getItem("isAdmin") === "true") {
+  document.getElementById("userProfileHref").href = "admin.html";
+  document.getElementById("userProfileHref").classList.add("admin");
+}
 
-fetch("https://api.everrest.educata.dev/auth", {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-  },
-})
-  .then((res) => res.json())
-  .then((user) => {
-    userPfpIcon.src = user.avatar
-  });
+if (sessionStorage.getItem("isAdmin") === "false") {
+
+  fetch("https://api.everrest.educata.dev/auth", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((user) => {
+      userPfpIcon.src = user.avatar;
+    });
+} else {
+  userPfpIcon.src = "Images/admin pfp.jpg";
+}
 
 const translations = {
   იმეილი: {
@@ -343,8 +366,8 @@ const translations = {
     en: "Cancel Ticket",
   },
 
-  "ასეთი ბილეთი არ მოიძებნა, შეამოწმეთ ბილეთის ნომერი":{
-    en:"Couldn't find the ticket, check ticket number"
+  "ასეთი ბილეთი არ მოიძებნა, შეამოწმეთ ბილეთის ნომერი": {
+    en: "Couldn't find the ticket, check ticket number",
   },
 
   "ბილეთის საფასური გადახდილია, იხილეთ ბილეთი:": {

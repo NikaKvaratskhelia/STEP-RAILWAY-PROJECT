@@ -52,53 +52,102 @@ fetch("https://api.everrest.educata.dev/auth", {
       });
     });
 
-    document.getElementById("updateAvatarBtn").addEventListener("click", () => updateAvatar(user));
+    document
+      .getElementById("updateAvatarBtn")
+      .addEventListener("click", () => updateAvatar(user));
 
-    const oldPassword = document.getElementById("oldPass");
-    const newPass = document.getElementById("newPass");
     const btn = document.getElementById("changePassBtn");
 
     btn.addEventListener("click", function () {
-      const oldVal = oldPassword.value.trim();
-      const newVal = newPass.value.trim();
-
-      if (!oldVal || !newVal) {
-        alert("Please fill out both password fields.");
-        return;
-      }
-
-      const updatedPassword = {
-        oldPassword: oldVal,
-        newPassword: newVal,
-      };
-
-      fetch(`https://api.everrest.educata.dev/auth/change_password`, {
-        method: "PATCH",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(updatedPassword),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Password change failed");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          alert("Password successfully changed!");
-          if (data.access_token) {
-            sessionStorage.setItem("token", data.access_token);
-          }
-        })
-        .catch((error) => {
-          alert("Error: " + error.message);
-        });
+      setupPasswordChange();
     });
   });
 
+function setupPasswordChange() {
+  const oldPassword = document.getElementById("oldPass");
+  const newPassword = document.getElementById("newPass");
+
+  const oldVal = oldPassword.value.trim();
+  const newVal = newPassword.value.trim();
+
+  if (!oldVal || !newVal) {
+    alert("Please fill out both password fields.");
+    return;
+  }
+
+  const updatedPassword = {
+    oldPassword: oldVal,
+    newPassword: newVal,
+  };
+
+  fetch(`https://api.everrest.educata.dev/auth/change_password`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(updatedPassword),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Password change failed on Everrest");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      if (data.access_token) {
+        sessionStorage.setItem("token", data.access_token);
+      }
+
+      if (!mockUserId) {
+        console.warn("No mockUserId found in sessionStorage.");
+        return;
+      }
+
+      fetch(
+        `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${mockUserId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ password: newVal }),
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Failed to update password on MockAPI");
+          }
+          return res.json();
+        })
+        .then(() => {
+          oldPassword.value = "";
+          newPassword.value = "";
+
+          fetch(
+            "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                message: `User ID:${mockUserId} just changed account password! `,
+                type: "changePassword",
+                timestamp: new Date().toISOString(),
+              }),
+            }
+          );
+        })
+        .catch((err) => {
+          console.error("MockAPI update failed:", err);
+        });
+    })
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
+}
+
+const mockUserId = sessionStorage.getItem("mockUserId");
 function updateAvatar(data) {
   const updatedAvatar = {
     firstName: data.firstName,
@@ -123,16 +172,46 @@ function updateAvatar(data) {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error("Failed to update avatar");
+        throw new Error("Failed to update avatar on Everrest");
       }
       return res.json();
     })
     .then(() => {
-      alert("Avatar updated successfully!");
+      const userId = sessionStorage.getItem("mockUserId");
+      if (!userId) {
+        throw new Error("MockAPI user ID not found in sessionStorage");
+      }
+
+      return fetch(
+        `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedAvatar),
+        }
+      );
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to update avatar on MockAPI");
+      }
+      return res.json();
+    })
+    .then(() => {
+      fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: `User ID:${mockUserId} just changed avatar! `,
+          type: "changeAvatar",
+          timestamp: new Date().toISOString(),
+        }),
+      });
       window.location.reload();
     })
     .catch((error) => {
-      console.error("Error:", error);
-      alert("Failed to update avatar.");
+      console.error("Update error:", error);
     });
 }

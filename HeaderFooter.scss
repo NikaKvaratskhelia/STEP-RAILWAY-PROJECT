@@ -71,11 +71,32 @@ header {
     margin: auto;
 
     .icons {
-      align-items: anchor-center;
+      align-items: center;
       a:first-child {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        position: relative;
+
+        &::before {
+          content: "Profile";
+          display: none;
+          background-color: #3f3f3f;
+          color: white;
+          padding: 5px;
+          position: absolute;
+          text-align: center;
+          top: -30px;
+          left: -5px;
+        }
+
+        &:hover::before {
+          display: block;
+        }
+
+        &.admin::before {
+          content: "Admin";
+        }
 
         img {
           border: 2px solid black;

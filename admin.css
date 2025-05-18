@@ -1,0 +1,129 @@
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* for wider screens */
+}
+
+thead th,
+tbody td {
+  border: 1px solid #ddd;
+  overflow-wrap: anywhere;
+  padding: 12px;
+  text-align: left;
+}
+
+thead th {
+  background-color: #34495e;
+  color: white;
+}
+
+table + p {
+  width: fit-content;
+  margin: auto;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 670px) {
+  thead tr {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: start;
+    height: auto;
+  }
+
+  thead th {
+    width: 100%;
+    padding: 10px 12px;
+    height: 50px;
+    box-sizing: border-box;
+  }
+
+  table {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+  }
+
+  tbody tr {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  tbody td {
+    width: 100%;
+    padding: 10px 12px;
+    height: 50px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  tbody td:last-child {
+    border-bottom: none;
+  }
+}
+
+.notifications {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  max-width: 700px;
+}
+
+.notifications h2 {
+  margin-bottom: 10px;
+}
+
+#notificationList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#notificationList li {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-left: 5px solid #3a3a3a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+td img {
+  width: 50px;
+  height: 50px;
+}

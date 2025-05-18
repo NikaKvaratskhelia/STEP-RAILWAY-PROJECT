@@ -7,35 +7,86 @@ const signUpStatus = document.getElementById("signUpStatus");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  userDetails = {
+  const userDetails = {
     email: signInEmail.value.trim(),
     password: signInPassword.value.trim(),
   };
 
-  fetch("https://api.everrest.educata.dev/auth/sign_in", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userDetails),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.access_token) {
-        signUpStatus.innerHTML = "<p>Sign In Successfull!</p>";
-        signUpStatus.style.backgroundColor = "rgba(58, 226, 58, 0.49);";
-        sessionStorage.setItem("token", data.access_token);
-        window.location.href = "Homepage.html";
-      } else {
-      signUpStatus.innerHTML = `<p>Sign In failed!</p>`
-      signUpStatus.style.backgroundColor ="#cc4949a9"
-      }
+  if (
+    signInEmail.value.trim() === "admin@gmail.com" &&
+    signInPassword.value.trim() === "admin123"
+  ) {
+    sessionStorage.setItem("isAdmin", "true");
+    window.location.href = "Homepage.html";
+  } else {
+    sessionStorage.setItem("isAdmin", "false");
+
+    fetch("https://api.everrest.educata.dev/auth/sign_in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userDetails),
     })
-    .catch((err) => {
-      signUpStatus.innerHTML = `<p>Sign In Failed</p>`
-      signUpStatus.style.backgroundColor ="#cc4949a9"
-      console.error(err);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.access_token) {
+          fetch("https://68137244129f6313e2114929.mockapi.io/registeredUsers")
+            .then((res) => res.json())
+            .then((mockUsers) => {
+              const userExistsInMock = mockUsers.find(
+                (user) =>
+                  user.email === signInEmail.value.trim() &&
+                  user.password === signInPassword.value.trim()
+              );
+
+              if (userExistsInMock) {
+                signUpStatus.innerHTML = "<p>Sign In Successful!</p>";
+                signUpStatus.style.backgroundColor = "rgba(58, 226, 58, 0.49)";
+                sessionStorage.setItem("token", data.access_token);
+                sessionStorage.setItem("mockUserId", userExistsInMock.id);
+
+                fetch(
+                  "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      message: `${
+                        userExistsInMock.firstName || "A user"
+                      } signed in.`,
+                      type: "signIn",
+                      timestamp: new Date().toISOString(),
+                    }),
+                  }
+                );
+
+                setTimeout(() => {
+                  window.location.href = "Homepage.html";
+                }, 1000);
+              } else {
+                signUpStatus.innerHTML = `<p>Sign In failed: User not authorized.</p>`;
+                signUpStatus.style.backgroundColor = "#cc4949a9";
+              }
+            })
+            .catch((err) => {
+              signUpStatus.innerHTML = `<p>Sign In failed: Unable to verify user.</p>`;
+              signUpStatus.style.backgroundColor = "#cc4949a9";
+              console.error(err);
+            });
+        } else {
+          signUpStatus.innerHTML = `<p>Sign In failed!</p>`;
+          signUpStatus.style.backgroundColor = "#cc4949a9";
+        }
+      })
+      .catch((err) => {
+        signUpStatus.innerHTML = `<p>Sign In Failed</p>`;
+        signUpStatus.style.backgroundColor = "#cc4949a9";
+        console.error(err);
+      });
+  }
 });
 
 recover.addEventListener("click", function () {

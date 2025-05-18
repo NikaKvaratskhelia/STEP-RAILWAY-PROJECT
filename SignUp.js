@@ -66,15 +66,50 @@ signUpForm.addEventListener("submit", function (e) {
       })
       .then((data) => {
         sessionStorage.setItem("newUser", JSON.stringify(data));
-        signUpStatus.innerHTML = "<p>Successfully Signed Up!</p>"
-        signUpStatus.style.backgroundColor ="rgba(58, 226, 58, 0.49);"
+        signUpStatus.innerHTML = "<p>Successfully Signed Up!</p>";
+        signUpStatus.style.backgroundColor = "rgba(58, 226, 58, 0.49);";
+        fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: `${signUpName.value.trim()} just signed up.`,
+            type: "signup",
+            timestamp: new Date().toISOString(),
+          }),
+        });
+
         setTimeout(() => {
           window.location.href = "signIn.html";
         }, 1000);
       })
       .catch((err) => {
-        signUpStatus.innerHTML = `<p>Sign up failed! ${err.message}</p>`
-        signUpStatus.style.backgroundColor ="#cc4949a9"
+        signUpStatus.innerHTML = `<p>Sign up failed! ${err.message}</p>`;
+        signUpStatus.style.backgroundColor = "#cc4949a9";
       });
+
+    // mock api post
+
+    mockUSer = {
+      firstName: signUpName.value.trim(),
+      lastName: signUpLastname.value.trim(),
+      age: signUpAge.value.trim(),
+      email: signUpEmail.value.trim(),
+      address: signUpAddress.value.trim(),
+      phone: signUpPhone.value.trim(),
+      zipcode: signUpZIP.value.trim(),
+      avatar: signUpAvatar,
+      password: signUpPassword.value.trim(),
+      gender: signUpGender.value.trim(),
+    };
+
+    fetch("https://68137244129f6313e2114929.mockapi.io/registeredUsers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mockUSer),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }
 });

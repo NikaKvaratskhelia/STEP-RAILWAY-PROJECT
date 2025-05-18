@@ -61,12 +61,30 @@ header .header-info {
   margin: auto;
 }
 header .header-info .icons {
-  align-items: anchor-center;
+  align-items: center;
 }
 header .header-info .icons a:first-child {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  position: relative;
+}
+header .header-info .icons a:first-child::before {
+  content: "Profile";
+  display: none;
+  background-color: #3f3f3f;
+  color: white;
+  padding: 5px;
+  position: absolute;
+  text-align: center;
+  top: -30px;
+  left: -5px;
+}
+header .header-info .icons a:first-child:hover::before {
+  display: block;
+}
+header .header-info .icons a:first-child.admin::before {
+  content: "Admin";
 }
 header .header-info .icons a:first-child img {
   border: 2px solid black;

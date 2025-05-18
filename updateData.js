@@ -18,6 +18,7 @@ const signUpStatus = document.getElementById("signUpStatus");
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
   let valid = true;
+
   if (!zipRegex.test(signUpZIP.value.trim())) {
     alert("ZIP code must be exactly 4 digits.");
     valid = false;
@@ -31,13 +32,13 @@ signUpForm.addEventListener("submit", function (e) {
   }
 
   if (!passwordRegex.test(signUpPassword.value.trim())) {
-    alert("Weak Password! Please choose stronger one!");
+    alert("Weak Password! Please choose a stronger one!");
     valid = false;
     return;
   }
 
   if (valid) {
-    updatedData = {
+    const updatedData = {
       firstName: signUpName.value.trim(),
       lastName: signUpLastname.value.trim(),
       age: signUpAge.value.trim(),
@@ -54,7 +55,7 @@ signUpForm.addEventListener("submit", function (e) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        accept: "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(updatedData),
@@ -68,14 +69,56 @@ signUpForm.addEventListener("submit", function (e) {
       })
       .then((data) => {
         sessionStorage.setItem("newUser", JSON.stringify(data));
-        signUpStatus.innerHTML = "<p>Successfully Update Data!</p>";
-        signUpStatus.style.backgroundColor = "rgba(58, 226, 58, 0.49);";
-        setTimeout(() => {
-          window.location.href = "userProfile.html";
-        }, 1000);
+        signUpStatus.innerHTML =
+          "<p>Successfully updated data on Everrest!</p>";
+        signUpStatus.style.backgroundColor = "rgba(58, 226, 58, 0.49)";
+
+        const mockUserId = sessionStorage.getItem("mockUserId");
+        if (!mockUserId) {
+          console.warn("No mockUserId in sessionStorage");
+          return;
+        }
+
+        fetch(
+          `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${mockUserId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedData),
+          }
+        )
+          .then((mockRes) => {
+            if (!mockRes.ok) {
+              throw new Error("Failed to update mock API");
+            }
+            return mockRes.json();
+          })
+          .then(() => {
+            console.log("MockAPI user updated");
+            fetch(
+              "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  message: `User ID:${mockUserId} just changed data! `,
+                  type: "changeData",
+                  timestamp: new Date().toISOString(),
+                }),
+              }
+            );
+            setTimeout(() => {
+              window.location.href = "userProfile.html";
+            }, 1000);
+          })
+          .catch((mockErr) => {
+            console.error("Mock API update failed:", mockErr);
+          });
       })
       .catch((err) => {
-        signUpStatus.innerHTML = `<p>Update Failed ${err.message}</p>`;
+        signUpStatus.innerHTML = `<p>Update Failed: ${err.message}</p>`;
         signUpStatus.style.backgroundColor = "#cc4949a9";
       });
   }
