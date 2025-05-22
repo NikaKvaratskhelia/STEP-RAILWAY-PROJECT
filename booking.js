@@ -70,7 +70,6 @@ const seatBookingDiv = document.querySelector(".book-seats-wrapper");
 const closeSeatbookingDivBtn = document.querySelector(".book-seats>p");
 const seatsDv = document.getElementById("seats-div");
 const vagonNumP = document.getElementById("vagonNum");
-const vagons = JSON.parse(sessionStorage.getItem("vagons"));
 const vagonImgs = document.querySelectorAll(".vagonImg");
 
 closeSeatbookingDivBtn.addEventListener("click", function () {
@@ -116,6 +115,7 @@ vagonImgs.forEach((img, index) =>
   img.addEventListener("click", function () {
     img.classList.add("active");
 
+    const vagons = JSON.parse(sessionStorage.getItem("vagons"));
     currentVagon = vagons[index];
     currentVagonId = currentVagon.id;
 

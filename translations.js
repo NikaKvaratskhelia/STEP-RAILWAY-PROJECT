@@ -20,7 +20,7 @@ logOut.addEventListener("click", function () {
   }, 1000);
 });
 
-if (!token && sessionStorage.getItem("isAdmin") === "false") {
+if (!token && sessionStorage.getItem("isAdmin") === "false" || !token && !sessionStorage.getItem("isAdmin")) {
   window.location.href = "signIn.html";
 } else if (sessionStorage.getItem("isAdmin") === "false") {
   fetch("https://api.everrest.educata.dev/auth", {
