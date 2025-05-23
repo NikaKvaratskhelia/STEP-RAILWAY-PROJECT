@@ -248,7 +248,9 @@ registrateTicket.addEventListener("click", function () {
   const privNumRegex = /^\d{11}$/;
   const nonEmptyRegex = /^.+$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\+?\d{1,4}\d{9}$/;
+  const phoneRegex = /^(?:\+?\d{1,4}[-\s]?)?(?:\d{3}[-\s]?\d{3}[-\s]?\d{3})$/;
+  const onlyLettersRegex = /^[A-Za-z]+$/;
+
 
   let isValid = true;
 
@@ -273,29 +275,35 @@ registrateTicket.addEventListener("click", function () {
     const phone = phoneNumbers[0].value.trim().replace(/\s+/g, "");
     const seatNumber = chosenSeatNumber[i].innerHTML;
 
+    privNums[i].style.borderColor = "";
+    firstnames[i].style.borderColor = "";
+    lastNames[i].style.borderColor = "";
+    emails[0].style.borderColor = "";
+    phoneNumbers[0].style.borderColor = "";
+
     if (!privNumRegex.test(privNum)) {
       isValid = false;
-      console.error(`Private number at index ${i} must be exactly 11 digits`);
+      privNums[i].style.borderColor = "red";
     }
 
-    if (!nonEmptyRegex.test(firstName)) {
+    if (!nonEmptyRegex.test(firstName) && !onlyLettersRegex.test(firstName)) {
       isValid = false;
-      console.error(`First name at index ${i} is empty`);
+      firstnames[i].style.borderColor = "red";
     }
 
-    if (!nonEmptyRegex.test(lastName)) {
+    if (!nonEmptyRegex.test(lastName) && !onlyLettersRegex.test(lastName)) {
       isValid = false;
-      console.error(`Last name at index ${i} is empty`);
+      lastNames[i].style.borderColor = "red";
     }
 
     if (!emailRegex.test(email)) {
       isValid = false;
-      console.error(`Email must be a valid Gmail address`);
+      emails[0].style.borderColor = "red";
     }
 
     if (!phoneRegex.test(phone)) {
       isValid = false;
-      console.error(`Phone number must be exactly 9 digits`);
+      phoneNumbers[0].style.borderColor = "red";
     }
 
     if (seatNumber === "0") {
@@ -314,7 +322,7 @@ registrateTicket.addEventListener("click", function () {
     errorDiv.innerHTML = "";
 
     sessionStorage.setItem("passEmail", emails[0].value.trim());
-    sessionStorage.setItem("passPhoneNum", phoneNumbers[0].value.trim());
+    sessionStorage.setItem("passPhoneNum", phoneNumbers[0].value.trim().replace(/[-\s]+/g, ' '));
 
     registrateTicketFunction();
 

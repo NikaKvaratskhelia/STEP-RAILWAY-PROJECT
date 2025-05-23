@@ -69,6 +69,18 @@ if (sessionStorage.getItem("isAdmin") === "false") {
   userPfpIcon.src = "Images/admin pfp.jpg";
 }
 
+let burgerBtn = document.querySelector('.burger-menu')
+
+burgerBtn.addEventListener('click', function(){
+  burgerBtn.classList.add("active")
+})
+
+let closeBtn = document.querySelector(".closeBtn")
+
+closeBtn.addEventListener("click", function(){
+  burgerBtn.classList.remove('active')
+})
+
 const translations = {
   იმეილი: {
     en: "Email",

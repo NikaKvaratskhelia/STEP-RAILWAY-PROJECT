@@ -36,8 +36,7 @@ form.addEventListener("submit", function (e) {
             .then((mockUsers) => {
               const userExistsInMock = mockUsers.find(
                 (user) =>
-                  user.email === signInEmail.value.trim() &&
-                  user.password === signInPassword.value.trim()
+                  user.email === signInEmail.value.trim() 
               );
 
               if (userExistsInMock) {

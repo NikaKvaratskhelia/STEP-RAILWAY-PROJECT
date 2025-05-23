@@ -147,6 +147,44 @@ header {
         }
       }
     }
+
+    .burger-menu {
+      display: none;
+      width: fit-content;
+      flex-direction: column;
+      gap: 3px;
+      span {
+        width: 25px;
+        height: 5px;
+        background-color: #2841bf;
+        border-radius: 3px;
+      }
+    }
+
+    .burger-menu.active + div {
+      margin-top: 30px;
+      display: flex;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      flex-direction: column;
+      background-color: white;
+      padding: 30px;
+      justify-content: start;
+    }
+
+    .burger-menu.active + div + .closeBtn {
+      display: flex;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .closeBtn {
+      display: none;
+      font-size: 30px;
+    }
   }
 }
 
@@ -207,6 +245,16 @@ footer {
     a {
       color: #4531f5;
     }
+  }
+}
+
+@media screen and (max-width: 870px) {
+  header .header-info .burger-menu + div {
+    display: none;
+  }
+
+  header .header-info .burger-menu {
+    display: flex;
   }
 }
 

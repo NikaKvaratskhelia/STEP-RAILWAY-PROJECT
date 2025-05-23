@@ -124,6 +124,41 @@ header .header-info div .check-ticket__button:hover {
 header .header-info div .check-ticket__button:hover::before {
   transform: scale(1, 1);
 }
+header .header-info .burger-menu {
+  display: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  flex-direction: column;
+  gap: 3px;
+}
+header .header-info .burger-menu span {
+  width: 25px;
+  height: 5px;
+  background-color: #2841bf;
+  border-radius: 3px;
+}
+header .header-info .burger-menu.active + div {
+  margin-top: 30px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px;
+  justify-content: start;
+}
+header .header-info .burger-menu.active + div + .closeBtn {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+header .header-info .closeBtn {
+  display: none;
+  font-size: 30px;
+}
 
 footer {
   margin-top: 100px;
@@ -179,6 +214,14 @@ footer .footer-txt-div a {
   color: #4531f5;
 }
 
+@media screen and (max-width: 870px) {
+  header .header-info .burger-menu + div {
+    display: none;
+  }
+  header .header-info .burger-menu {
+    display: flex;
+  }
+}
 @media screen and (max-width: 590px) {
   .header-info img.desktop-icon {
     display: none;

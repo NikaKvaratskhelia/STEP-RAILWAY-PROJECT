@@ -6,6 +6,22 @@ const cardDate = document.getElementById("cardDate");
 const newTicket = JSON.parse(sessionStorage.getItem("ticket"));
 console.log(newTicket);
 
+cardNum.addEventListener("input", (e) => {
+  let value = e.target.value.replace(/\D/g, "");
+  value = value.match(/.{1,4}/g)?.join(" ") || "";
+  e.target.value = value;
+});
+
+cardDate.addEventListener("input", (e) => {
+  let value = e.target.value.replace(/\D/g, "");
+
+  if (value.length > 2) {
+    value = value.slice(0, 2) + "/" + value.slice(2, 6);
+  }
+
+  e.target.value = value;
+});
+
 myForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
