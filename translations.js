@@ -1,26 +1,32 @@
 // IM ADDING SINGN IN LOGIC HERE CUZ THIS IS CONNECTED TO ALL HTMLS
 const token = sessionStorage.getItem("token");
 const logOut = document.getElementById("logOut");
-logOut.addEventListener("click", function () {
-  let mockUserId = sessionStorage.getItem("mockUserId");
 
-  fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      message: `User ID:${mockUserId} just signed Out! `,
-      type: "signOut",
-      timestamp: new Date().toISOString(),
-    }),
+if (logOut) {
+  logOut.addEventListener("click", function () {
+    let mockUserId = sessionStorage.getItem("mockUserId");
+
+    fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: `User ID:${mockUserId} just signed Out! `,
+        type: "signOut",
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    setTimeout(() => {
+      sessionStorage.clear();
+      window.location.href = "signIn.html";
+    }, 1000);
   });
+}
 
-  setTimeout(() => {
-    sessionStorage.clear();
-    window.location.href = "signIn.html";
-  }, 1000);
-});
-
-if (!token && sessionStorage.getItem("isAdmin") === "false" || !token && !sessionStorage.getItem("isAdmin")) {
+if (
+  (!token && sessionStorage.getItem("isAdmin") === "false") ||
+  (!token && !sessionStorage.getItem("isAdmin"))
+) {
   window.location.href = "signIn.html";
 } else if (sessionStorage.getItem("isAdmin") === "false") {
   fetch("https://api.everrest.educata.dev/auth", {
@@ -53,7 +59,6 @@ if (sessionStorage.getItem("isAdmin") === "true") {
 }
 
 if (sessionStorage.getItem("isAdmin") === "false") {
-
   fetch("https://api.everrest.educata.dev/auth", {
     method: "GET",
     headers: {
@@ -69,17 +74,17 @@ if (sessionStorage.getItem("isAdmin") === "false") {
   userPfpIcon.src = "Images/admin pfp.jpg";
 }
 
-let burgerBtn = document.querySelector('.burger-menu')
+let burgerBtn = document.querySelector(".burger-menu");
 
-burgerBtn.addEventListener('click', function(){
-  burgerBtn.classList.add("active")
-})
+burgerBtn.addEventListener("click", function () {
+  burgerBtn.classList.add("active");
+});
 
-let closeBtn = document.querySelector(".closeBtn")
+let closeBtn = document.querySelector(".closeBtn");
 
-closeBtn.addEventListener("click", function(){
-  burgerBtn.classList.remove('active')
-})
+closeBtn.addEventListener("click", function () {
+  burgerBtn.classList.remove("active");
+});
 
 const translations = {
   იმეილი: {

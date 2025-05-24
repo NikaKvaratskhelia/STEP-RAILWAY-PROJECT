@@ -95,12 +95,6 @@ header .header-info .icons a:first-child img {
 header .header-info .responsive-icon {
   display: none;
 }
-header .header-info div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
 header .header-info div .check-ticket__button {
   margin-left: auto;
 }
@@ -138,8 +132,8 @@ header .header-info .burger-menu span {
   border-radius: 3px;
 }
 header .header-info .burger-menu.active + div {
-  margin-top: 30px;
   display: flex;
+  gap: 10px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -147,7 +141,7 @@ header .header-info .burger-menu.active + div {
   flex-direction: column;
   background-color: white;
   padding: 30px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 header .header-info .burger-menu.active + div + .closeBtn {
   display: flex;
@@ -229,10 +223,5 @@ footer .footer-txt-div a {
   .header-info img.responsive-icon {
     display: block;
     max-width: 60px;
-  }
-}
-@media screen and (max-width: 490px) {
-  .header-info .check-ticket__button {
-    margin: auto;
   }
 }/*# sourceMappingURL=HeaderFooter.css.map */

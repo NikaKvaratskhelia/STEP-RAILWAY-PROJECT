@@ -112,10 +112,6 @@ header {
     }
 
     div {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
 
       .check-ticket__button {
         margin-left: auto;
@@ -162,8 +158,8 @@ header {
     }
 
     .burger-menu.active + div {
-      margin-top: 30px;
       display: flex;
+      gap: 10px;
       position: fixed;
       top: 0;
       bottom: 0;
@@ -171,7 +167,7 @@ header {
       flex-direction: column;
       background-color: white;
       padding: 30px;
-      justify-content: start;
+      justify-content: flex-start;
     }
 
     .burger-menu.active + div + .closeBtn {
@@ -267,14 +263,6 @@ footer {
     img.responsive-icon {
       display: block;
       max-width: 60px;
-    }
-  }
-}
-
-@media screen and (max-width: 490px) {
-  .header-info {
-    .check-ticket__button {
-      margin: auto;
     }
   }
 }
