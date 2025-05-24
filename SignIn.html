@@ -5,8 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In</title>
     <link rel="stylesheet" href="SignIn.css" />
+    <link rel="icon" href="Images/Icon.png" />
+    <link rel="stylesheet" href="HeaderFooter.css" />
   </head>
   <body>
+    <header id="header">
+      <div class="header-info">
+        <div class="icons">
+          <a href="userProfile.html" id="userProfileHref">
+            <img id="userProfileIcon" src="" alt="Pfp"
+          /></a>
+          <a href="index.html">
+            <img
+              class="desktop-icon"
+              src="Images/Header Icon.png"
+              alt="Step Railway icon text"
+            />
+          </a>
+
+          <a href="index.html">
+            <img
+              class="responsive-icon"
+              src="Images/Icon.png"
+              alt="Step Railway icon responsive"
+            />
+          </a>
+        </div>
+
+        <div class="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <a
+            href="checkTicket.html"
+            class="check-ticket__button"
+            data-translate="ბილეთის შემოწმება/დაბრუნება"
+          >
+            ბილეთის შემოწმება/დაბრუნება
+          </a>
+
+          <select name="translate" id="lang">
+            <option value="ka">ქართული</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+
+        <div class="closeBtn">&times;</div>
+      </div>
+    </header>
+
     <div class="container">
       <div class="purple-bg">
         <h1>Welcome Back!</h1>
@@ -32,5 +81,6 @@
     </div>
 
     <script src="SignIn.js"></script>
+    <script src="translations.js"></script>
   </body>
 </html>

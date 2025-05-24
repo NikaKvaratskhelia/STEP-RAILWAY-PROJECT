@@ -17,7 +17,7 @@ form.addEventListener("submit", function (e) {
     signInPassword.value.trim() === "admin123"
   ) {
     sessionStorage.setItem("isAdmin", "true");
-    window.location.href = "Homepage.html";
+    window.location.href = "index.html";
   } else {
     sessionStorage.setItem("isAdmin", "false");
 
@@ -63,7 +63,7 @@ form.addEventListener("submit", function (e) {
                 );
 
                 setTimeout(() => {
-                  window.location.href = "Homepage.html";
+                  window.location.href = "index.html";
                 }, 1000);
               } else {
                 signUpStatus.innerHTML = `<p>Sign In failed: User not authorized.</p>`;

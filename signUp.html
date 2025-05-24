@@ -8,10 +8,59 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <link rel="stylesheet" href="SignUp.css" />
-    <title>Modern Login Page | AsmrProg</title>
+    <link rel="stylesheet" href="HeaderFooter.css" />
+    <link rel="icon" href="Images/Icon.png" />
+    <title>Sign Up Railway</title>
   </head>
 
   <body>
+    <header id="header">
+      <div class="header-info">
+        <div class="icons">
+          <a href="userProfile.html" id="userProfileHref">
+            <img id="userProfileIcon" src="" alt="Pfp"
+          /></a>
+          <a href="index.html">
+            <img
+              class="desktop-icon"
+              src="Images/Header Icon.png"
+              alt="Step Railway icon text"
+            />
+          </a>
+
+          <a href="index.html">
+            <img
+              class="responsive-icon"
+              src="Images/Icon.png"
+              alt="Step Railway icon responsive"
+            />
+          </a>
+        </div>
+
+        <div class="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <a
+            href="checkTicket.html"
+            class="check-ticket__button"
+            data-translate="ბილეთის შემოწმება/დაბრუნება"
+          >
+            ბილეთის შემოწმება/დაბრუნება
+          </a>
+
+          <select name="translate" id="lang">
+            <option value="ka">ქართული</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+
+        <div class="closeBtn">&times;</div>
+      </div>
+    </header>
+
     <div class="container">
       <form class="signUpForm">
         <h1>SIGN UP</h1>
@@ -28,7 +77,13 @@
           />
         </div>
 
-        <input type="number" placeholder="Age" id="signUpAge" required min="18"/>
+        <input
+          type="number"
+          placeholder="Age"
+          id="signUpAge"
+          required
+          min="18"
+        />
         <input type="email" id="signUpEmail" placeholder="Email" />
         <input
           type="password"
@@ -48,9 +103,7 @@
           <option value="OTHER">Other</option>
         </select>
 
-        <button type="submit">
-            SIGN UP
-        </button>
+        <button type="submit">SIGN UP</button>
       </form>
 
       <div class="purple-bg">

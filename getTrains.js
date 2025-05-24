@@ -50,7 +50,7 @@ fetch("https://railway.stepprojects.ge/api/departures")
       );
     } else {
       tr += `<div class='error-div' data-translate="სასურველი მატარებელი ვერ მოიძებნა"><h2>სასურველი მატარებელი ვერ მოიძებნა </h2>
-          <a href='Homepage.html'>დაბრუნდი უკან</a>
+          <a href='index.html'>დაბრუნდი უკან</a>
           </div>`;
     }
 
