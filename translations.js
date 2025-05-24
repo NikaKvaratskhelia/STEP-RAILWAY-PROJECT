@@ -22,10 +22,12 @@ if (logOut) {
     }, 1000);
   });
 }
+const isSignInPage = window.location.href.includes("signIn.html");
 
 if (
-  (!token && sessionStorage.getItem("isAdmin") === "false") ||
-  (!token && !sessionStorage.getItem("isAdmin"))
+  !isSignInPage && 
+  (!token && sessionStorage.getItem("isAdmin") === "false" || 
+   !token && !sessionStorage.getItem("isAdmin"))
 ) {
   window.location.href = "signIn.html";
 } else if (sessionStorage.getItem("isAdmin") === "false") {
@@ -56,6 +58,7 @@ const userPfpIcon = document.getElementById("userProfileIcon");
 if (sessionStorage.getItem("isAdmin") === "true") {
   document.getElementById("userProfileHref").href = "admin.html";
   document.getElementById("userProfileHref").classList.add("admin");
+  userPfpIcon.src = "Images/admin pfp.jpg";
 }
 
 if (sessionStorage.getItem("isAdmin") === "false") {
@@ -70,8 +73,6 @@ if (sessionStorage.getItem("isAdmin") === "false") {
     .then((user) => {
       userPfpIcon.src = user.avatar;
     });
-} else {
-  userPfpIcon.src = "Images/admin pfp.jpg";
 }
 
 let burgerBtn = document.querySelector(".burger-menu");

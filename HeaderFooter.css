@@ -61,11 +61,13 @@ header .header-info {
   margin: auto;
 }
 header .header-info .icons {
+  display: flex;
   align-items: center;
 }
 header .header-info .icons a:first-child {
-  width: 40px;
-  height: 40px;
+  display: inline-block;
+  height: -moz-fit-content;
+  height: fit-content;
   border-radius: 50%;
   position: relative;
 }

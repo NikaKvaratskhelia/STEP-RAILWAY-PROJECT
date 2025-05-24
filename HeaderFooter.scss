@@ -71,10 +71,11 @@ header {
     margin: auto;
 
     .icons {
+      display: flex;
       align-items: center;
       a:first-child {
-        width: 40px;
-        height: 40px;
+        display: inline-block;
+        height: fit-content;
         border-radius: 50%;
         position: relative;
 
@@ -97,7 +98,7 @@ header {
         &.admin::before {
           content: "Admin";
         }
-
+        
         img {
           border: 2px solid black;
           width: 40px;
