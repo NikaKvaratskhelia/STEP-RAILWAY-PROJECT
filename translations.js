@@ -18,7 +18,7 @@ if (logOut) {
 
     setTimeout(() => {
       sessionStorage.clear();
-      window.location.href = "signIn.html";
+      window.location.href = "signin.html";
     }, 1000);
   });
 }
@@ -29,7 +29,7 @@ if (
   (!token && sessionStorage.getItem("isAdmin") === "false" || 
    !token && !sessionStorage.getItem("isAdmin"))
 ) {
-  window.location.href = "signIn.html";
+  window.location.href = "signin.html";
 } else if (sessionStorage.getItem("isAdmin") === "false") {
   fetch("https://api.everrest.educata.dev/auth", {
     method: "GET",
@@ -50,7 +50,7 @@ if (
     .catch((err) => {
       console.error(err);
       sessionStorage.removeItem("token");
-      window.location.href = "signIn.html";
+      window.location.href = "signin.html";
     });
 }
 
