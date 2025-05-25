@@ -22,7 +22,7 @@ if (logOut) {
     }, 1000);
   });
 }
-const isSignInPage = window.location.href.includes("signIn.html");
+const isSignInPage = window.location.href.includes("signin");
 
 if (
   !isSignInPage && 
