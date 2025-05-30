@@ -25,9 +25,9 @@ if (logOut) {
 const isSignInPage = window.location.href.includes("signin");
 
 if (
-  !isSignInPage && 
-  (!token && sessionStorage.getItem("isAdmin") === "false" || 
-   !token && !sessionStorage.getItem("isAdmin"))
+  !isSignInPage &&
+  ((!token && sessionStorage.getItem("isAdmin") === "false") ||
+    (!token && !sessionStorage.getItem("isAdmin")))
 ) {
   window.location.href = "signin.html";
 } else if (sessionStorage.getItem("isAdmin") === "false") {
@@ -55,10 +55,14 @@ if (
 }
 
 const userPfpIcon = document.getElementById("userProfileIcon");
+
 if (sessionStorage.getItem("isAdmin") === "true") {
   document.getElementById("userProfileHref").href = "admin.html";
-  document.getElementById("userProfileHref").classList.add("admin");
   userPfpIcon.src = "Images/admin pfp.jpg";
+
+  document.getElementById("pfpInfo").setAttribute("data-translate", "ადმინი");
+
+  document.getElementById("pfpInfo").innerHTML = "ადმინი";
 }
 
 if (sessionStorage.getItem("isAdmin") === "false") {
@@ -75,21 +79,29 @@ if (sessionStorage.getItem("isAdmin") === "false") {
     });
 }
 
-let burgerBtn = document.querySelector(".burger-menu");
+let burgerBtn = document.querySelector(".burger-btn");
 
 burgerBtn.addEventListener("click", function () {
-  burgerBtn.classList.add("active");
+  document.querySelector(".burger-menu-list").classList.add("active");
 });
 
 let closeBtn = document.querySelector(".closeBtn");
 
 closeBtn.addEventListener("click", function () {
-  burgerBtn.classList.remove("active");
+  document.querySelector(".burger-menu-list").classList.remove("active");
 });
 
 const translations = {
   იმეილი: {
     en: "Email",
+  },
+
+  პროფილი: {
+    en: "Profile",
+  },
+
+  ადმინი: {
+    en: "Admin",
   },
 
   "იმეილი:": {
@@ -385,7 +397,7 @@ const translations = {
   },
 
   "ასეთი ბილეთი არ მოიძებნა, შეამოწმეთ ბილეთის ნომერი": {
-    en: "Couldn't find the ticket, check ticket number",
+    en: "Couldn't find the ticket, check the ticket number",
   },
 
   "ბილეთის საფასური გადახდილია, იხილეთ ბილეთი:": {
@@ -460,6 +472,61 @@ const translations = {
   "სასურველი მატარებელი ვერ მოიძებნა": {
     en: "Couldn't find wanted train!",
   },
+  "როგორ შევიძინო ბილეთი?": {
+    en: "How can I buy a ticket?",
+  },
+  "როგორ შევამოწმო ბილეთი?": {
+    en: "How can I check my ticket?",
+  },
+  "როგორ მოვძებნო მატარებელი?": {
+    en: "How do I find a train?",
+  },
+  "სხვა კითხვები": {
+    en: "Other questions",
+  },
+  "დამალე კითხვები": {
+    en: "Hide questions",
+  },
+  "შემიძლია თუ არა ბილეთის დაბრუნება?": {
+    en: "Can I return a ticket?",
+  },
+  "შეიძლება რამდენიმე ბილეთის ერთად შეძენა?": {
+    en: "Can I buy multiple tickets together?",
+  },
+  "შეიძლება თუ არა ბილეთის ჩამოტვირთვა PDF ფორმატში?": {
+    en: "Can I download the ticket as a PDF?",
+  },
+  გასუფთავება: {
+    en: "Clear chat",
+  },
+  "კითხვის დაწერა...": {
+    en: "Type your question...",
+  },
+  გაგზავნა: {
+    en: "Send",
+  },
+  "ბილეთის შესაძენად მოძებნეთ მატარებელი, შეიყვანეთ მგზავრის მონაცემები და დაადასტურეთ გადახდა.":
+    {
+      en: "To buy a ticket, search for a train, enter passenger details, and confirm payment.",
+    },
+  "მთავარ გვერდზე შედით 'ბილეთის შემოწმება' სექციაში და შეიყვანეთ ბილეთის ნომერი.":
+    {
+      en: "Go to the 'Check Ticket' section on the homepage and enter your ticket number.",
+    },
+  "შეიყვანეთ გამგზავრების და დანიშნულების სადგურები და თარიღი საძიებო ფორმაში.":
+    {
+      en: "Enter the departure and destination stations and date in the search form.",
+    },
+  "დიახ, ბილეთის დაბრუნება შესაძლებელია გამოყოფილ განყოფილებაში მითითებული წესების მიხედვით.":
+    {
+      en: "Yes, you can return the ticket according to the rules listed in the dedicated section.",
+    },
+  "დიახ, შეგიძლიათ ერთდროულად რამდენიმე მგზავრისთვის შეიძინოთ ბილეთი.": {
+    en: "Yes, you can purchase tickets for multiple passengers at once.",
+  },
+  "ბილეთის დაჯავშნის შემდეგ გექნებათ PDF ფორმატში ჩამოტვირთვის შესაძლებლობა.": {
+    en: "After booking the ticket, you will be able to download it as a PDF.",
+  },
 };
 
 function applyTranslations(lang) {
@@ -503,8 +570,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const selector = document.getElementById("lang");
   if (!selector) return;
 
+  const savedLang = sessionStorage.getItem("lang") || "en";
+  selector.value = savedLang;
+  applyTranslations(savedLang);
+
   selector.addEventListener("change", (e) => {
     const lang = e.target.value;
+    sessionStorage.setItem("lang", lang);
     applyTranslations(lang);
   });
 });

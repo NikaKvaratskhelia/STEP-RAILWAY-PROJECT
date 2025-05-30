@@ -26,7 +26,7 @@ html {
     background-color: #ffffff;
   }
 }
-header .header-info div .check-ticket__button + select, header .header-info div .check-ticket__button {
+header .header-info div .burger-menu-list .logOut, header .header-info div .burger-menu-list .chatBot, header .header-info div .burger-menu-list .userPfp, header .header-info div .burger-menu-list #lang, header .header-info div .check-ticket__button + select, header .header-info div .check-ticket__button {
   color: #ffffff;
   background-color: #2841bf;
   text-align: center;
@@ -60,42 +60,13 @@ header .header-info {
   max-width: 85vw;
   margin: auto;
 }
-header .header-info .icons {
-  display: flex;
-  align-items: center;
-}
-header .header-info .icons a:first-child {
-  display: inline-block;
-  height: -moz-fit-content;
-  height: fit-content;
-  border-radius: 50%;
-  position: relative;
-}
-header .header-info .icons a:first-child::before {
-  content: "Profile";
-  display: none;
-  background-color: #3f3f3f;
-  color: white;
-  padding: 5px;
-  position: absolute;
-  text-align: center;
-  top: -30px;
-  left: -5px;
-}
-header .header-info .icons a:first-child:hover::before {
-  display: block;
-}
-header .header-info .icons a:first-child.admin::before {
-  content: "Admin";
-}
-header .header-info .icons a:first-child img {
-  border: 2px solid black;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
 header .header-info .responsive-icon {
   display: none;
+}
+header .header-info div {
+  display: flex;
+  gap: 40px;
+  align-items: center;
 }
 header .header-info div .check-ticket__button {
   margin-left: auto;
@@ -120,40 +91,75 @@ header .header-info div .check-ticket__button:hover {
 header .header-info div .check-ticket__button:hover::before {
   transform: scale(1, 1);
 }
-header .header-info .burger-menu {
-  display: none;
-  width: -moz-fit-content;
-  width: fit-content;
+header .header-info div .check-ticket__button + .burger-btn {
+  display: flex;
   flex-direction: column;
   gap: 3px;
+  cursor: pointer;
 }
-header .header-info .burger-menu span {
-  width: 25px;
-  height: 5px;
+header .header-info div .check-ticket__button + .burger-btn span {
   background-color: #2841bf;
-  border-radius: 3px;
+  border-radius: 5px;
+  height: 5px;
+  width: 25px;
 }
-header .header-info .burger-menu.active + div {
-  display: flex;
+header .header-info div .burger-menu-list {
+  display: none;
+  flex-direction: column;
   gap: 10px;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  flex-direction: column;
-  background-color: white;
-  padding: 30px;
-  justify-content: flex-start;
+  z-index: 999999999;
+  background-color: #ffffff;
+  padding: 50px 20px;
 }
-header .header-info .burger-menu.active + div + .closeBtn {
-  display: flex;
+header .header-info div .burger-menu-list .check-ticket__button {
+  display: none;
+}
+header .header-info div .burger-menu-list .closeBtn {
   position: absolute;
   top: 10px;
-  right: 10px;
-}
-header .header-info .closeBtn {
-  display: none;
+  right: 20px;
   font-size: 30px;
+  cursor: pointer;
+}
+header .header-info div .burger-menu-list .userPfp {
+  display: inline-block;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+  align-items: center;
+  align-self: stretch;
+}
+header .header-info div .burger-menu-list .userPfp img {
+  background-color: #ffffff;
+  border: 2px solid black;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+header .header-info div .burger-menu-list .chatBot {
+  align-self: stretch;
+}
+header .header-info div .burger-menu-list .logOut {
+  display: flex;
+  gap: 20px;
+  padding: 10px 30px;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin-top: auto;
+}
+header .header-info div .burger-menu-list .logOut p {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+header .header-info div .burger-menu-list.active {
+  display: flex;
 }
 
 footer {
@@ -210,14 +216,6 @@ footer .footer-txt-div a {
   color: #4531f5;
 }
 
-@media screen and (max-width: 870px) {
-  header .header-info .burger-menu + div {
-    display: none;
-  }
-  header .header-info .burger-menu {
-    display: flex;
-  }
-}
 @media screen and (max-width: 590px) {
   .header-info img.desktop-icon {
     display: none;
@@ -225,5 +223,13 @@ footer .footer-txt-div a {
   .header-info img.responsive-icon {
     display: block;
     max-width: 60px;
+  }
+}
+@media screen and (max-width: 710px) {
+  .icons + div > .check-ticket__button {
+    display: none;
+  }
+  header .header-info div .burger-menu-list .check-ticket__button {
+    display: flex;
   }
 }/*# sourceMappingURL=HeaderFooter.css.map */
