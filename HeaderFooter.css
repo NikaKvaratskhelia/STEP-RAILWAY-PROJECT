@@ -18,15 +18,7 @@ html {
   font-family: main-font;
   src: url(Fonts/Lato/Lato-Regular.ttf);
 }
-@keyframes header-bg {
-  1% {
-    background-color: #ffffff;
-  }
-  100% {
-    background-color: #ffffff;
-  }
-}
-header .header-info div .burger-menu-list .logOut, header .header-info div .burger-menu-list .chatBot + a, header .header-info div .burger-menu-list .chatBot, header .header-info div .burger-menu-list .userPfp, header .header-info div .burger-menu-list #lang, header .header-info div .check-ticket__button + select, header .header-info div .check-ticket__button {
+header .header-info div .burger-menu-list .logOut, header .header-info div .burger-menu-list .dark-btn, header .header-info div .burger-menu-list .chatBot + a, header .header-info div .burger-menu-list .chatBot, header .header-info div .burger-menu-list .userPfp, header .header-info div .burger-menu-list #lang, header .header-info div .check-ticket__button + select, header .header-info div .check-ticket__button {
   color: #ffffff;
   background-color: #2841bf;
   text-align: center;
@@ -47,9 +39,6 @@ header {
   top: 0;
   z-index: 9999;
   width: 100vw;
-  animation: header-bg forwards;
-  animation-timeline: scroll(y);
-  animation-range: 130px;
 }
 header .header-info {
   display: flex;
@@ -106,6 +95,7 @@ header .header-info div .check-ticket__button + .burger-btn span {
 header .header-info div .burger-menu-list {
   display: none;
   flex-direction: column;
+  align-items: stretch;
   gap: 10px;
   position: fixed;
   top: 0;
@@ -145,6 +135,15 @@ header .header-info div .burger-menu-list .userPfp img {
 }
 header .header-info div .burger-menu-list .chatBot {
   align-self: stretch;
+}
+header .header-info div .burger-menu-list .dark-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+header .header-info div .burger-menu-list .dark-btn img {
+  width: 20px;
 }
 header .header-info div .burger-menu-list .logOut {
   display: flex;
@@ -232,4 +231,93 @@ footer .footer-txt-div a {
   header .header-info div .burger-menu-list .check-ticket__button {
     display: flex;
   }
+}
+body.dark-theme {
+  background-color: #121827 !important;
+  color: #e0e0e0 !important;
+  font-family: main-font !important;
+}
+body.dark-theme header {
+  background-color: transparent !important;
+}
+body.dark-theme header .header-info {
+  max-width: 85vw;
+  margin: auto;
+}
+body.dark-theme header .header-info div .check-ticket__button {
+  background-color: #3b51e0 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+body.dark-theme header .header-info div .check-ticket__button::before {
+  background-color: #3b51e0 !important;
+}
+body.dark-theme header .header-info div .check-ticket__button:hover::before {
+  background-color: #5368f4 !important;
+}
+body.dark-theme header .header-info div .burger-btn span {
+  background-color: #3b51e0 !important;
+}
+body.dark-theme header .header-info div .burger-menu-list {
+  background-color: #1b1f37 !important;
+  padding: 50px 20px !important;
+  box-shadow: 0 0 20px rgba(40, 65, 191, 0.6) !important;
+  color: #e0e0e0 !important;
+}
+body.dark-theme header .header-info div .burger-menu-list .check-ticket__button,
+body.dark-theme header .header-info div .burger-menu-list #lang,
+body.dark-theme header .header-info div .burger-menu-list .userPfp,
+body.dark-theme header .header-info div .burger-menu-list .chatBot,
+body.dark-theme header .header-info div .burger-menu-list .chatBot + a,
+body.dark-theme header .header-info div .burger-menu-list .logOut {
+  background-color: #3b51e0 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+body.dark-theme header .header-info div .burger-menu-list .userPfp img {
+  background-color: #121827 !important;
+  border: 2px solid #5368f4 !important;
+}
+body.dark-theme header .header-info div .burger-menu-list .closeBtn {
+  color: #e0e0e0 !important;
+}
+body.dark-theme footer {
+  background-color: #1b1f37 !important;
+  color: #e0e0e0 !important;
+  margin-top: 100px !important;
+  padding: 130px 0 30px 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+}
+body.dark-theme footer #logOut {
+  background-color: #28304f !important;
+  box-shadow: 0 5px 15px rgba(41, 54, 82, 0.75) !important;
+  color: #e0e0e0 !important;
+}
+body.dark-theme footer #logOut:hover::after {
+  background-color: #5368f4 !important;
+  color: #fff !important;
+}
+body.dark-theme footer #logOut img {
+  filter: brightness(0) invert(1) !important;
+}
+body.dark-theme footer .footer-txt-div {
+  max-width: 85vw !important;
+  padding: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+body.dark-theme footer .footer-txt-div p {
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
+  color: #c0c0c0 !important;
+}
+body.dark-theme footer .footer-txt-div::before {
+  border-bottom: 2px solid #2c2f47 !important;
+}
+body.dark-theme footer .footer-txt-div a {
+  color: #3b51e0 !important;
 }/*# sourceMappingURL=HeaderFooter.css.map */

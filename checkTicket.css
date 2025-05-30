@@ -383,4 +383,122 @@ main .error {
   main .my-form {
     width: 100% !important;
   }
+}
+body.dark-theme {
+  background-color: #121827 !important;
+  color: #e0e0e0 !important;
+  font-family: main-font !important;
+}
+body.dark-theme main form button, main form body.dark-theme button {
+  color: #ffffff;
+  background-color: #3b51e0;
+}
+@keyframes opacity {
+  0% {
+    background-color: #3b51e0;
+  }
+  100% {
+    background-color: rgba(59, 81, 224, 0);
+  }
+}
+body.dark-theme main {
+  background-color: #121827;
+}
+body.dark-theme main form div input {
+  background-color: #1b1f37;
+  border: 1px solid #2841bf;
+  color: #e0e0e0;
+}
+body.dark-theme main form button::before {
+  background-color: #3b51e0;
+}
+body.dark-theme main form button:hover {
+  animation: opacity 0.7s;
+}
+body.dark-theme main form button:hover::before {
+  background-color: #5368f4;
+  transform: scale(1, 1);
+}
+body.dark-theme main .container {
+  background-color: #1b1f37;
+  box-shadow: 0 6px 30px rgba(40, 65, 191, 0.6);
+}
+body.dark-theme main .container .payment-status .svg-wrapper {
+  background-color: #008f20;
+}
+body.dark-theme main .container .payment-status p {
+  color: #e0e0e0;
+}
+body.dark-theme main .container .ticket-wrapper {
+  background-color: rgba(59, 81, 224, 0.05);
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info {
+  background-color: #121827;
+  color: #e0e0e0;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .company-name p {
+  color: #e0e0e0;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .company-name img {
+  filter: brightness(1) invert(0.8);
+  width: 70px;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .ticket-id-date p span,
+body.dark-theme main .container .ticket-wrapper .ticket-info .train-info div,
+body.dark-theme main .container .ticket-wrapper .ticket-info .contact-info div p span,
+body.dark-theme main .container .ticket-wrapper .ticket-info .passengers-div > p,
+body.dark-theme main .container .ticket-wrapper .ticket-info .pass-container div p:nth-child(1),
+body.dark-theme main .container .ticket-wrapper .ticket-info .payment-info .total p:first-child,
+body.dark-theme main .container .ticket-wrapper .ticket-info .invoice-copyright p {
+  color: #ffffff;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .ticket-id-date p,
+body.dark-theme main .container .ticket-wrapper .ticket-info .train-info div,
+body.dark-theme main .container .ticket-wrapper .ticket-info .contact-info div p,
+body.dark-theme main .container .ticket-wrapper .ticket-info .pass-container div,
+body.dark-theme main .container .ticket-wrapper .ticket-info .payment-info .total p {
+  color: #e0e0e0;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .contact-info > p,
+body.dark-theme main .container .ticket-wrapper .ticket-info .passengers-div > p {
+  color: #c0c0c0;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .train-info {
+  border-color: #2841bf;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .contact-info div,
+body.dark-theme main .container .ticket-wrapper .ticket-info .pass-container {
+  border-color: #2841bf;
+}
+body.dark-theme main .container .ticket-wrapper .ticket-info .payment-info .total {
+  border-top-color: #5368f4;
+}
+body.dark-theme main .container .ticket-wrapper .print-donwload {
+  background-color: #121827;
+}
+body.dark-theme main .container .ticket-wrapper .print-donwload .print {
+  background-color: rgba(59, 81, 224, 0.3803921569);
+}
+body.dark-theme main .container .ticket-wrapper .print-donwload .print::before {
+  background-color: #3b51e0;
+  color: #ffffff;
+}
+body.dark-theme main .container .ticket-wrapper .print-donwload .download {
+  background-color: rgba(52, 199, 89, 0.3803921569);
+}
+body.dark-theme main .container .ticket-wrapper .print-donwload .download::before {
+  background-color: rgba(52, 199, 89, 0.3803921569);
+  color: #ffffff;
+}
+body.dark-theme main .container .delete-ticket {
+  background-color: #b00020;
+  border: 2px solid #000;
+  color: #ffffff;
+}
+body.dark-theme main .container .delete-ticket p::before {
+  background-color: #3b51e0;
+}
+body.dark-theme main .error {
+  color: #3b51e0;
+  box-shadow: 0 6px 30px rgba(40, 65, 191, 0.6);
 }/*# sourceMappingURL=checkTicket.css.map */

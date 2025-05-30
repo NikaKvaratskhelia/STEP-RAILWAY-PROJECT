@@ -433,12 +433,171 @@ main {
   }
 }
 
-@media screen and (max-width:760px){
+@media screen and (max-width: 760px) {
   main {
     padding: 240px 10px !important;
 
     .my-form {
       width: 100% !important;
+    }
+  }
+}
+
+// Dark Theme
+
+body.dark-theme {
+  background-color: #121827 !important;
+  color: #e0e0e0 !important;
+  font-family: main-font !important;
+
+  %buttons {
+    color: #ffffff;
+    background-color: #3b51e0;
+  }
+
+  @keyframes opacity {
+    0% {
+      background-color: #3b51e0;
+    }
+    100% {
+      background-color: #3b51e000;
+    }
+  }
+
+  main {
+    background-color: #121827;
+
+    form {
+      div {
+        input {
+          background-color: #1b1f37;
+          border: 1px solid #2841bf;
+          color: #e0e0e0;
+        }
+      }
+
+      button {
+        &::before {
+          background-color: #3b51e0;
+        }
+
+        &:hover {
+          animation: opacity 0.7s;
+        }
+
+        &:hover::before {
+          background-color: #5368f4;
+          transform: scale(1, 1);
+        }
+      }
+    }
+
+    .container {
+      background-color: #1b1f37;
+      box-shadow: 0 6px 30px rgba(40, 65, 191, 0.6);
+
+      .payment-status {
+        .svg-wrapper {
+          background-color: #008f20;
+        }
+
+        p {
+          color: #e0e0e0;
+        }
+      }
+
+      .ticket-wrapper {
+        background-color: rgba(59, 81, 224, 0.05);
+
+        .ticket-info {
+          background-color: #121827;
+          color: #e0e0e0;
+
+          .company-name {
+            p {
+              color: #e0e0e0;
+            }
+
+            img {
+              filter: brightness(1) invert(0.8);
+              width: 70px;
+            }
+          }
+
+          .ticket-id-date p span,
+          .train-info div,
+          .contact-info div p span,
+          .passengers-div > p,
+          .pass-container div p:nth-child(1),
+          .payment-info .total p:first-child,
+          .invoice-copyright p {
+            color: #ffffff;
+          }
+
+          .ticket-id-date p,
+          .train-info div,
+          .contact-info div p,
+          .pass-container div,
+          .payment-info .total p {
+            color: #e0e0e0;
+          }
+
+          .contact-info > p,
+          .passengers-div > p {
+            color: #c0c0c0;
+          }
+
+          .train-info {
+            border-color: #2841bf;
+          }
+
+          .contact-info div,
+          .pass-container {
+            border-color: #2841bf;
+          }
+
+          .payment-info .total {
+            border-top-color: #5368f4;
+          }
+        }
+
+        .print-donwload {
+          background-color: #121827;
+
+          .print {
+            background-color: #3b51e061;
+
+            &::before {
+              background-color: #3b51e0;
+              color: #ffffff;
+            }
+          }
+
+          .download {
+            background-color: #34c75961;
+
+            &::before {
+              background-color: #34c75961;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+
+      .delete-ticket {
+        background-color: #b00020;
+        border: 2px solid #000;
+        color: #ffffff;
+
+        p::before {
+          background-color: #3b51e0;
+        }
+      }
+    }
+
+    .error {
+      color: #3b51e0;
+      box-shadow: 0 6px 30px rgba(40, 65, 191, 0.6);
     }
   }
 }

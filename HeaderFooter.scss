@@ -27,15 +27,6 @@ html {
   src: url(Fonts/Lato/Lato-Regular.ttf);
 }
 
-@keyframes header-bg {
-  1% {
-    background-color: $--white;
-  }
-  100% {
-    background-color: $--white;
-  }
-}
-
 %buttons {
   color: $--white;
   background-color: $--button-bg;
@@ -57,9 +48,6 @@ header {
   top: 0;
   z-index: 9999;
   width: 100vw;
-  animation: header-bg forwards;
-  animation-timeline: scroll(y);
-  animation-range: 130px;
 
   .header-info {
     display: flex;
@@ -124,6 +112,7 @@ header {
       .burger-menu-list {
         display: none;
         flex-direction: column;
+        align-items: stretch;
         gap: 10px;
         position: fixed;
         top: 0;
@@ -169,17 +158,28 @@ header {
           }
         }
 
-        .chatBot{
+        .chatBot {
           @extend %buttons;
           align-self: stretch;
         }
 
-        .chatBot + a{
+        .chatBot + a {
           @extend %buttons;
-          
         }
 
-        .logOut{
+        .dark-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          @extend %buttons;
+
+          img{
+            width: 20px;
+          }
+        }
+
+        .logOut {
           display: flex;
           gap: 20px;
           padding: 10px 30px;
@@ -187,7 +187,7 @@ header {
           margin-top: auto;
           @extend %buttons;
 
-          p{
+          p {
             min-width: fit-content;
           }
         }
@@ -280,5 +280,120 @@ footer {
 
   header .header-info div .burger-menu-list .check-ticket__button {
     display: flex;
+  }
+}
+
+// DARK THEME
+
+body.dark-theme {
+  background-color: #121827 !important;
+  color: #e0e0e0 !important;
+  font-family: main-font !important;
+
+  header {
+    background-color: transparent !important;
+
+    .header-info {
+      max-width: 85vw;
+      margin: auto;
+
+      div {
+
+        .check-ticket__button {
+          background-color: #3b51e0 !important;
+          color: #ffffff !important;
+          border: none !important;
+
+          &::before {
+            background-color: #3b51e0 !important;
+          }
+
+          &:hover::before {
+            background-color: #5368f4 !important;
+          }
+        }
+
+        .burger-btn {
+          span {
+            background-color: #3b51e0 !important;
+          }
+        }
+
+        .burger-menu-list {
+          background-color: #1b1f37 !important;
+          padding: 50px 20px !important;
+          box-shadow: 0 0 20px #2841bf99 !important;
+          color: #e0e0e0 !important;
+
+          .check-ticket__button,
+          #lang,
+          .userPfp,
+          .chatBot,
+          .chatBot + a,
+          .logOut {
+            background-color: #3b51e0 !important;
+            color: #ffffff !important;
+            border: none !important;
+          }
+
+          .userPfp {
+            img {
+              background-color: #121827 !important;
+              border: 2px solid #5368f4 !important;
+            }
+          }
+
+          .closeBtn {
+            color: #e0e0e0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    background-color: #1b1f37 !important;
+    color: #e0e0e0 !important;
+    margin-top: 100px !important;
+    padding: 130px 0 30px 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+
+    #logOut {
+      background-color: #28304f !important;
+      box-shadow: 0 5px 15px rgba(41, 54, 82, 0.75) !important;
+      color: #e0e0e0 !important;
+
+      &:hover::after {
+        background-color: #5368f4 !important;
+        color: #fff !important;
+      }
+
+      img {
+        filter: brightness(0) invert(1) !important;
+      }
+    }
+
+    .footer-txt-div {
+      max-width: 85vw !important;
+      padding: 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 20px !important;
+
+      p {
+        user-select: none !important;
+        color: #c0c0c0 !important;
+      }
+
+      &::before {
+        border-bottom: 2px solid #2c2f47 !important;
+      }
+
+      a {
+        color: #3b51e0 !important;
+      }
+    }
   }
 }

@@ -280,4 +280,104 @@ main .bottom-div .bottom-bottom__div .bottom-info .bottom-info__text p {
   main .bottom-div .bottom-bottom__div .bottom-info .bottom-info__text {
     max-width: 90vw;
   }
+}
+body.dark-theme main .top-div {
+  background: linear-gradient(to right, #0a0a0a, #121827);
+}
+body.dark-theme main .top-div .top-div__info .text-div__top h4 {
+  color: #e0e0e0;
+}
+body.dark-theme main .top-div .top-div__info .text-div__top p {
+  color: #e0e0e0;
+}
+body.dark-theme main .bottom-top__div {
+  background-color: #1b1f37;
+}
+body.dark-theme main .bottom-top__div h4 {
+  color: #e0e0e0;
+}
+body.dark-theme main .bottom-top__div form div.before::before {
+  filter: brightness(0) invert(1);
+}
+body.dark-theme main .bottom-top__div form input {
+  border-color: #2c2f47;
+  background-color: #121827;
+  color: #e0e0e0;
+}
+body.dark-theme main .bottom-top__div form ul {
+  background-color: #1b1f37;
+}
+body.dark-theme main .bottom-top__div form ul li {
+  color: #e0e0e0;
+}
+body.dark-theme main .bottom-top__div form ul li:hover {
+  background-color: #28304f;
+}
+body.dark-theme main .bottom-top__div form button {
+  background-color: #3b51e0;
+  color: #ffffff;
+}
+body.dark-theme main .bottom-top__div form button:hover {
+  background-color: #5368f4;
+}
+body.dark-theme main .bottom-div .bottom-bottom__div img {
+  filter: brightness(1) invert(0.8);
+  border-radius: 30px;
+}
+body.dark-theme main .bottom-div .bottom-bottom__div .bottom-info__text p {
+  color: #e0e0e0;
+}
+body.dark-theme main .bottom-div .bottom-bottom__div .bottom-info__text h4 {
+  color: #e0e0e0;
+}
+body.dark-theme .flatpickr-calendar {
+  background: #121827 !important;
+  border: 1px solid #5368f4 !important;
+  color: #e0e0e0 !important;
+  box-shadow: 0 0 15px rgba(40, 65, 191, 0.6) !important;
+}
+body.dark-theme .flatpickr-months {
+  background: transparent !important;
+  color: #e0e0e0 !important;
+  border-bottom: 1px solid #5368f4 !important;
+}
+body.dark-theme .flatpickr-month {
+  color: #e0e0e0 !important;
+}
+body.dark-theme .flatpickr-weekdays {
+  background: #1b1f37 !important;
+  border-bottom: 1px solid #5368f4 !important;
+  color: #e0e0e0 !important;
+}
+body.dark-theme .flatpickr-weekday {
+  color: #e0e0e0 !important;
+}
+body.dark-theme .flatpickr-days {
+  background: #121827 !important;
+  color: #e0e0e0 !important;
+}
+body.dark-theme .flatpickr-day {
+  color: #e0e0e0 !important;
+}
+body.dark-theme .flatpickr-day:hover, body.dark-theme .flatpickr-day:focus {
+  background: #3b51e0 !important;
+  color: #fff !important;
+  border-radius: 4px;
+}
+body.dark-theme .flatpickr-day.selected, body.dark-theme .flatpickr-day.selected:hover, body.dark-theme .flatpickr-day.selected:focus {
+  background: #5368f4 !important;
+  color: #fff !important;
+  border-radius: 4px;
+}
+body.dark-theme .flatpickr-input {
+  background: #121827 !important;
+  color: #e0e0e0 !important;
+}
+body.dark-theme .flatpickr-prev-month,
+body.dark-theme .flatpickr-next-month {
+  color: #3b51e0 !important;
+}
+body.dark-theme .flatpickr-prev-month:hover,
+body.dark-theme .flatpickr-next-month:hover {
+  color: #5368f4 !important;
 }/*# sourceMappingURL=HomeStyle.css.map */

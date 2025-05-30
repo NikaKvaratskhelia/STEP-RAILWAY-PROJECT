@@ -55,7 +55,7 @@ header {
 }
 
 .name-div {
-  padding: 280px 100px 100px;
+  padding: 200px 100px 100px;
   background-color: $--button-bg;
 
   p {
@@ -585,5 +585,158 @@ header {
 @media screen and (max-width: 942px) {
   .book-train__div .details-booking .icons-main {
     display: none;
+  }
+}
+
+// Dark Theme
+
+body.dark-theme {
+  header {
+    background-color: #1b1f37;
+  }
+
+  .name-div {
+    background-color: #1a2a7c;
+
+    p {
+      color: $--white;
+    }
+  }
+
+  .book-train__div .details-booking {
+    background-color: #1b1f37;
+    box-shadow: 3px 15px 30px rgba(0, 0, 0, 0.6);
+
+    .icons-main > div:hover {
+      background-color: $--button-bg;
+      color: $--white;
+
+      svg {
+        fill: $--white;
+        border-color: $--white;
+
+        path {
+          fill: $--white;
+        }
+      }
+    }
+
+    > div {
+      &:nth-child(1)::after {
+        border-bottom: dashed 2px #2841bf33;
+      }
+
+      .passengers-info-div {
+        div {
+          color: $--white;
+        }
+
+        .passengers p {
+          background-color: $--button-bg;
+          color: $--white;
+        }
+
+        button {
+          @extend %buttons;
+          background-color: $--button-bg;
+
+          &::before {
+            background-color: $--button-bg;
+          }
+        }
+
+        input {
+          background-color: #1b1f37;
+          border-color: $--button-bg;
+          color: $--white;
+
+          &::placeholder {
+            color: lighten($--button-bg, 40%);
+          }
+        }
+      }
+    }
+
+    .inputs-div input {
+      background-color: #1b1f37;
+      border-color: $--button-bg;
+      color: $--white;
+
+      &::placeholder {
+        color: lighten($--button-bg, 40%);
+      }
+    }
+
+    .table-details-checkout {
+      background-color: rgba(39, 61, 177, 0.15);
+
+      div {
+        color: $--white;
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          &::before {
+            background-image: url(Images/line-vertical.png);
+          }
+        }
+      }
+    }
+  }
+
+  .error p {
+    color: #ff6b6b;
+  }
+
+  .invoice {
+    background-color: #1b1f3733;
+    border-radius: 5px;
+
+    h3 {
+      color: $--button-bg;
+    }
+
+    table thead::after {
+      background-color: lighten($--button-bg, 40%);
+    }
+
+    table tbody tr {
+      color: $--white;
+    }
+
+    .white-checkout-div {
+      background-color: #273db133;
+      color: $--white;
+    }
+
+    button {
+      border: 2px solid $--button-bg;
+      background-color: $--button-bg;
+
+      &::before {
+        background-color: $--button-bg;
+      }
+    }
+  }
+
+  .book-seats-wrapper {
+    background-color: #000000b3;
+
+    .book-seats {
+      background-color: #273db1;
+      color: $--white;
+
+      > p:nth-child(1) {
+        color: $--white;
+      }
+
+      .vagons div::after {
+        background-color: #3f3f3f;
+      }
+
+      .seats-div .col .border {
+        background-color: #1b1f37;
+        border-color: transparent;
+      }
+    }
   }
 }

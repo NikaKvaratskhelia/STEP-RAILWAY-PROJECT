@@ -16,7 +16,6 @@ $--second-font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI";
   }
 }
 
-
 %buttons {
   color: $--white;
   background-color: $--button-bg;
@@ -62,7 +61,6 @@ header {
 }
 
 .wrapper-div__wantedTrains {
-
   .page-name {
     background-color: $--button-bg;
     padding: 270px 0px 120px 120px;
@@ -281,6 +279,114 @@ header {
       right: 0;
       height: 2px;
       width: 100%;
+    }
+  }
+}
+
+// Dark Theme
+
+@keyframes opacity {
+  0% {
+    background-color: $--button-bg;
+  }
+
+  100% {
+    background-color: $--button-bg__trans;
+  }
+}
+
+body.dark-theme {
+  $--text: #3f3f3f;
+  $--button-bg: #2841bf;
+  $--button-bg__trans: #2841bf00;
+  $--linear-one: #d5e4f5;
+  $--linear-two: #ffffff;
+  $--white: #ffffff;
+
+  %buttons {
+    color: $--white;
+    background-color: $--button-bg;
+    text-align: center;
+    padding: 14px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      background-color: $--button-bg;
+      position: absolute;
+      inset: 0;
+      transform: scale(0, 1);
+      transform-origin: center;
+      transition: all 1s;
+      z-index: -1;
+      border-radius: 5px;
+    }
+
+    &:hover {
+      animation: opacity 1s;
+    }
+
+    &:hover::before {
+      transform: scale(1, 1);
+    }
+  }
+
+  .wrapper-div__wantedTrains {
+    .page-name {
+      background-color: #1a2a7c;
+
+      h2 {
+        color: $--white;
+      }
+    }
+
+    .wanted-trains {
+      .table-wrapper {
+        table {
+          thead {
+            tr {
+              border: 1px solid #d5daf0;
+
+              th {
+                color: $--text;
+                font-weight: 100;
+              }
+            }
+          }
+
+          tbody {
+            tr {
+              background-color: #273db10d;
+
+              td:nth-child(2)::before,
+              td:nth-child(3)::before,
+              td:nth-child(4)::before {
+                background-image: url(Images/line-vertical.png);
+              }
+
+              td:nth-child(4) {
+                button {
+                  @extend %buttons;
+
+                  &::before {
+                    transition: all 0.5s;
+                  }
+
+                  &:hover {
+                    animation: opacity 0.5s;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

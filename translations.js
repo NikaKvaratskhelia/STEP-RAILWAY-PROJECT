@@ -95,6 +95,27 @@ closeBtn.addEventListener("click", function () {
   document.querySelector(".burger-menu-list").classList.remove("active");
 });
 
+const darkTheme = document.querySelector(".dark-btn");
+const body = document.querySelector("body");
+
+darkTheme.addEventListener("click", function () {
+  body.classList.toggle("dark-theme");
+
+  if (body.classList.contains("dark-theme")) {
+    sessionStorage.setItem("theme", "dark");
+  } else {
+    sessionStorage.setItem("theme", "light");
+  }
+});
+
+window.addEventListener("DOMContentLoaded", function () {
+  const savedTheme = this.sessionStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark-theme");
+  }
+});
+
+
 const translations = {
   იმეილი: {
     en: "Email",
@@ -205,6 +226,10 @@ const translations = {
 
   "გასვლის თარიღი:": {
     en: "Departure date",
+  },
+
+  დაჯავშნილია:{
+    en:"Booked"
   },
 
   "სულ გადახდილი:": {

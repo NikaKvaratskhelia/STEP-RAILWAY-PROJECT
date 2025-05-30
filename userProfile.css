@@ -1,126 +1,307 @@
 main {
-  margin: auto;
-  margin-top: 230px;
-  padding: 20px;
+  margin: 200px auto 40px auto;
+  padding: 30px;
   border-radius: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
   width: 90%;
-  box-shadow: 30px 30px 30px 30px rgba(0, 0, 0, 0.08);
-}
-
-.userInfo {
+  max-width: 1200px;
+  background-color: #ffffff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: fit-content;
-  text-align: center;
-  background-color: #f2f2f2;
-  box-shadow: 30px 30px 30px 30px rgba(0, 0, 0, 0.08);
-  border-radius: 30px;
-}
-
-.userInfo h1 {
-  font-size: 25px;
-}
-
-.userInfo p {
-  padding: 5px;
+  gap: 40px;
 }
 
 .userAvatar {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
   text-align: center;
 }
 
-.userAvatar img {
-  border-radius: 50%;
+.userAvatar h1 {
+  font-size: 28px;
+  color: #333;
 }
 
-.altPfps img.active {
-  border: 3px solid black;
-}
-
-form input,
-form select {
-  background-color: #eee;
-  border: none;
-  margin: 8px 0;
-  padding: 10px 15px;
-  font-size: 13px;
-  border-radius: 8px;
-  outline: none;
-}
-
-.userAvatar > img {
-  margin: auto;
+.userAvatar img.userPfp {
   width: 150px;
   height: 150px;
-  background-color: aqua;
+  border-radius: 50%;
+  background-color: #a2d2ff;
+  border: 3px solid #ccc;
 }
 
-.user-info-wrapper {
+.altPfps {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
   justify-content: center;
-  gap: 100px;
+  gap: 10px;
 }
 
 .altPfps img {
   width: 50px;
   height: 50px;
-  background-color: aqua;
+  border-radius: 50%;
+  background-color: #a2d2ff;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.altPfps {
+.altPfps img:hover {
+  transform: scale(1.1);
+}
+
+.altPfps img.active {
+  border: 2px solid #000;
+}
+
+#updateAvatarBtn {
+  padding: 10px 20px;
+  background-color: #2841bf;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#updateAvatarBtn:hover {
+  background-color: #fff;
+  color: #2841bf;
+  border: 1px solid #2841bf;
+}
+
+.user-info-wrapper {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  display: flex;
-  gap: 10px;
-  margin: auto;
+  gap: 50px;
+  padding: 20px;
 }
 
-.userAvatar h1 {
-  text-align: center;
-  margin: auto;
-}
-
-.altPfps + p {
-  transition: all 0.5s;
-  padding: 10px;
-  background-color: #2841bf;
-  cursor: pointer;
-  color: #fff;
-  width: fit-content;
-  margin: auto;
-}
-
-.changePasswordDiv {
-  margin-top: 30px;
+.userInfo {
+  background-color: #f2f2f2;
+  color: #333;
+  border-radius: 20px;
+  padding: 20px 40px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.userInfo h1 {
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.userInfo p {
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.changePasswordDiv {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 15px;
+  min-width: 300px;
+  max-width: 400px;
 }
 
 .changePasswordDiv input {
   background-color: #eee;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.changePasswordDiv button {
+  background-color: #512da8;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 20px;
   border: none;
-  margin: 8px 0;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.changePasswordDiv button:hover {
+  background-color: #fff;
+  color: #512da8;
+  border: 1px solid #512da8;
+}
+
+main + a {
+  display: block;
+  margin: 40px auto;
+  color: #2841bf;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, font-size 0.3s ease;
+  width: fit-content;
+}
+
+main + a:hover {
+  color: #000;
+  font-size: 18px;
+}
+
+
+/* Dark Theme */
+
+body.dark-theme main {
+  margin: 200px auto 40px auto;
+  padding: 30px;
+  border-radius: 30px;
+  width: 90%;
+  max-width: 1200px;
+  background-color: #1e1e1e;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  color: #f5f5f5;
+}
+
+body.dark-theme .userAvatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+body.dark-theme .userAvatar h1 {
+  font-size: 28px;
+  color: #fff;
+}
+
+body.dark-theme .userAvatar img.userPfp {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #333;
+  border: 3px solid #666;
+}
+
+body.dark-theme .altPfps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+body.dark-theme .altPfps img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #444;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: 2px solid transparent;
+}
+
+body.dark-theme .altPfps img:hover {
+  transform: scale(1.1);
+}
+
+body.dark-theme .altPfps img.active {
+  border: 2px solid #fff;
+}
+
+body.dark-theme #updateAvatarBtn {
+  padding: 10px 20px;
+  background-color: #2841bf;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.dark-theme #updateAvatarBtn:hover {
+  background-color: #fff;
+  color: #2841bf;
+  border: 1px solid #2841bf;
+}
+
+body.dark-theme .user-info-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  padding: 20px;
+}
+
+body.dark-theme .userInfo {
+  background-color: #2b2b2b;
+  color: #f5f5f5;
+  border-radius: 20px;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  min-width: 300px;
+  max-width: 400px;
+}
+
+body.dark-theme .userInfo h1 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+body.dark-theme .userInfo p {
+  font-size: 14px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+}
+
+body.dark-theme .changePasswordDiv {
+  background-color: #2b2b2b;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+body.dark-theme .changePasswordDiv input {
+  background-color: #3a3a3a;
+  color: #fff;
+  border: none;
   padding: 10px 15px;
   font-size: 13px;
   border-radius: 8px;
   outline: none;
+  width: 100%;
 }
 
-.changePasswordDiv button {
+body.dark-theme .changePasswordDiv input::placeholder {
+  color: #aaa;
+}
+
+body.dark-theme .changePasswordDiv button {
   background-color: #512da8;
   color: #fff;
   font-size: 12px;
@@ -132,27 +313,26 @@ form select {
   text-transform: uppercase;
   margin-top: 10px;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: all 0.3s ease;
 }
 
-main + a {
+body.dark-theme .changePasswordDiv button:hover {
+  background-color: #fff;
+  color: #512da8;
+  border: 1px solid #512da8;
+}
+
+body.dark-theme main + a {
   margin: auto;
   margin-top: 40px;
   display: block;
   width: fit-content;
   text-align: center;
-  transition: all 0.5s;
+  color: #ccc;
+  transition: all 0.3s ease;
 }
 
-main + a:hover {
+body.dark-theme main + a:hover {
   font-size: 25px;
-  color: black;
-}
-
-.altPfps + p:hover,
-button:hover {
-  background-color: #fff;
-  color: black;
-  border: 1px solid black;
-  border-radius: 5px;
+  color: #fff;
 }

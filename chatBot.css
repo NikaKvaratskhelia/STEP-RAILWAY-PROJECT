@@ -3,7 +3,7 @@ body {
   background-color: #f2f2f2;
 }
 
-.wrapper{
+.wrapper {
   height: 59vh;
   display: flex;
   align-items: center;
@@ -123,4 +123,55 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+/* Dark Theme */
+
+body.dark-theme {
+  background-color: #121212;
+  color: #f2f2f2;
+}
+
+body.dark-theme .chat-container {
+  background-color: #1e1e1e;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .chat-box {
+  border: 1px solid #333;
+  background-color: #2a2a2a;
+}
+
+body.dark-theme .message.user {
+  background-color: #2841bf;
+  color: white;
+}
+
+body.dark-theme .message.bot {
+  background-color: #444;
+  color: white;
+}
+
+body.dark-theme .loader {
+  border: 3px solid #666;
+  border-top: 3px solid #f2f2f2;
+}
+
+body.dark-theme .question-buttons button,
+body.dark-theme .extra-questions button,
+body.dark-theme #toggleMoreBtn,
+body.dark-theme #clearChatBtn {
+  background-color: #2841bf;
+  color: white;
+}
+
+body.dark-theme .input-container input {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark-theme .input-container button {
+  background-color: #2841bf;
+  color: white;
 }

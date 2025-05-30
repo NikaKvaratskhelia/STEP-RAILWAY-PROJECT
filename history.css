@@ -53,3 +53,33 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+/* Dark Theme */
+
+body.dark-theme main {
+  background-color: #121827; 
+}
+
+body.dark-theme h1 {
+  color: #E0E0E0;
+}
+
+
+body.dark-theme .ticket-link {
+  background: #1b1f37;
+  border: 1px solid #2841bf;
+  color: #3b51e0;
+  box-shadow: 0 1px 3px rgba(40, 65, 191, 0.1);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+body.dark-theme .ticket-link:hover {
+  background: #28304f;
+  box-shadow: 0 4px 10px rgba(40, 65, 191, 0.15);
+}
+
+body.dark-theme .ticket-text {
+  color: #E0E0E0;
+}
+

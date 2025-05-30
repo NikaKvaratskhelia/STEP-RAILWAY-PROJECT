@@ -17,8 +17,22 @@
   position: relative;
   z-index: 2;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button a {
+.button p {
     color: black;
+}
+
+/* Dark Theme */
+
+body.dark-theme .button{
+  background-color: rgba(39, 61, 177, 0.1);
+  border: 1px solid white;
+}
+
+body.dark-theme .button p{
+  color: white;
 }
