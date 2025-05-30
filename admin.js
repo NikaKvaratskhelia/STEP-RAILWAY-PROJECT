@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
           users.forEach((user) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-            <td>${user.id}</td>
-            <td><img src="${user.avatar}" alt="user avatar"/></td>
+              <td>${user.id}</td>
+              <td><img src="${user.avatar}" alt="user avatar"/></td>
               <td>${user.firstName} ${user.lastName}</td>
               <td>${user.email}</td>
               <td>${user.phone}</td>
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelectorAll(".btn-danger").forEach((btn) => {
             btn.addEventListener("click", () => {
               const id = btn.getAttribute("data-id");
-              const userName = btn.closest("tr").children[1].textContent;
+              const userName = btn.closest("tr").children[2].textContent;
               if (confirm(`Are you sure you want to delete ${userName}?`)) {
                 fetch(
                   `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${id}`,
@@ -122,6 +122,8 @@ const analyticSignUp = document.getElementById("analyticSignUp");
 const analyticSignIn = document.getElementById("analyticSignIn");
 const analyticSignOut = document.getElementById("analyticSignOut");
 const analyticChangeData = document.getElementById("analyticChangeData");
+const ticketCount = document.getElementById("analyticsTicket");
+const ticketDeleted = document.getElementById("ticketDeletedCount");
 
 async function fetchTodaysAnalytics() {
   try {
@@ -138,6 +140,8 @@ async function fetchTodaysAnalytics() {
     let signInCount = 0;
     let signOutCount = 0;
     let changeDataCount = 0;
+    let ticketRegisteredCount = 0;
+    let ticketDeletedCount = 0;
 
     data.forEach((entry) => {
       const entryDate = new Date(entry.timestamp).toLocaleDateString("en-CA", {
@@ -145,6 +149,9 @@ async function fetchTodaysAnalytics() {
       });
 
       if (entryDate === today) {
+        // Debug log to inspect entry types
+        console.log("Type detected:", entry.type);
+
         switch (entry.type) {
           case "signup":
             signUpCount++;
@@ -159,6 +166,12 @@ async function fetchTodaysAnalytics() {
           case "changePassword":
             changeDataCount++;
             break;
+          case "ticketRegistered":
+            ticketRegisteredCount++;
+            break;
+          case "ticketDeleted":
+            ticketDeletedCount++;
+            break;
           default:
             break;
         }
@@ -169,6 +182,8 @@ async function fetchTodaysAnalytics() {
     analyticSignIn.textContent = signInCount;
     analyticSignOut.textContent = signOutCount;
     analyticChangeData.textContent = changeDataCount;
+    ticketCount.textContent = ticketRegisteredCount;
+    ticketDeleted.textContent = ticketDeletedCount; 
   } catch (error) {
     console.error("Error fetching analytics data:", error);
   }

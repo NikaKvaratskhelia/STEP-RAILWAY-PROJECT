@@ -16,7 +16,7 @@ const formattedDate = `${
   today.getMonth() + 1
 }-${today.getDate()}-${today.getFullYear()}`;
 const georgianDayNumber = sessionStorage.getItem("georgianDayNumber");
-const georgianMonthName = sessionStorage.getItem('georgianMonthName')
+const georgianMonthName = sessionStorage.getItem("georgianMonthName");
 const georgianWeekDay = sessionStorage.getItem("georgianWeekDay");
 
 function maskCardNumberWithSpaces(cardNumber) {
@@ -212,4 +212,63 @@ window.addEventListener("DOMContentLoaded", () => {
       renderTicketAsCanvas().then(renderAndPrint);
     }
   });
+});
+
+window.addEventListener("DOMContentLoaded", function () {
+  setTimeout(() => {
+    const ticketHtml = document.querySelector(".ticket-wrapper");
+    const id = sessionStorage.getItem("mockUserId");
+
+    if (!id || !ticketId) {
+      console.error("No user ID or ticket ID in sessionStorage");
+      return;
+    }
+
+    fetch(`https://68137244129f6313e2114929.mockapi.io/registeredUsers/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch user data");
+        return res.json();
+      })
+      .then((user) => {
+        sessionStorage.setItem("userData", JSON.stringify(user));
+
+        if (!Array.isArray(user.history)) {
+          user.history = [];
+        }
+
+        const alreadyExists = user.history.some(
+          (item) => item.ticketId === ticketId.replace(
+          "ბილეთი წარმატებით დაიჯავშნა. ბილეთის ნომერია:", "")
+        );
+        if (alreadyExists) {
+          console.log("Ticket already in history. Skipping save.");
+          return;
+        }
+
+        user.history.push({
+          id: user.history.length + 1,
+          html: ticketHtml ? ticketHtml.innerHTML : "",
+          ticketId: ticketId.replace(
+          "ბილეთი წარმატებით დაიჯავშნა. ბილეთის ნომერია:",
+          ""),
+        });
+
+        return fetch(
+          `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+          }
+        );
+      })
+      .then((res) => {
+        if (res && res.ok) {
+          console.log("User history updated successfully");
+        } else if (res) {
+          console.error("Failed to update user history");
+        }
+      })
+      .catch((err) => console.error("Error:", err));
+  }, 2000);
 });

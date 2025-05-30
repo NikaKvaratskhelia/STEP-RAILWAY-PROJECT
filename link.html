@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update Data</title>
-    <link rel="stylesheet" href="updateData.css" />
+    <title>Ticket</title>
+    <link rel="icon" href="Images/Icon.png">
+    <link rel="stylesheet" href="paymentSucces.css" />
     <link rel="stylesheet" href="HeaderFooter.css" />
+    <link rel="stylesheet" href="link.css" />
   </head>
   <body>
-     <header id="header">
+    <header id="header">
       <div class="header-info">
         <div class="icons">
           <a href="index.html">
@@ -59,7 +61,6 @@
             >
 
             <a href="chatBot.html" class="chatBot">Chatbot</a>
-            <a href="history.html">Ticket History</a>
             <select name="translate" id="lang">
               <option value="ka">ქართული</option>
               <option value="en">English</option>
@@ -84,56 +85,15 @@
         </div>
       </div>
     </header>
+
     <div class="container">
-      <form class="signUpForm">
-        <h1>Update Data</h1>
+      <div class="ticket-wrapper"></div>
+    </div>
 
-        <div id="signUpStatus"></div>
-
-        <div class="nameInputs">
-          <input type="text" id="signUpName" required placeholder="Name" />
-          <input
-            type="text"
-            id="signUpLastname"
-            required
-            placeholder="Lastname"
-          />
-        </div>
-
-        <input
-          type="number"
-          placeholder="Age"
-          id="signUpAge"
-          required
-          min="18"
-        />
-        <input type="email" id="signUpEmail" placeholder="Email" />
-        <input
-          type="password"
-          id="signUpPassword"
-          placeholder="Password"
-          required
-        />
-        <input type="text" id="signUpAddr" placeholder="Address" required />
-        <div class="phone-zip">
-          <input type="tel" required placeholder="Phone" id="signUpPhone" />
-          <input type="number" required placeholder="ZIP Code" id="signUpZIP" />
-        </div>
-
-        <select id="signUpGender">
-          <option value="MALE">Male</option>
-          <option value="FEMALE">Female</option>
-          <option value="OTHER">Other</option>
-        </select>
-
-        <button type="submit">Update</button>
-      </form>
-
-      <div class="purple-bg">
-        <h1>Hello, Friend!</h1>
-        <p>Update Your Data!</p>
-        <a href="SignIn.html">SIGN IN</a>
-      </div>
+    <div class="button">
+      <a href="history.html">
+        Go Back
+      </a>
     </div>
 
     <footer>
@@ -149,7 +109,10 @@
         </p>
       </div>
     </footer>
+
+    <script src="link.js"></script>
     <script src="translations.js"></script>
-    <script src="updateData.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </body>
 </html>

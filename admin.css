@@ -4,6 +4,13 @@ body {
   margin: 20px;
 }
 
+main{
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 .title {
   text-align: center;
   margin-bottom: 20px;
@@ -76,6 +83,17 @@ table + p {
 td img {
   width: 50px;
   height: 50px;
+}
+
+.analytics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.analytics p {
+  font-size:20px;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 670px) {

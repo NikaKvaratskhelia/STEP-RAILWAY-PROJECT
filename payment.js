@@ -53,3 +53,4 @@ const total = document.getElementById("mustPay");
 const totalFromInvoice = sessionStorage.getItem("total");
 
 total.innerHTML = `${totalFromInvoice}.00₾`;
+

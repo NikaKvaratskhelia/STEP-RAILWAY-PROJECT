@@ -23,20 +23,37 @@ const georgianMonthName = sessionStorage.getItem("georgianMonthName");
 const georgianWeekDay = sessionStorage.getItem("georgianWeekDay");
 
 deleteTicket.addEventListener("click", function () {
-  fetch(
-    `https://railway.stepprojects.ge/api/tickets/cancel/${sessionStorage.getItem(
-      "ticketId"
-    )}`,
-    {
-      method: "DELETE",
-    }
-  )
+  const ticketId = sessionStorage.getItem("ticketId");
+  const mockUserId = sessionStorage.getItem("mockUserId");
+
+  fetch(`https://railway.stepprojects.ge/api/tickets/cancel/${ticketId}`, {
+    method: "DELETE",
+  })
     .then((res) => res.text())
     .then(() => {
       container.style.display = "none";
       errorDiv.style.display = "flex";
       errorDiv.innerHTML =
         "<p data-translate='ბილეთი წარმატებით წაიშალა!'>ბილეთი წარმატებით წაიშალა!</p>";
+
+      console.log("Deleting ticket, sending notification...");
+
+      return fetch(
+        "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: `User ID:${mockUserId} just canceled ticket`,
+            type: "ticketDeleted",
+            timestamp: new Date().toISOString(),
+          }),
+        }
+      );
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Notification sent:", data);
     })
     .catch((error) => {
       errorDiv.style.display = "flex";
@@ -111,7 +128,7 @@ myForm.addEventListener("submit", function (e) {
 
       passengersDiv.innerHTML = "";
       data.persons.forEach((passenger) => {
-            passengersDiv.innerHTML += `
+        passengersDiv.innerHTML += `
           <div class="pass-container">
               <div>
                   <p data-translate="სახელი:">სახელი:</p>

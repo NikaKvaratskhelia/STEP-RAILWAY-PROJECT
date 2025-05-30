@@ -26,7 +26,7 @@ html {
     background-color: #ffffff;
   }
 }
-header .header-info div .burger-menu-list .logOut, header .header-info div .burger-menu-list .chatBot, header .header-info div .burger-menu-list .userPfp, header .header-info div .burger-menu-list #lang, header .header-info div .check-ticket__button + select, header .header-info div .check-ticket__button {
+header .header-info div .burger-menu-list .logOut, header .header-info div .burger-menu-list .chatBot + a, header .header-info div .burger-menu-list .chatBot, header .header-info div .burger-menu-list .userPfp, header .header-info div .burger-menu-list #lang, header .header-info div .check-ticket__button + select, header .header-info div .check-ticket__button {
   color: #ffffff;
   background-color: #2841bf;
   text-align: center;

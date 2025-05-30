@@ -4,17 +4,20 @@ const logOut = document.getElementById("logOut");
 
 if (logOut) {
   logOut.addEventListener("click", function () {
-    let mockUserId = sessionStorage.getItem("mockUserId");
+    const mockUserId = sessionStorage.getItem("mockUserId");
+    const isAdmin = sessionStorage.getItem("isAdmin") === "true"; 
 
-    fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: `User ID:${mockUserId} just signed Out! `,
-        type: "signOut",
-        timestamp: new Date().toISOString(),
-      }),
-    });
+    if (!isAdmin) {
+      fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: `User ID:${mockUserId} just signed out!`,
+          type: "signOut",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+    }
 
     setTimeout(() => {
       sessionStorage.clear();
@@ -22,6 +25,7 @@ if (logOut) {
     }, 1000);
   });
 }
+
 const isSignInPage = window.location.href.includes("signin");
 
 if (

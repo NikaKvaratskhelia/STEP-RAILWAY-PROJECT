@@ -251,7 +251,6 @@ registrateTicket.addEventListener("click", function () {
   const phoneRegex = /^(?:\+?\d{1,4}[-\s]?)?(?:\d{3}[-\s]?\d{3}[-\s]?\d{3})$/;
   const onlyLettersRegex = /^[A-Za-z]+$/;
 
-
   let isValid = true;
 
   const seenPrivNums = new Set();
@@ -322,7 +321,10 @@ registrateTicket.addEventListener("click", function () {
     errorDiv.innerHTML = "";
 
     sessionStorage.setItem("passEmail", emails[0].value.trim());
-    sessionStorage.setItem("passPhoneNum", phoneNumbers[0].value.trim().replace(/[-\s]+/g, ' '));
+    sessionStorage.setItem(
+      "passPhoneNum",
+      phoneNumbers[0].value.trim().replace(/[-\s]+/g, " ")
+    );
 
     registrateTicketFunction();
 
@@ -342,6 +344,7 @@ async function registrateTicketFunction() {
     phoneNumber: phoneNumbers[0].value,
     people: [],
   };
+
   const seatFetches = [];
 
   for (let i = 0; i < count; i++) {
@@ -357,7 +360,6 @@ async function registrateTicketFunction() {
 
   for (let i = 0; i < count; i++) {
     const seat = allSeatData[i];
-
     const person = {
       seatId: seat.seatId,
       name: firstnames[i].value.trim(),
@@ -366,21 +368,39 @@ async function registrateTicketFunction() {
       status: "0",
       payoutCompleted: true,
     };
-
     newTicket.people.push(person);
-
-    fetch("https://railway.stepprojects.ge/api/tickets/register", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(newTicket),
-    })
-      .then((res) => res.text())
-      .then((data) => {
-        console.log(data);
-        sessionStorage.setItem("ticket-id", data);
-      });
   }
 
-  console.log(newTicket);
+  try {
+    const res = await fetch(
+      "https://railway.stepprojects.ge/api/tickets/register",
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(newTicket),
+      }
+    );
+
+    const data = await res.text();
+    console.log(data);
+    sessionStorage.setItem("ticket-id", data);
+    const mockUserId = sessionStorage.getItem("mockUserId");
+
+    await fetch(
+      "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: `User ID:${mockUserId} just registered a ticket`,
+          type: "ticketRegistered",
+          timestamp: new Date().toISOString(),
+        }),
+      }
+    );
+  } catch (err) {
+    console.error("Error registering ticket or sending notification:", err);
+  }
+
   sessionStorage.setItem("ticket", JSON.stringify(newTicket));
 }
