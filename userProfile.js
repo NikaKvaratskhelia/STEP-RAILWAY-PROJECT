@@ -1,67 +1,13 @@
-const main = document.querySelector("main");
-
-fetch("https://api.everrest.educata.dev/auth", {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-  },
-})
-  .then((res) => res.json())
-  .then((user) => {
-    main.innerHTML = `
-      <div class="userAvatar">
-        <h1>${user.firstName} ${user.lastName}</h1>
-        <img class="userPfp" src="${user.avatar}" alt="User Profile Picture" />
-        <div class="altPfps">
-          <img src="https://api.dicebear.com/6.x/lorelei/svg?seed=alt1" alt="Alt PFP 1" />
-          <img src="https://api.dicebear.com/6.x/lorelei/svg?seed=alt2" alt="Alt PFP 2" />
-          <img src="https://api.dicebear.com/6.x/lorelei/svg?seed=alt3" alt="Alt PFP 3" />
-          <img src="https://api.dicebear.com/6.x/lorelei/svg?seed=alt4" alt="Alt PFP 4" />
-          <img src="https://api.dicebear.com/6.x/lorelei/svg?seed=alt5" alt="Alt PFP 5" />
-        </div>
-        <p id="updateAvatarBtn">Update Your Avatar</p>
-      </div>
-      <div class="user-info-wrapper">
-        <div class="userInfo">
-          <h1>User Information</h1>
-          <p>Age: ${user.age}</p>
-          <p>Email: ${user.email}</p>
-          <p>Address: ${user.address}</p>
-          <p>ZIP Code: ${user.zipcode}</p>
-          <p>Gender: ${user.gender}</p>
-          <p>Phone Number: ${user.phone}</p>
-          <p>Verified: ${user.verified}</p>
-        </div>
-        <div class="changePasswordDiv">
-          <input type="password" id="oldPass" placeholder="Old Password">
-          <input type="password" id="newPass" placeholder="New Password">
-          <button id="changePassBtn">Change Password</button>
-        </div>
-      </div>
-    `;
-
-    const userPfp = document.querySelector(".userPfp");
-    const altImgs = document.querySelectorAll(".altPfps img");
-
-    altImgs.forEach((img) => {
-      img.addEventListener("click", function () {
-        altImgs.forEach((i) => i.classList.remove("active"));
-        img.classList.add("active");
-        userPfp.src = img.src;
-      });
-    });
-
-    document
-      .getElementById("updateAvatarBtn")
-      .addEventListener("click", () => updateAvatar(user));
-
-    const btn = document.getElementById("changePassBtn");
-
-    btn.addEventListener("click", function () {
-      setupPasswordChange();
-    });
-  });
+const mockUserId = sessionStorage.getItem("mockUserId");
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+const userPhone = document.getElementById("userPhone");
+const userImg = document.getElementById("userImg");
+const alertDiv = document.getElementById("alertDiv");
+const inputFirstName = document.getElementById("firstName");
+const inputLastName = document.getElementById("lastName");
+const inputPhone = document.getElementById("phone");
+const inputAge = document.getElementById("age");
 
 function setupPasswordChange() {
   const oldPassword = document.getElementById("oldPass");
@@ -70,16 +16,10 @@ function setupPasswordChange() {
   const oldVal = oldPassword.value.trim();
   const newVal = newPassword.value.trim();
 
-  if (!oldVal || !newVal) {
-    alert("Please fill out both password fields.");
-    return;
-  }
-
   const updatedPassword = {
     oldPassword: oldVal,
     newPassword: newVal,
   };
-
   fetch(`https://api.everrest.educata.dev/auth/change_password`, {
     method: "PATCH",
     headers: {
@@ -91,8 +31,10 @@ function setupPasswordChange() {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error("Password change failed on Everrest");
+        showAlert("An Error Occurred While Updating Data", "red");
+        return Promise.reject("Update failed");
       }
+      showAlert("Profile Updated Successfully", "green");
       return res.json();
     })
     .then((data) => {
@@ -100,12 +42,13 @@ function setupPasswordChange() {
         sessionStorage.setItem("token", data.access_token);
       }
 
+      const mockUserId = sessionStorage.getItem("mockUserId");
       if (!mockUserId) {
         console.warn("No mockUserId found in sessionStorage.");
         return;
       }
 
-      fetch(
+      return fetch(
         `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${mockUserId}`,
         {
           method: "PUT",
@@ -114,104 +57,102 @@ function setupPasswordChange() {
           },
           body: JSON.stringify({ password: newVal }),
         }
-      )
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Failed to update password on MockAPI");
-          }
-          return res.json();
-        })
-        .then(() => {
-          oldPassword.value = "";
-          newPassword.value = "";
-
-          fetch(
-            "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                message: `User ID:${mockUserId} just changed account password! `,
-                type: "changePassword",
-                timestamp: new Date().toISOString(),
-              }),
-            }
-          );
-        })
-        .catch((err) => {
-          console.error("MockAPI update failed:", err);
-        });
-    })
-    .catch((error) => {
-      alert("Error: " + error.message);
-    });
-}
-
-const mockUserId = sessionStorage.getItem("mockUserId");
-function updateAvatar(data) {
-  const updatedAvatar = {
-    firstName: data.firstName,
-    lastName: data.lastName,
-    age: data.age,
-    email: data.email,
-    address: data.address,
-    phone: data.phone,
-    zipcode: data.zipcode,
-    avatar: document.querySelector(".userPfp").src,
-    gender: data.gender,
-  };
-
-  fetch("https://api.everrest.educata.dev/auth/update", {
-    method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-    body: JSON.stringify(updatedAvatar),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error("Failed to update avatar on Everrest");
-      }
-      return res.json();
-    })
-    .then(() => {
-      const userId = sessionStorage.getItem("mockUserId");
-      if (!userId) {
-        throw new Error("MockAPI user ID not found in sessionStorage");
-      }
-
-      return fetch(
-        `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedAvatar),
-        }
       );
     })
     .then((res) => {
-      if (!res.ok) {
-        throw new Error("Failed to update avatar on MockAPI");
+      if (res && !res.ok) {
+        throw new Error("Failed to update password on MockAPI");
       }
-      return res.json();
+      return res?.json();
     })
     .then(() => {
+      oldPassword.value = "";
+      newPassword.value = "";
+
+      const mockUserId = sessionStorage.getItem("mockUserId");
+
       fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: `User ID:${mockUserId} just changed avatar! `,
-          type: "changeData",
+          message: `User ID:${mockUserId} just changed account password!`,
+          type: "changePassword",
           timestamp: new Date().toISOString(),
         }),
       });
-      window.location.reload();
     })
-    .catch((error) => {
-      console.error("Update error:", error);
+    .catch((err) => {
+      console.error("Password update failed:", err);
+      showAlert("An Error Occurred While Updating Data", "red");
     });
 }
+
+function fetchUserInfo() {
+  fetch("https://api.everrest.educata.dev/auth", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      sessionStorage.setItem("userData", JSON.stringify(data));
+      userEmail.textContent = data.email;
+      userName.textContent = `${data.firstName + " " + data.lastName}`;
+      userPhone.textContent = data.phone;
+      userImg.src = data.avatar;
+      inputFirstName.placeholder = data.firstName;
+      inputLastName.placeholder = data.lastName;
+      inputPhone.placeholder = data.phone;
+      inputAge.placeholder = data.age;
+    });
+}
+
+function updateData() {
+  let userData = JSON.parse(sessionStorage.getItem("userData"));
+  let updatedUser = {
+    firstName: inputFirstName.value.trim() || userData.firstName,
+    lastName: inputLastName.value.trim() || userData.lastName,
+    age: inputAge.value.trim() || userData.age,
+    email:userData.email,
+    address: userData.address,
+    phone: inputPhone.value.trim() || userData.phone,
+    zipcode: userData.zipcode,
+    avatar: userData.avatar,
+    gender: userData.gender,
+  };
+
+  console.log(updatedUser)
+  fetch("https://api.everrest.educata.dev/auth/update", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(updatedUser),
+  }).then((response) => {
+    if (!response.ok) {
+      showAlert("An error Occured While Updating Data", "red");
+    }
+    if (response.ok) {
+      showAlert("Profile Updated Successfully", "green");
+      fetchUserInfo()
+    }
+  });
+}
+
+function showAlert(message, color) {
+  const alertDiv = document.getElementById("alertDiv");
+  alertDiv.innerHTML = message;
+  alertDiv.style.backgroundColor = color;
+  alertDiv.style.bottom = "30px";
+  alertDiv.style.opacity = "1";
+
+  setTimeout(() => {
+    alertDiv.style.bottom = "-100px";
+    alertDiv.style.opacity = "0";
+  }, 2000);
+}
+
+fetchUserInfo()

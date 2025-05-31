@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile</title>
+    <title>User Management</title>
     <link rel="stylesheet" href="userProfile.css" />
     <link rel="stylesheet" href="HeaderFooter.css" />
   </head>
-  <body>
+  <body class="dark-theme">
     <header id="header">
       <div class="header-info">
         <div class="icons">
@@ -61,7 +61,7 @@
             <a href="chatBot.html" class="chatBot">Chatbot</a>
             <a href="history.html">Ticket History</a>
             <button class="dark-btn">
-              <img src="Images/dark.png" alt="dark theme">
+              <img src="Images/dark.png" alt="dark theme" />
               Dark Theme
             </button>
             <select name="translate" id="lang">
@@ -89,23 +89,73 @@
       </div>
     </header>
 
-    <main></main>
+    <main>
+      <div class="user-panel">
+        <div class="user-sidebar">
+          <img id="userImg" src="" alt="User Avatar" />
+          <div class="info">
+            <h2 id="userName"></h2>
+            <p id="userEmail"></p>
+            <p id="userPhone"></p>
+          </div>
+        </div>
 
-    <a href="updateuserData.html">Want to update Your Data? Click this</a>
+        <div class="user-content">
+          <div class="section">
+            <h3>Profile Information</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Jane" />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="lastName" id="lastName" placeholder="Dhoe" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" placeholder="+123 456 7890" />
+              </div>
+              <div class="form-group">
+                <label for="extra">Age</label>
+                <input type="number" id="Age" placeholder="" />
+              </div>
+            </div>
+            <button class="button" onclick="updateData()">Save Profile</button>
+          </div>
 
-    <footer>
-      <div class="footer-txt-div">
-        <p>
-          © 2023
-          <a href="https://railway.stepprojects.ge/" target="_blank"
-            >Step Railway</a
-          >.
-          <span data-translate="ყველა უფლება დაცულია."
-            >ყველა უფლება დაცულია.</span
-          >
-        </p>
+          <div class="section">
+            <h3>Change Password</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="oldpass">Old Password</label>
+                <input
+                  type="password"
+                  id="oldPass"
+                  placeholder="Enter old password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="newpass">New Password</label>
+                <input
+                  type="password"
+                  id="newPass"
+                  placeholder="Enter new password"
+                />
+              </div>
+            </div>
+            <button class="button" onclick="setupPasswordChange()">
+              Update Password
+            </button>
+          </div>
+        </div>
       </div>
-    </footer>
+    </main>
+
+    <div id="alertDiv"></div>
+
     <script src="userProfile.js"></script>
     <script src="translations.js"></script>
   </body>

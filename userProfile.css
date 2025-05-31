@@ -1,338 +1,217 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
 main {
-  margin: 200px auto 40px auto;
-  padding: 30px;
-  border-radius: 30px;
-  width: 90%;
-  max-width: 1200px;
-  background-color: #ffffff;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  margin-top: 150px;
 }
 
-.userAvatar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
-}
-
-.userAvatar h1 {
-  font-size: 28px;
-  color: #333;
-}
-
-.userAvatar img.userPfp {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #a2d2ff;
-  border: 3px solid #ccc;
-}
-
-.altPfps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.altPfps img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #a2d2ff;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.altPfps img:hover {
-  transform: scale(1.1);
-}
-
-.altPfps img.active {
-  border: 2px solid #000;
-}
-
-#updateAvatarBtn {
-  padding: 10px 20px;
-  background-color: #2841bf;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#updateAvatarBtn:hover {
-  background-color: #fff;
-  color: #2841bf;
-  border: 1px solid #2841bf;
-}
-
-.user-info-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
-  padding: 20px;
-}
-
-.userInfo {
-  background-color: #f2f2f2;
-  color: #333;
-  border-radius: 20px;
-  padding: 20px 40px;
+.info {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  min-width: 300px;
-  max-width: 400px;
 }
 
-.userInfo h1 {
-  font-size: 24px;
-  color: #000;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.userInfo p {
-  font-size: 14px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
-}
-
-.changePasswordDiv {
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  min-width: 300px;
-  max-width: 400px;
-}
-
-.changePasswordDiv input {
-  background-color: #eee;
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 10px 15px;
-  border-radius: 8px;
+.user-panel {
+  background: #fff;
   width: 100%;
-  font-size: 14px;
+  max-width: 950px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 280px 1fr;
 }
 
-.changePasswordDiv button {
-  background-color: #512da8;
+.user-sidebar {
+  background: #1e3a8a;
   color: #fff;
-  font-size: 14px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.changePasswordDiv button:hover {
-  background-color: #fff;
-  color: #512da8;
-  border: 1px solid #512da8;
+.user-sidebar img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  margin-bottom: 20px;
 }
 
-main + a {
-  display: block;
-  margin: 40px auto;
-  color: #2841bf;
-  text-decoration: none;
+.user-sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.user-sidebar p {
+  font-size: 20px;
+  opacity: 0.85;
   font-weight: 500;
-  transition: color 0.3s ease, font-size 0.3s ease;
-  width: fit-content;
 }
 
-main + a:hover {
-  color: #000;
-  font-size: 18px;
+.user-content {
+  padding: 40px;
 }
 
+.section {
+  margin-bottom: 40px;
+}
 
-/* Dark Theme */
+.section h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 16px;
+  border-left: 4px solid #1e3a8a;
+  padding-left: 12px;
+}
 
-body.dark-theme main {
-  margin: 200px auto 40px auto;
-  padding: 30px;
-  border-radius: 30px;
-  width: 90%;
-  max-width: 1200px;
-  background-color: #1e1e1e;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+.form-row {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
-  color: #f5f5f5;
-}
-
-body.dark-theme .userAvatar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 20px;
-  text-align: center;
-}
-
-body.dark-theme .userAvatar h1 {
-  font-size: 28px;
-  color: #fff;
-}
-
-body.dark-theme .userAvatar img.userPfp {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #333;
-  border: 3px solid #666;
-}
-
-body.dark-theme .altPfps {
-  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
 }
 
-body.dark-theme .altPfps img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #444;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  border: 2px solid transparent;
-}
-
-body.dark-theme .altPfps img:hover {
-  transform: scale(1.1);
-}
-
-body.dark-theme .altPfps img.active {
-  border: 2px solid #fff;
-}
-
-body.dark-theme #updateAvatarBtn {
-  padding: 10px 20px;
-  background-color: #2841bf;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-body.dark-theme #updateAvatarBtn:hover {
-  background-color: #fff;
-  color: #2841bf;
-  border: 1px solid #2841bf;
-}
-
-body.dark-theme .user-info-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
-  padding: 20px;
-}
-
-body.dark-theme .userInfo {
-  background-color: #2b2b2b;
-  color: #f5f5f5;
-  border-radius: 20px;
-  padding: 20px 40px;
+.form-group {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  min-width: 300px;
-  max-width: 400px;
+  margin-bottom: 20px;
 }
 
-body.dark-theme .userInfo h1 {
-  font-size: 24px;
-  color: #fff;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-body.dark-theme .userInfo p {
+.form-group label {
   font-size: 14px;
-  border-bottom: 1px solid #555;
-  padding-bottom: 5px;
+  margin-bottom: 6px;
+  color: #555;
 }
 
-body.dark-theme .changePasswordDiv {
-  background-color: #2b2b2b;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  min-width: 300px;
-  max-width: 400px;
+.form-group input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s;
 }
 
-body.dark-theme .changePasswordDiv input {
-  background-color: #3a3a3a;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  font-size: 13px;
-  border-radius: 8px;
+.form-group input:focus {
   outline: none;
-  width: 100%;
+  border-color: #1e3a8a;
 }
 
-body.dark-theme .changePasswordDiv input::placeholder {
-  color: #aaa;
-}
-
-body.dark-theme .changePasswordDiv button {
-  background-color: #512da8;
+.button {
+  padding: 10px 24px;
+  background: #1e3a8a;
   color: #fff;
-  font-size: 12px;
-  padding: 10px 5px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s;
+  margin-top: 10px;
 }
 
-body.dark-theme .changePasswordDiv button:hover {
-  background-color: #fff;
-  color: #512da8;
-  border: 1px solid #512da8;
+.button:hover {
+  background: #163075;
 }
 
-body.dark-theme main + a {
-  margin: auto;
-  margin-top: 40px;
-  display: block;
-  width: fit-content;
+@media (max-width: 768px) {
+  .user-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .user-sidebar {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .user-sidebar img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+#alertDiv {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background-color: green;
+  color: white;
+  font-weight: 500;
   text-align: center;
-  color: #ccc;
-  transition: all 0.3s ease;
+  max-width: 400px;
+  width: 90%;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: bottom 0.5s ease, opacity 0.5s ease;
+  z-index: 999;
 }
 
-body.dark-theme main + a:hover {
-  font-size: 25px;
-  color: #fff;
+
+/* DARK THEME */
+
+body.dark-theme {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+body.dark-theme .user-panel {
+  background-color: #1e293b;
+  box-shadow: none;
+}
+
+body.dark-theme .user-sidebar {
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+
+body.dark-theme .user-sidebar img {
+  border-color: #334155;
+}
+
+body.dark-theme .user-content {
+  background-color: #1e293b;
+}
+
+body.dark-theme .section h3 {
+  color: #f1f5f9;
+  border-left-color: #3b82f6;
+}
+
+body.dark-theme .form-group label {
+  color: #f1f5f9;
+}
+
+body.dark-theme .form-group input {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  border: 1px solid #334155;
+}
+
+body.dark-theme .form-group input:focus {
+  border-color: #3b82f6;
+}
+
+body.dark-theme .button {
+  background-color: #3b82f6;
+  color: #f1f5f9;
+}
+
+body.dark-theme .button:hover {
+  background-color: #2563eb;
 }

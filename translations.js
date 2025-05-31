@@ -5,7 +5,7 @@ const logOut = document.getElementById("logOut");
 if (logOut) {
   logOut.addEventListener("click", function () {
     const mockUserId = sessionStorage.getItem("mockUserId");
-    const isAdmin = sessionStorage.getItem("isAdmin") === "true"; 
+    const isAdmin = sessionStorage.getItem("isAdmin") === "true";
 
     if (!isAdmin) {
       fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
@@ -27,14 +27,15 @@ if (logOut) {
 }
 
 const isSignInPage = window.location.href.includes("signin");
+const isAdmin = sessionStorage.getItem("isAdmin") === "true";
 
-if (
-  !isSignInPage &&
-  ((!token && sessionStorage.getItem("isAdmin") === "false") ||
-    (!token && !sessionStorage.getItem("isAdmin")))
-) {
+// Redirect users (not admins) without token
+if (!isSignInPage && !isAdmin && !token) {
   window.location.href = "signin.html";
-} else if (sessionStorage.getItem("isAdmin") === "false") {
+}
+
+// If user is logged in, validate token and fetch user info
+if (!isAdmin && token) {
   fetch("https://api.everrest.educata.dev/auth", {
     method: "GET",
     headers: {
@@ -50,6 +51,7 @@ if (
     })
     .then((user) => {
       console.log("Current user:", user);
+      // optionally update UI with user.avatar
     })
     .catch((err) => {
       console.error(err);
@@ -57,6 +59,7 @@ if (
       window.location.href = "signin.html";
     });
 }
+
 
 const userPfpIcon = document.getElementById("userProfileIcon");
 
@@ -114,7 +117,6 @@ window.addEventListener("DOMContentLoaded", function () {
     body.classList.add("dark-theme");
   }
 });
-
 
 const translations = {
   იმეილი: {
@@ -228,8 +230,8 @@ const translations = {
     en: "Departure date",
   },
 
-  დაჯავშნილია:{
-    en:"Booked"
+  დაჯავშნილია: {
+    en: "Booked",
   },
 
   "სულ გადახდილი:": {
