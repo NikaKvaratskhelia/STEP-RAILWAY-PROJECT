@@ -29,12 +29,10 @@ if (logOut) {
 const isSignInPage = window.location.href.includes("signin");
 const isAdmin = sessionStorage.getItem("isAdmin") === "true";
 
-// Redirect users (not admins) without token
 if (!isSignInPage && !isAdmin && !token) {
   window.location.href = "signin.html";
 }
 
-// If user is logged in, validate token and fetch user info
 if (!isAdmin && token) {
   fetch("https://api.everrest.educata.dev/auth", {
     method: "GET",
@@ -51,7 +49,6 @@ if (!isAdmin && token) {
     })
     .then((user) => {
       console.log("Current user:", user);
-      // optionally update UI with user.avatar
     })
     .catch((err) => {
       console.error(err);
@@ -59,7 +56,6 @@ if (!isAdmin && token) {
       window.location.href = "signin.html";
     });
 }
-
 
 const userPfpIcon = document.getElementById("userProfileIcon");
 
@@ -155,8 +151,28 @@ const translations = {
     en: "Passengers",
   },
 
+  დახმარება: {
+    en: "Support",
+  },
+
   თბილისი: {
     en: "Tbilisi",
+  },
+
+  "ბილეთების ისტორია": {
+    en: "Ticket History",
+  },
+
+  ბოტი: {
+    en: "ChatBot",
+  },
+
+  "ღამის რეჟიმი": {
+    en: "Dark Theme",
+  },
+
+  გამოსვლა:{
+    en:"Log Out"
   },
 
   ბათუმი: {
@@ -188,6 +204,10 @@ const translations = {
   },
   სახელი: {
     en: "Name",
+  },
+
+  "დაბრუნდი უკან":{
+    en:"Go Back"
   },
 
   გვარი: {

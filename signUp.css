@@ -12,6 +12,25 @@
   src: url(Fonts/Montsterrat/Montserrat-VariableFont_wght.ttf);
 }
 
+#alertDiv {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background-color: green;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: bottom 0.5s ease, opacity 0.5s ease;
+  z-index: 999;
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -25,6 +44,7 @@ form button:active {
 }
 
 .container {
+  margin-top: 100px;
   background-color: #fff;
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -122,8 +142,6 @@ form button {
 
 @media screen and (max-width: 800px) {
   .container {
-    margin-top: 50px;
-    margin-bottom: 50px;
     flex-direction: column;
   }
 

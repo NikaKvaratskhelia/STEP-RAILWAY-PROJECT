@@ -15,29 +15,40 @@ const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 const signUpStatus = document.getElementById("signUpStatus");
 
+const loader = document.querySelector(".loader-wrapper");
+
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
+  loader.style.display = "flex"; 
+
   let valid = true;
+
   if (!zipRegex.test(signUpZIP.value.trim())) {
     alert("ZIP code must be exactly 4 digits.");
+    signUpZIP.style.borderColor = "red";
     valid = false;
+    loader.style.display = "none"; 
     return;
   }
 
   if (!phoneRegex.test(signUpPhone.value.trim())) {
-    alert("Phone number must include country code and start with '+'.");
+    alert("Phone number must include country code and start with '+'!");
+    signUpPhone.style.borderColor = "red";
     valid = false;
+    loader.style.display = "none";
     return;
   }
 
   if (!passwordRegex.test(signUpPassword.value.trim())) {
-    alert("Weak Password! Please choose stronger one!");
+    alert("Weak Password! Please choose a stronger one.");
+    signUpPassword.style.borderColor = "red";
     valid = false;
+    loader.style.display = "none";
     return;
   }
 
   if (valid) {
-    newUser = {
+    const newUser = {
       firstName: signUpName.value.trim(),
       lastName: signUpLastname.value.trim(),
       age: signUpAge.value.trim(),
@@ -62,54 +73,68 @@ signUpForm.addEventListener("submit", function (e) {
         if (!res.ok) {
           throw new Error(data.error || "An unexpected error occurred.");
         }
+
+        await fetch(
+          "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              message: `${newUser.firstName} just signed up.`,
+              type: "signup",
+              timestamp: new Date().toISOString(),
+            }),
+          }
+        );
+
+        await fetch(
+          "https://68137244129f6313e2114929.mockapi.io/registeredUsers",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newUser),
+          }
+        );
+
         return data;
       })
       .then((data) => {
+        loader.style.display = "none"; 
         sessionStorage.setItem("newUser", JSON.stringify(data));
-        signUpStatus.innerHTML = "<p>Successfully Signed Up!</p>";
-        signUpStatus.style.backgroundColor = "rgba(58, 226, 58, 0.49);";
-        fetch("https://68137244129f6313e2114929.mockapi.io/adminNotifications", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            message: `${signUpName.value.trim()} just signed up.`,
-            type: "signup",
-            timestamp: new Date().toISOString(),
-          }),
-        });
+        showAlert("Successfully signed up!", "green");
 
         setTimeout(() => {
           window.location.href = "signIn.html";
         }, 1000);
       })
       .catch((err) => {
-        signUpStatus.innerHTML = `<p>Sign up failed! ${err.message}</p>`;
-        signUpStatus.style.backgroundColor = "#cc4949a9";
+        loader.style.display = "none";
+        showAlert(`Sign-up failed: ${err.message}`, "red");
       });
-
-    // mock api post
-
-    mockUSer = {
-      firstName: signUpName.value.trim(),
-      lastName: signUpLastname.value.trim(),
-      age: signUpAge.value.trim(),
-      email: signUpEmail.value.trim(),
-      address: signUpAddress.value.trim(),
-      phone: signUpPhone.value.trim(),
-      zipcode: signUpZIP.value.trim(),
-      avatar: signUpAvatar,
-      password: signUpPassword.value.trim(),
-      gender: signUpGender.value.trim(),
-    };
-
-    fetch("https://68137244129f6313e2114929.mockapi.io/registeredUsers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(mockUSer),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
   }
+});
+
+function showAlert(message, color) {
+  const alertDiv = document.getElementById("alertDiv");
+  alertDiv.innerHTML = message;
+  alertDiv.style.backgroundColor = color;
+  alertDiv.style.bottom = "30px";
+  alertDiv.style.opacity = "1";
+
+  setTimeout(() => {
+    alertDiv.style.bottom = "-100px";
+    alertDiv.style.opacity = "0";
+  }, 2000);
+}
+
+let burgerBtn = document.querySelector(".burger-btn");
+
+burgerBtn.addEventListener("click", function () {
+  document.querySelector(".burger-menu-list").classList.add("active");
+});
+
+let closeBtn = document.querySelector(".closeBtn");
+
+closeBtn.addEventListener("click", function () {
+  document.querySelector(".burger-menu-list").classList.remove("active");
 });

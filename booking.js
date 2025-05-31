@@ -185,7 +185,15 @@ vagonImgs.forEach((img, index) =>
             if (selectedSeatIds.includes(seatId)) return;
             console.log(selectedSeatIds);
 
-            selectedSeatIds.splice(indexOpenSeatingBtn, 1);
+            const previousSeatId =
+              chosenSeatNumber[indexOpenSeatingBtn].getAttribute("seat-id");
+
+            if (previousSeatId) {
+              const idIndex = selectedSeatIds.indexOf(previousSeatId);
+              if (idIndex !== -1) {
+                selectedSeatIds.splice(idIndex, 1);
+              }
+            }
 
             chosenSeatNumber[indexOpenSeatingBtn].innerHTML = seat.number;
             chosenSeatNumber[indexOpenSeatingBtn].setAttribute(

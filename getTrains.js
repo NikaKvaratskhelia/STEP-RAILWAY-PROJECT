@@ -52,8 +52,8 @@ fetch("https://railway.stepprojects.ge/api/departures")
               `)
       );
     } else {
-      tr += `<div class='error-div' data-translate="სასურველი მატარებელი ვერ მოიძებნა"><h2>სასურველი მატარებელი ვერ მოიძებნა </h2>
-          <a href='index.html'>დაბრუნდი უკან</a>
+      tr += `<div class='error-div'><h2 data-translate="სასურველი მატარებელი ვერ მოიძებნა">სასურველი მატარებელი ვერ მოიძებნა </h2>
+          <a href='index.html' data-translate="დაბრუნდი უკან">დაბრუნდი უკან</a>
           </div>`;
     }
 
@@ -104,8 +104,8 @@ fetch("https://railway.stepprojects.ge/api/departures")
               percentCell.innerHTML = `
               <div style="width: 100px; background: #eee; border-radius: 5px; overflow: hidden;">
                 <div style="width: ${percent}%; background: ${
-                            percent > 80 ? "#e74c3c" : percent > 50 ? "#f1c40f" : "#2ecc71"
-                          }; height: 12px;"></div>
+                percent > 80 ? "#e74c3c" : percent > 50 ? "#f1c40f" : "#2ecc71"
+              }; height: 12px;"></div>
               </div>
               <small style="font-size:15px; font-weight: 500;">${percent}% <span data-translate="დაჯავშნილია">დაჯავშნილია</span></small>
             `;
@@ -117,4 +117,13 @@ fetch("https://railway.stepprojects.ge/api/departures")
           });
         });
     });
+  })
+  .catch((err) => {
+    
+    let tr = "";
+    tr +=`<div class='error-div' ><h2 data-translate="სასურველი მატარებელი ვერ მოიძებნა">სასურველი მატარებელი ვერ მოიძებნა </h2>
+          <a href='index.html' data-translate="დაბრუნდი უკან">დაბრუნდი უკან</a>
+          </div>`;
+          
+    trainDiv.innerHTML = tr;
   });
