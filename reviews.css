@@ -115,3 +115,56 @@ button:hover {
   transition: bottom 0.5s ease, opacity 0.5s ease;
   z-index: 999;
 }
+
+/* Dark Theme */
+
+body.dark-theme {
+  background: #1e1e2f;
+  color: #e0e0e0;
+}
+
+body.dark-theme .container {
+  background: transparent;
+}
+
+body.dark-theme h1 {
+  color: #ffffff;
+}
+
+body.dark-theme .review {
+  background: #2c2c3e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .review .name {
+  color: #ffffff;
+}
+
+body.dark-theme .review .text {
+  color: #cccccc;
+}
+
+body.dark-theme textarea {
+  background: #2a2a3a;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+
+body.dark-theme textarea:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+
+body.dark-theme button {
+  background: #8b5cf6;
+  color: #ffffff;
+}
+
+body.dark-theme button:hover {
+  background: #6d28d9;
+}
+
+body.dark-theme #alertDiv {
+  background-color: #10b981;
+  color: #ffffff;
+}
