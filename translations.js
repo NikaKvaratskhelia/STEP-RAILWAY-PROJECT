@@ -214,6 +214,10 @@ const translations = {
     en: "Surname",
   },
 
+  ბინგო:{
+    en:"Train Bingo"
+  },
+
   "სახელი:": {
     en: "Name:",
   },
