@@ -171,8 +171,8 @@ const translations = {
     en: "Dark Theme",
   },
 
-  გამოსვლა:{
-    en:"Log Out"
+  გამოსვლა: {
+    en: "Log Out",
   },
 
   ბათუმი: {
@@ -206,16 +206,20 @@ const translations = {
     en: "Name",
   },
 
-  "დაბრუნდი უკან":{
-    en:"Go Back"
+  "დაბრუნდი უკან": {
+    en: "Go Back",
   },
 
   გვარი: {
     en: "Surname",
   },
 
-  ბინგო:{
-    en:"Train Bingo"
+  ბინგო: {
+    en: "Train Bingo",
+  },
+
+  მიმოხილვები: {
+    en: "Reviews",
   },
 
   "სახელი:": {
