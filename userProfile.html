@@ -101,6 +101,22 @@
       <div class="user-panel">
         <div class="user-sidebar">
           <img id="userImg" src="" alt="User Avatar" />
+          <button id="altPfpShow" class="button" data-translate="გინდა პროფილის შეცვლა? დააჭირე">
+            გინდა პროფილის შეცვლა? დააჭირე
+          </button>
+          <div class="altPfps" id="altPfps">
+            <button class="loadAltPfps button" onclick="reloadPfps()" data-translate="დააგენერირე ფოტოები">
+              დააგენერირე ფოტოები
+            </button>
+
+            <div class="altPfpsWrapper">
+              <img src="" class="altPfp" alt="Alternate pfp" />
+              <img src="" class="altPfp" alt="Alternate pfp" />
+              <img src="" class="altPfp" alt="Alternate pfp" />
+            </div>
+
+            <button onclick="changePfp()" class="button" data-translate="შეცვლა">შეცვლა</button>
+          </div>
           <div class="info">
             <h2 id="userName"></h2>
             <p id="userEmail"></p>
@@ -110,35 +126,35 @@
 
         <div class="user-content">
           <div class="section">
-            <h3>Profile Information</h3>
+            <h3 data-translate="პროფილის ინფორმაცია"></h3>
             <div class="form-row">
               <div class="form-group">
-                <label for="firstName">First Name</label>
+                <label for="firstName" data-translate="სახელი">First Name</label>
                 <input type="text" id="firstName" placeholder="Jane" />
               </div>
               <div class="form-group">
-                <label for="lastName">Last Name</label>
+                <label for="lastName" data-translate="გვარი">Last Name</label>
                 <input type="lastName" id="lastName" placeholder="Dhoe" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="phone">Phone Number</label>
+                <label for="phone" data-translate="ტელეფონის ნომერი">Phone Number</label>
                 <input type="text" id="phone" placeholder="+123 456 7890" />
               </div>
               <div class="form-group">
-                <label for="extra">Age</label>
+                <label for="extra" data-translate="ასაკი">Age</label>
                 <input type="number" id="Age" placeholder="" />
               </div>
             </div>
-            <button class="button" onclick="updateData()">Save Profile</button>
+            <button class="button" onclick="updateData()" data-translate="შეინახე">Save</button>
           </div>
 
           <div class="section">
-            <h3>Change Password</h3>
+            <h3 data-translate="შეცვალე პაროლი">Change Password</h3>
             <div class="form-row">
               <div class="form-group">
-                <label for="oldpass">Old Password</label>
+                <label for="oldpass" data-translate="ძველი პაროლი">Old Password</label>
                 <input
                   type="password"
                   id="oldPass"
@@ -146,7 +162,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="newpass">New Password</label>
+                <label for="newpass" data-translate="ახალი პაროლი">New Password</label>
                 <input
                   type="password"
                   id="newPass"
@@ -154,7 +170,7 @@
                 />
               </div>
             </div>
-            <button class="button" onclick="setupPasswordChange()">
+            <button class="button" onclick="setupPasswordChange()" data-translate="შეცვალე პაროლი">
               Update Password
             </button>
           </div>

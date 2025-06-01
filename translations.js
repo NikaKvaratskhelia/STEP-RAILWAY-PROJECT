@@ -210,24 +210,38 @@ const translations = {
     en: "Go Back",
   },
 
-  გვარი: {
-    en: "Surname",
-  },
-
   ბინგო: {
     en: "Train Bingo",
+  },
+
+  შეცვლა:{
+    en:"Change"
+  },
+
+
+
+  "პროფილის ინფორმაცია":{
+    en:"Profile Information"
+  },
+
+  "გინდა პროფილის შეცვლა? დააჭირე":{
+    en:"Want To Change Profile Picture? Click This"
+  },
+
+  "დააგენერირე ფოტოები":{
+    en:"Regenerate Photos"
   },
 
   მიმოხილვები: {
     en: "Reviews",
   },
 
-  "სახელი:": {
-    en: "Name:",
-  },
-
   "გვარი:": {
     en: "Surname:",
+  },
+
+  გვარი:{
+    en:"Surname"
   },
 
   ინვოისი: {
@@ -483,9 +497,32 @@ const translations = {
   ოთხშაბათი: {
     en: "Wednesday",
   },
+  ასაკი:{
+    en:"Age"
+  },
   ხუთშაბათი: {
     en: "Thursday",
   },
+  შეინახე:{
+    en:"Save"
+  },
+
+  "შეცვალე პაროლი":{
+    en:"Change Password"
+  },
+
+  "ძველი პაროლი":{
+    en:"Old Password"
+  },
+
+  "ახალი პაროლი":{
+    en:"New Password"
+  },
+
+  "შეცვალე პაროლი":{
+    en:"Update Password"
+  },
+
   პარასკევი: {
     en: "Friday",
   },

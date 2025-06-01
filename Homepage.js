@@ -44,7 +44,7 @@ fromListOption.forEach((option) => {
     fromInput.setAttribute(
       "data-value",
       this.getAttribute("data-value") || this.textContent
-    ); // ✅ Save Georgian value
+    ); 
     fromInput.classList.remove("active");
   });
 });
@@ -70,7 +70,7 @@ toListOption.forEach((option) => {
     toInput.setAttribute(
       "data-value",
       this.getAttribute("data-value") || this.textContent
-    ); // ✅ Save Georgian value
+    ); 
     toInput.classList.remove("active");
   });
 });

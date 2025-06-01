@@ -7,7 +7,7 @@ const alertDiv = document.getElementById("alertDiv");
 const inputFirstName = document.getElementById("firstName");
 const inputLastName = document.getElementById("lastName");
 const inputPhone = document.getElementById("phone");
-const inputAge = document.getElementById("age");
+const inputAge = document.getElementById("Age");
 
 function setupPasswordChange() {
   const oldPassword = document.getElementById("oldPass");
@@ -115,7 +115,7 @@ function updateData() {
     firstName: inputFirstName.value.trim() || userData.firstName,
     lastName: inputLastName.value.trim() || userData.lastName,
     age: inputAge.value.trim() || userData.age,
-    email:userData.email,
+    email: userData.email,
     address: userData.address,
     phone: inputPhone.value.trim() || userData.phone,
     zipcode: userData.zipcode,
@@ -123,7 +123,8 @@ function updateData() {
     gender: userData.gender,
   };
 
-  console.log(updatedUser)
+  console.log(updatedUser);
+
   fetch("https://api.everrest.educata.dev/auth/update", {
     method: "PATCH",
     headers: {
@@ -131,15 +132,58 @@ function updateData() {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     body: JSON.stringify(updatedUser),
-  }).then((response) => {
-    if (!response.ok) {
-      showAlert("An error Occured While Updating Data", "red");
-    }
-    if (response.ok) {
+  })
+    .then((response) => {
+      if (!response.ok) {
+        showAlert("An error Occurred While Updating Data", "red");
+        throw new Error("Failed to update Everrest API");
+      }
+      return response.json();
+    })
+    .then(() => {
       showAlert("Profile Updated Successfully", "green");
-      fetchUserInfo()
-    }
-  });
+      fetchUserInfo();
+
+      const mockUserId = sessionStorage.getItem("mockUserId");
+
+      return fetch(
+        `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${mockUserId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      ).then((mockApiResponse) => {
+        if (!mockApiResponse.ok) {
+          showAlert("Failed to update MockAPI user data", "red");
+        }
+
+        return fetch(
+          `https://683b5e1c28a0b0f2fdc47ef9.mockapi.io/reviews/${mockUserId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              firstName: updatedUser.firstName,
+              lastName: updatedUser.lastName,
+              avatar: updatedUser.avatar,
+            }),
+          }
+        );
+      });
+    })
+    .then((reviewResponse) => {
+      if (reviewResponse && !reviewResponse.ok) {
+        showAlert("Failed to update user review info", "red");
+      }
+    })
+    .catch((error) => {
+      console.error("Update error:", error);
+    });
 }
 
 function showAlert(message, color) {
@@ -155,4 +199,133 @@ function showAlert(message, color) {
   }, 2000);
 }
 
-fetchUserInfo()
+fetchUserInfo();
+
+const openPfps = document.getElementById("altPfpShow");
+const altPfpDiv = document.getElementById("altPfps");
+
+openPfps.addEventListener("click", function () {
+  altPfpDiv.classList.toggle("active");
+});
+
+let pfpCounter = 1;
+const pfpImages = document.querySelectorAll(".altPfp");
+const currentPfp = document.getElementById("userImg");
+
+function reloadPfps() {
+  pfpImages.forEach((img) => {
+    const seed = `alt-${pfpCounter++}`;
+    img.src = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${seed}`;
+    img.setAttribute("data-seed", seed);
+    img.classList.remove("selected");
+  });
+}
+
+pfpImages.forEach((img) => {
+  img.addEventListener("click", function () {
+    pfpImages.forEach((el) => el.classList.remove("selected"));
+
+    img.classList.add("selected");
+
+    currentPfp.src = img.src;
+  });
+});
+
+reloadPfps();
+
+function changePfp() {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const mockUserId = sessionStorage.getItem("mockUserId");
+
+  if (!mockUserId) {
+    console.error("MockAPI user ID not found in sessionStorage");
+    return;
+  }
+
+  let newPfp = {
+    firstName: userData.firstName,
+    lastName: userData.lastName,
+    age: userData.age,
+    email: userData.email,
+    address: userData.address,
+    phone: userData.phone,
+    zipcode: userData.zipcode,
+    avatar: currentPfp.src,
+    gender: userData.gender,
+  };
+
+  fetch("https://api.everrest.educata.dev/auth/update", {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(newPfp),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to update avatar on Everrest");
+      }
+      return res.json();
+    })
+    .then(() => {
+      return fetch(
+        `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${mockUserId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newPfp),
+        }
+      );
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to update avatar on MockAPI registeredUsers");
+      }
+      return res.json();
+    })
+    .then(() => {
+      return fetch(
+        `https://683b5e1c28a0b0f2fdc47ef9.mockapi.io/reviews/${mockUserId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: newPfp.firstName,
+            lastName: newPfp.lastName,
+            avatar: newPfp.avatar,
+          }),
+        }
+      );
+    })
+    .then((reviewRes) => {
+      if (!reviewRes.ok) {
+        throw new Error("Failed to update avatar in user review info");
+      }
+
+      return fetch(
+        "https://68137244129f6313e2114929.mockapi.io/adminNotifications",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: `User ID:${mockUserId} just changed avatar!`,
+            type: "changeData",
+            timestamp: new Date().toISOString(),
+          }),
+        }
+      );
+    })
+    .then(() => {
+      showAlert("Profile Updated Successfully", "green");
+      fetchUserInfo();
+    })
+    .catch((error) => {
+      console.error("Update error:", error);
+    });
+}

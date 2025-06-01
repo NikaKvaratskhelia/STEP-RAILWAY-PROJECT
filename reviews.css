@@ -8,6 +8,16 @@ body {
   color: #333;
 }
 
+.delete-btn {
+  margin-top: 10px;
+  padding: 4px 8px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 .container {
   max-width: 1000px;
   margin: 50px auto;
@@ -167,4 +177,24 @@ body.dark-theme button:hover {
 body.dark-theme #alertDiv {
   background-color: #10b981;
   color: #ffffff;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  cursor: pointer;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.rating span {
+  font-size: 24px;
+  color: #ccc;
+  transition: color 0.2s;
+}
+
+.rating span.hover,
+.rating span.selected {
+  color: gold;
 }

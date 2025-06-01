@@ -99,17 +99,28 @@
     </header>
 
     <main>
-        <div class="container">
-    <h1>User Reviews</h1>
+      <div class="container">
+        <h1>User Reviews</h1>
 
-    <div class="reviews" id="reviews">
-    </div>
+        <div class="reviews" id="reviews"></div>
 
-    <div class="form">
-      <textarea id="reviewInput" rows="3" placeholder="Write your review..."></textarea>
-      <button id="submitButton">Send</button>
-    </div>
-  </div>
+        <div class="form">
+          <div class="rating" id="rating">
+            <span data-value="5">&#9733;</span>
+            <span data-value="4">&#9733;</span>
+            <span data-value="3">&#9733;</span>
+            <span data-value="2">&#9733;</span>
+            <span data-value="1">&#9733;</span>
+          </div>
+          <textarea
+            id="reviewInput"
+            rows="3"
+            placeholder="Write your review..."
+          ></textarea>
+
+          <button id="submitButton">Send</button>
+        </div>
+      </div>
     </main>
 
     <footer>
@@ -125,7 +136,7 @@
         </p>
       </div>
     </footer>
-    
+
     <div id="alertDiv"></div>
 
     <script src="reviews.js"></script>

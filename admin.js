@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   }
                 )
                   .then(() => {
+                    showAlert("Successfully deleted user!", "green")
                     loadUsers();
 
                     fetch(
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     fetchNotifications();
                   })
-                  .catch(() => alert("Failed to delete user"));
+                  .catch((error) => showAlert("Failed to Delete User", "red"));
               }
             });
           });
@@ -190,3 +191,16 @@ async function fetchTodaysAnalytics() {
 }
 
 window.addEventListener("DOMContentLoaded", fetchTodaysAnalytics);
+
+function showAlert(message, color) {
+  const alertDiv = document.getElementById("alertDiv");
+  alertDiv.innerHTML = message;
+  alertDiv.style.backgroundColor = color;
+  alertDiv.style.bottom = "30px";
+  alertDiv.style.opacity = "1";
+
+  setTimeout(() => {
+    alertDiv.style.bottom = "-100px";
+    alertDiv.style.opacity = "0";
+  }, 2000);
+}

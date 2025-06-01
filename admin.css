@@ -3,11 +3,30 @@ body {
   margin: 20px;
 }
 
-main{
+main {
   margin-top: 80px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+#alertDiv {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background-color: green;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: bottom 0.5s ease, opacity 0.5s ease;
+  z-index: 999;
 }
 
 .title {
@@ -22,7 +41,7 @@ main{
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; 
+  min-width: 600px;
 }
 
 thead th,
@@ -46,7 +65,7 @@ table + p {
   margin-top: 30px;
 }
 
-.wrapper{
+.wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
@@ -93,7 +112,7 @@ td img {
 }
 
 .analytics p {
-  font-size:20px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -147,7 +166,7 @@ td button {
   tbody td {
     width: 100%;
     padding: 10px 12px;
-    height: 50px; 
+    height: 50px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -163,54 +182,54 @@ td button {
 /* Dark Theme */
 
 body.dark-theme {
-  color: #E0E0E0;
+  color: #e0e0e0;
   background-color: #121827;
 }
 
 body.dark-theme .title {
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-theme thead th,
 body.dark-theme tbody td {
   border-color: #2c2f47;
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-theme thead th {
   background-color: #1b1f37;
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-theme table + p {
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-theme .notifications {
   border-color: #2c2f47;
   background-color: #1b1f37;
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-theme .notifications h2 {
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-theme #notificationList li {
   background-color: #121827;
   border-left-color: #3b51e0;
   box-shadow: 0 1px 3px rgba(41, 54, 82, 0.75);
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-theme .analytics p {
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 @media screen and (max-width: 670px) {
   body.dark-theme thead th {
     background-color: #1b1f37;
-    color: #E0E0E0;
+    color: #e0e0e0;
   }
 
   body.dark-theme tbody tr {
@@ -220,6 +239,6 @@ body.dark-theme .analytics p {
 
   body.dark-theme tbody td {
     border-bottom-color: #2841bf99;
-    color: #E0E0E0;
+    color: #e0e0e0;
   }
 }
