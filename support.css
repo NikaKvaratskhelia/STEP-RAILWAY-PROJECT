@@ -112,7 +112,7 @@ main {
 .contact-support .left-form,
 .contact-support .right-info {
   flex: 1;
-  min-width: 300px;
+  min-width: 250px;
 }
 .contact-form input,
 .contact-form textarea {
