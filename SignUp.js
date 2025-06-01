@@ -101,11 +101,7 @@ signUpForm.addEventListener("submit", function (e) {
       .then((data) => {
         loader.style.display = "none"; 
         sessionStorage.setItem("newUser", JSON.stringify(data));
-        showAlert("Successfully signed up!", "green");
-
-        setTimeout(() => {
-          window.location.href = "signIn.html";
-        }, 1000);
+        showAlert("Successfully signed up!<br> Verification Email was sent to you, please verify and then sign in!", "green");
       })
       .catch((err) => {
         loader.style.display = "none";
@@ -124,7 +120,7 @@ function showAlert(message, color) {
   setTimeout(() => {
     alertDiv.style.bottom = "-100px";
     alertDiv.style.opacity = "0";
-  }, 2000);
+  }, 5000);
 }
 
 let burgerBtn = document.querySelector(".burger-btn");

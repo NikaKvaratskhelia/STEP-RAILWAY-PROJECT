@@ -150,31 +150,35 @@ function updateData() {
         `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${mockUserId}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updatedUser),
         }
-      ).then((mockApiResponse) => {
-        if (!mockApiResponse.ok) {
-          showAlert("Failed to update MockAPI user data", "red");
-        }
+      );
+    })
+    .then((mockApiResponse) => {
+      if (!mockApiResponse.ok) {
+        showAlert("Failed to update MockAPI user data", "red");
+      }
 
-        return fetch(
-          `https://683b5e1c28a0b0f2fdc47ef9.mockapi.io/reviews/${mockUserId}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              firstName: updatedUser.firstName,
-              lastName: updatedUser.lastName,
-              avatar: updatedUser.avatar,
-            }),
+      const reviewUrl = `https://683b5e1c28a0b0f2fdc47ef9.mockapi.io/reviews/${mockUserId}`;
+      return fetch(reviewUrl)
+        .then((res) => {
+          if (res.ok) {
+            return fetch(reviewUrl, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                firstName: updatedUser.firstName,
+                lastName: updatedUser.lastName,
+                avatar: updatedUser.avatar,
+              }),
+            });
+          } else if (res.status === 404) {
+            return null; 
+          } else {
+            throw new Error("Failed to check review existence");
           }
-        );
-      });
+        });
     })
     .then((reviewResponse) => {
       if (reviewResponse && !reviewResponse.ok) {
@@ -274,9 +278,7 @@ function changePfp() {
         `https://68137244129f6313e2114929.mockapi.io/registeredUsers/${mockUserId}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newPfp),
         }
       );
@@ -288,24 +290,29 @@ function changePfp() {
       return res.json();
     })
     .then(() => {
-      return fetch(
-        `https://683b5e1c28a0b0f2fdc47ef9.mockapi.io/reviews/${mockUserId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName: newPfp.firstName,
-            lastName: newPfp.lastName,
-            avatar: newPfp.avatar,
-          }),
-        }
-      );
+      const reviewUrl = `https://683b5e1c28a0b0f2fdc47ef9.mockapi.io/reviews/${mockUserId}`;
+      return fetch(reviewUrl)
+        .then((res) => {
+          if (res.ok) {
+            return fetch(reviewUrl, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                firstName: newPfp.firstName,
+                lastName: newPfp.lastName,
+                avatar: newPfp.avatar,
+              }),
+            });
+          } else if (res.status === 404) {
+            return null; 
+          } else {
+            throw new Error("Failed to check review existence");
+          }
+        });
     })
     .then((reviewRes) => {
-      if (!reviewRes.ok) {
-        throw new Error("Failed to update avatar in user review info");
+      if (reviewRes && !reviewRes.ok) {
+        showAlert("Failed to update user review info", "red");
       }
 
       return fetch(
