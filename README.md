@@ -23,15 +23,12 @@ A complete train ticket booking system built as part of my JS project at STEP IT
 
 - **Frontend**: HTML5, CSS3, SCSS, Vanilla JavaScript
 - **PDF Generation**: jsPDF
-- **Storage**: LocalStorage + backend (for tickets and users)
+- **Storage**: SessionStorage + backend (for tickets and users)
 - **Responsiveness**: Media queries, Flexbox, Grid
 - **Version Control**: Git & GitHub
 
 ---
 
-## 📸 Screenshots
-
-> *(Add screenshots to the `/screenshots` folder and link them here like below)*
 ## 📸 Screenshots
 
 ![Homepage](./Images/Homepage.png)
